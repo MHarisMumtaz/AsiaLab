@@ -77,5 +77,22 @@ namespace AsiaLabv1.Controllers
             //jo view call krna hai registration k baad wo view bna kr oska name paramter m yha pass krdena
             return View();
         }
+
+        public ActionResult Masters()
+        {
+            return View();
+        }
+        public ActionResult TestsManagement()
+        {
+            return View();
+        }
+        public ActionResult Accounting()
+        {
+            return View();
+        }
+        public ActionResult BranchReport()
+        {
+            return View();
+        }
     }
 }

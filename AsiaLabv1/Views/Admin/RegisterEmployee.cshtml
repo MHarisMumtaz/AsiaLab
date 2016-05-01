@@ -20,64 +20,188 @@
 @section NavMenu
 {
     <li>
-        <a href="AdminDashboard.html" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboard</span> </a>
+        <a href="@Url.Action("AdminDashboard","Main")" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboard</span> </a>
     </li>
 
     <li>
-        <a href="TestsManagement.html" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Tests Management</span></a>
+        <a href="@Url.Action("TestsManagement", "Admin")" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Tests Management</span></a>
 
     </li>
     <li>
-        <a href="Masters.html" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Masters</span></a>
+        <a href="@Url.Action("Masters", "Admin")" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Masters</span></a>
     </li>
 
     <li>
-        <a href="Accounting.html" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i> <span class="nav-label">Accounting</span> </a>
+        <a href="@Url.Action("Accounting", "Admin")" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i> <span class="nav-label">Accounting</span> </a>
     </li>
 
     <li>
     <li>
-        <a href="BranchReport.html" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Branch Report</a>
+        <a href="@Url.Action("BranchReport", "Admin")" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Branch Report</a>
     </li>
     <li>
         <a href="@Url.Action("Register","Admin")" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Register Employee</a>
     </li>
 }
-<h2>RegisterEmployee</h2>
 
-@using (Html.BeginForm("RegisterUser", "Admin", FormMethod.Post, new { id = "EmpRegistrationForm" }))
-{
-        @Html.LabelFor(model => model.BranchId);
-        @Html.DropDownListFor(model => model.BranchId, Model.Branches);
 
-        @Html.LabelFor(model => model.UserTypeId);
-        @Html.DropDownListFor(model => model.UserTypeId, Model.UserTypes);
+<div class="grid-form">
 
-        @Html.LabelFor(model => model.GenderId);
-        @Html.DropDownListFor(model => model.GenderId, Model.Genders);
+    <!----->
+    <!---->
+    <div class="grid-form1">
+        <h3>Register Employees</h3>
+        <div class="tab-content">
 
-        @Html.LabelFor(model => model.Name);
-        @Html.EditorFor(model => model.Name);
+            <div class="tab-pane active" id="horizontal-form">
 
-        @Html.LabelFor(model => model.UserName);
-        @Html.EditorFor(model => model.UserName);
+                <form class="form-horizontal">
+                    @using (Html.BeginForm("RegisterUser", "Admin", FormMethod.Post, new { id = "EmpRegistrationForm" }))
+                    {
+                        <br />
+                        <div class="form-group">
+                            <label for="pname" class="col-sm-2 control-label">Branch</label>
+                            <div class="col-sm-8">
+                                @Html.DropDownListFor(model => model.BranchId, Model.Branches)
+                            </div>
+                            <!--<div class="col-sm-2">
+                                <p class="help-block">Your help text!</p>
+                            </div>-->
+                        </div>
+                        <div class="form-group">
+                            <label for="checkbox" class="col-sm-2 control-label">User Type</label>
+                            <div class="col-sm-8">
+                                @Html.DropDownListFor(model => model.UserTypeId, Model.UserTypes)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pname" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-8">
+                                @Html.EditorFor(model => model.Name)
+                            </div>
+                            <!--<div class="col-sm-2">
+                                <p class="help-block">Your help text!</p>
+                            </div>-->
+                        </div>
+                        <div class="form-group">
+                            <label for="checkbox" class="col-sm-2 control-label">Gender</label>
+                            <div class="col-sm-8">
+                                @Html.DropDownListFor(model => model.GenderId, Model.Genders)
+                            </div>
+                        </div>
 
-        @Html.LabelFor(model => model.Password);
-        @Html.EditorFor(model => model.Password);
+                        <div class="form-group">
+                            <label for="pname" class="col-sm-2 control-label">Username</label>
+                            <div class="col-sm-8">
+                                @Html.EditorFor(model => model.UserName)
 
-        @Html.LabelFor(model => model.Email);
-        @Html.EditorFor(model => model.Email);
+                            </div>
+                            <!--<div class="col-sm-2">
+                                <p class="help-block">Your help text!</p>
+                            </div>-->
+                        </div>
+                        <div class="form-group">
+                            <label for="pname" class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-8">
+                                @Html.EditorFor(model => model.Password)
+                            </div>
+                            <!--<div class="col-sm-2">
+                                <p class="help-block">Your help text!</p>
+                            </div>-->
+                        </div>
+                        <div class="form-group">
+                            <label for="pname" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-8">
+                                @Html.EditorFor(model => model.Email)
+                            </div>
 
-        @Html.LabelFor(model => model.ContactNo);
-        @Html.EditorFor(model => model.ContactNo);
+                        </div>
+                        <div class="form-group">
+                            <label for="pname" class="col-sm-2 control-label">Contact no.</label>
+                            <div class="col-sm-8">
+                                @Html.EditorFor(model => model.ContactNo)
+                            </div>
 
-        @Html.LabelFor(model => model.CNIC);
-        @Html.EditorFor(model => model.CNIC);
+                        </div>
+                        <div class="form-group">
+                            <label for="pname" class="col-sm-2 control-label">CNIC</label>
+                            <div class="col-sm-8">
+                                @Html.EditorFor(model => model.CNIC)
+                            </div>
 
-        @Html.LabelFor(model => model.AddressDetails);
-        @Html.EditorFor(model => model.AddressDetails);
+                        </div>
 
-        @Html.LabelFor(model => model.Qualification);
-        @Html.EditorFor(model => model.Qualification);
-    <input type="submit" value="Add" />
-}
+
+                        <div class="form-group">
+                            <label for="pname" class="col-sm-2 control-label">Address Details</label>
+                            <div class="col-sm-8">
+
+                                @Html.EditorFor(model => model.AddressDetails)
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="pname" class="col-sm-2 control-label">Qualification</label>
+                            <div class="col-sm-8">
+                                @Html.EditorFor(model => model.Qualification)
+                            </div>
+
+                        </div>
+                        <br />
+                        <div class="col-sm-2 login-do" style="margin-left:15%">
+                            <label class="hvr-shutter-in-horizontal login-sub">
+                                <input type="submit" value="Submit" />
+                            </label>
+                        </div>
+
+
+                        <div class="clearfix"> </div>
+
+                    }
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br /><br />
+
+
+
+
+
+@*@using (Html.BeginForm("RegisterUser", "Admin", FormMethod.Post, new { id = "EmpRegistrationForm" }))
+    {
+            @Html.LabelFor(model => model.BranchId);
+            @Html.DropDownListFor(model => model.BranchId, Model.Branches);
+
+            @Html.LabelFor(model => model.UserTypeId);
+            @Html.DropDownListFor(model => model.UserTypeId, Model.UserTypes);
+
+            @Html.LabelFor(model => model.GenderId);
+            @Html.DropDownListFor(model => model.GenderId, Model.Genders);
+
+            @Html.LabelFor(model => model.Name);
+            @Html.EditorFor(model => model.Name);
+
+            @Html.LabelFor(model => model.UserName);
+            @Html.EditorFor(model => model.UserName);
+
+            @Html.LabelFor(model => model.Password);
+            @Html.EditorFor(model => model.Password);
+
+            @Html.LabelFor(model => model.Email);
+            @Html.EditorFor(model => model.Email);
+
+            @Html.LabelFor(model => model.ContactNo);
+            @Html.EditorFor(model => model.ContactNo);
+
+            @Html.LabelFor(model => model.CNIC);
+            @Html.EditorFor(model => model.CNIC);
+
+            @Html.LabelFor(model => model.AddressDetails);
+            @Html.EditorFor(model => model.AddressDetails);
+
+            @Html.LabelFor(model => model.Qualification);
+            @Html.EditorFor(model => model.Qualification);
+        <input type="submit" value="Add" />
+    }*@

@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Masters";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@section Banner
+{
+    <div class="banner">
+
+        <h2>
+            <a href="index.html">Home</a>
+            <i class="fa fa-angle-right"></i>
+            <span>Masters</span>
+        </h2>
+    </div>
+}
+
+@*---------Start Side Navigation Menu-----------*@
+
+@section NavMenu
+{
+    <li>
+        <a href="@Url.Action("AdminDashboard","Main")" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboard</span> </a>
+    </li>
+
+    <li>
+        <a href="@Url.Action("TestsManagement", "Admin")" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Tests Management</span></a>
+
+    </li>
+    <li>
+        <a href="@Url.Action("Masters", "Admin")" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Masters</span></a>
+    </li>
+
+    <li>
+        <a href="@Url.Action("Accounting", "Admin")" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i> <span class="nav-label">Accounting</span> </a>
+    </li>
+
+    <li>
+    <li>
+        <a href="@Url.Action("BranchReport", "Admin")" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Branch Report</a>
+    </li>
+<li>
+    <a href="@Url.Action("Register","Admin")" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Register Employee</a>
+</li>
+
+}
+@*------------ End Side Navigation Menu----------*@
+
+
+@*------------- Start Main Content Code-------------*@
+
+<div class="blank">
+
+
+    <div class="blank-page">
+
+        <p>
+
+            Coming Soon!
+        </p>
+    </div>
+</div>
+
+<!--//faq-->
+@*------------- End Main Content Code-------------*@
+
+

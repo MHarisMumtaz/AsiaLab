@@ -5,40 +5,40 @@
 
 @section Banner
 {
-    <div class="banner">
+    @*<div class="banner">
 
         <h2>
             <a href="index.html">Home</a>
             <i class="fa fa-angle-right"></i>
             <span>Admin Dashboard</span>
         </h2>
-    </div>
+    </div>*@
 }
 
 @*---------Start Side Navigation Menu-----------*@
 
 @section NavMenu
 {
-    <li>
-        <a href="AdminDashboard.html" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboard</span> </a>
-    </li>
+   <li>
+    <a href="@Url.Action("Index","Admin")" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboard</span> </a>
+</li>
 
-    <li>
-        <a href="TestsManagement.html" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Tests Management</span></a>
+<li class="active">
+    <a href="@Url.Action("TestsManagement","Admin")" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Tests Management</span></a>
 
-    </li>
-    <li>
-        <a href="Masters.html" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Masters</span></a>
-    </li>
+</li>
+<li>
+    <a href="@Url.Action("Masters", "Admin")" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Masters</span></a>
+</li>
 
-    <li>
-        <a href="Accounting.html" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i> <span class="nav-label">Accounting</span> </a>
-    </li>
+<li>
+    <a href="@Url.Action("Accounting", "Admin")" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i> <span class="nav-label">Accounting</span> </a>
+</li>
 
-    <li>
-    <li>
-        <a href="BranchReport.html" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Branch Report</a>
-    </li>
+<li>
+<li>
+    <a href="@Url.Action("BranchReport", "Admin")" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Branch Report</a>
+</li>
 <li>
     <a href="@Url.Action("Register","Admin")" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Register Employee</a>
 </li>

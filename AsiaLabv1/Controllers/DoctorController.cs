@@ -16,5 +16,13 @@ namespace AsiaLabv1.Controllers
             return View();
         }
 
+        public ActionResult ApproveTest()
+        {
+            return View();
+        }
+
+       
+
+
     }
 }

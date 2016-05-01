@@ -5,14 +5,14 @@
 @model AsiaLabv1.Models.UserModel
 @section Banner
 {
-    <div class="banner">
+    @*<div class="banner">
 
         <h2>
             <a href="index.html">Home</a>
             <i class="fa fa-angle-right"></i>
             <span>Approve Test</span>
         </h2>
-    </div>
+    </div>*@
 }
 
 @*---------Start Side Navigation Menu-----------*@
@@ -20,10 +20,10 @@
 @section NavMenu
 {
     <li>
-        <a href="DoctorDashboard.html" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboard</span> </a>
-    </li>
+    <a href="@Url.Action("DoctorDashboard","Main")" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboard</span> </a>
+</li>
 
-    <li><a href="ApproveTest.html" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i>Approve Test</a></li>
+<li><a href="@Url.Action("ApproveTest","Main")" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i>Approve Test</a></li>
 
 
 }
