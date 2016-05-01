@@ -23,6 +23,12 @@ namespace AsiaLabv1.Services
             AddBranchContact(branch.Id, "021-4567891");
         }
 
+        //this method can be used to fill available branches dropdown on Registration form
+        public List<Branch> GetAllBranches()
+        {
+           return Branches.GetAll();
+        }
+
         public void AddBranchContact(int BranchId, string ContactNumber)
         {
             BranchesContacts.Insert(new Contact

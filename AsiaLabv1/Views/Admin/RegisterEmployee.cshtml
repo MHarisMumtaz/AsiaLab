@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "RegisterEmployee";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@model AsiaLabv1.Models.UserModel
+@section Banner
+{
+    <div class="banner">
+
+        <h2>
+            <a href="index.html">Home</a>
+            <i class="fa fa-angle-right"></i>
+            <span>Admin Dashboard</span>
+        </h2>
+    </div>
+}
+
+@*---------Start Side Navigation Menu-----------*@
+
+@section NavMenu
+{
+    <li>
+        <a href="AdminDashboard.html" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboard</span> </a>
+    </li>
+
+    <li>
+        <a href="TestsManagement.html" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Tests Management</span></a>
+
+    </li>
+    <li>
+        <a href="Masters.html" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Masters</span></a>
+    </li>
+
+    <li>
+        <a href="Accounting.html" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i> <span class="nav-label">Accounting</span> </a>
+    </li>
+
+    <li>
+    <li>
+        <a href="BranchReport.html" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Branch Report</a>
+    </li>
+    <li>
+        <a href="@Url.Action("Register","Admin")" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Register Employee</a>
+    </li>
+}
+<h2>RegisterEmployee</h2>
+
+@using (Html.BeginForm("RegisterUser", "Admin", FormMethod.Post, new { id = "EmpRegistrationForm" }))
+{
+        @Html.LabelFor(model => model.BranchId);
+        @Html.DropDownListFor(model => model.BranchId, Model.Branches);
+
+        @Html.LabelFor(model => model.UserTypeId);
+        @Html.DropDownListFor(model => model.UserTypeId, Model.UserTypes);
+
+        @Html.LabelFor(model => model.GenderId);
+        @Html.DropDownListFor(model => model.GenderId, Model.Genders);
+
+        @Html.LabelFor(model => model.Name);
+        @Html.EditorFor(model => model.Name);
+
+        @Html.LabelFor(model => model.UserName);
+        @Html.EditorFor(model => model.UserName);
+
+        @Html.LabelFor(model => model.Password);
+        @Html.EditorFor(model => model.Password);
+
+        @Html.LabelFor(model => model.Email);
+        @Html.EditorFor(model => model.Email);
+
+        @Html.LabelFor(model => model.ContactNo);
+        @Html.EditorFor(model => model.ContactNo);
+
+        @Html.LabelFor(model => model.CNIC);
+        @Html.EditorFor(model => model.CNIC);
+
+        @Html.LabelFor(model => model.AddressDetails);
+        @Html.EditorFor(model => model.AddressDetails);
+
+        @Html.LabelFor(model => model.Qualification);
+        @Html.EditorFor(model => model.Qualification);
+    <input type="submit" value="Add" />
+}

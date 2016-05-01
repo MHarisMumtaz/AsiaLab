@@ -44,6 +44,32 @@ namespace AsiaLabv1.Services
             }
             return null;
         }
+        //use this register method for every user registeration
+        //example
+        // UserEmployee emp=new UserEmployee()
+        //{
+        //    Name = "Hassan Reciptionist",
+        //    Username = "testtechnician",
+        //    Password = "techniciantest2016",
+        //    BranchId = 1                          //Note:: branchId should be get from Form Ui
+        //};
+        // Address addr = new Address()
+        //{
+        //    UserTypeId = 4,                       //Note:: userTypeId should be obtained from UI Form
+        //    ContactNo = "0345-6789654",
+        //    Email = "test@gmail.com",
+        //    GenderId = 1,                         //Note:: GenderId should be obtained from UI Form
+        //    Qualification = "MBA",
+        //    AddressDetail = "H block test address karachi",
+        //    CNIC = "42101-test"
+        //});
+
+        public void RegisterUser(UserEmployee emp,Address empAddr)
+        {
+            UserEmp.Insert(emp);
+            empAddr.UserEmployeeId = emp.Id;
+            UserAddresses.Insert(empAddr);
+        }
 
         public void AddUser()
         {
@@ -86,6 +112,11 @@ namespace AsiaLabv1.Services
             {
                 TypeDescription = UserRole
             });
+        }
+
+        public List<UserType> GetAllUserTypes()
+        {
+            return UserTypes.GetAll();
         }
     }
 }

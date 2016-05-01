@@ -152,7 +152,11 @@
     <Compile Include="Contact.cs">
       <DependentUpon>AsiaLabData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\ReciptionistController.cs" />
+    <Compile Include="Controllers\TechnicianController.cs" />
     <Compile Include="DoctorComment.cs">
       <DependentUpon>AsiaLabData.tt</DependentUpon>
     </Compile>
@@ -191,6 +195,7 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\StaticDbContext.cs" />
     <Compile Include="Services\BranchService.cs" />
+    <Compile Include="Services\GenderService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Template.cs">
       <DependentUpon>AsiaLabData.tt</DependentUpon>
@@ -402,8 +407,13 @@
     <Content Include="Views\Main\DoctorDashboard.cshtml" />
     <Content Include="Views\Main\ReceptionistDashboard.cshtml" />
     <Content Include="Views\Main\TechnicianDashboard.cshtml" />
+    <Content Include="Views\Admin\RegisterEmployee.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Doctor\" />
+    <Folder Include="Views\Reciptionist\" />
+    <Folder Include="Views\Technician\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
