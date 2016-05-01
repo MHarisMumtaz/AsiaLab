@@ -47,6 +47,11 @@ namespace AsiaLabv1.Controllers
             return RedirectToAction("LoginPage");
         }
 
+        public ActionResult abc()
+        {
+            return View();
+        }
+
 
         public ActionResult LogOut()
         {
