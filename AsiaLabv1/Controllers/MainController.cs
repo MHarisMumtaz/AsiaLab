@@ -20,6 +20,11 @@ namespace AsiaLabv1.Controllers
             return View("LoginPage");
         }
 
+        public ActionResult Khaali()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Login(FormCollection LoginForm)
         {
