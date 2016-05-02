@@ -23,7 +23,7 @@
         <a href="@Url.Action("TechnicianDashboard", "Main")" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboard</span> </a>
     </li>
 
-    <li><a href="@Url.Action("PerformTest", "Main")" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i>Perform Test</a></li>
+    <li><a href="@Url.Action("PerformTest", "Technician")" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i>Perform Test</a></li>
 
 
 
@@ -35,131 +35,85 @@
 
 @*------------- Start Main Content Code-------------*@
 
-<div class="typo-grid">
+<div class="grid-form">
 
-    <div class="typo-1" s>
+    <!----->
+    <!---->
+    <div class="grid-form1">
 
+        <div class="tab-content">
 
-        <div class="grid_3 grid_5">
+            <div class="tab-pane active" id="horizontal-form">
 
-            <div class="but_list">
-                <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-                    <ul id="myTab" class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Show All</a></li>
-                        <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">Search Reports</a></li>
-                    </ul>
-                    <div id="myTabContent" class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                <div class="horz-grid">
+                    <div class="grid-hor">
+                        <h4 id="grid-example-mixed-complete">Perform Test</h4><br />
+                        <h5 id="grid-example-mixed-complete">Patient No. 1008</h5>
+                        <h5 id="grid-example-mixed-complete">Patient Name: Akhtar</h5>
 
-                            <h3>Show all Reports</h3>
-                            <div class="tab-content">
+                    </div>
+                    <!---->
 
-                                <div class="tab-pane active" id="horizontal-form">
-                                    <div class="horz-grid">
-                                        <div class="grid-hor">
-                                            <h4 id="grid-example-mixed-complete">Patients List</h4>
+                    <div class="row show-grid">
+                        <div class="col-xs-6 col-sm-3">Test Name</div>
+                        <div class="col-md-1">Result</div>
 
-                                        </div>
-                                        <!---->
-
-                                        <div class="row show-grid">
-                                            <div class="col-xs-6 col-sm-3">Patient no.</div>
-                                            <div class="col-xs-6 col-sm-3">Patient Name</div>
-                                            <div class="col-xs-6 col-sm-3">Print Options</div>
-                                        </div>
-                                        <div class="row show-grid">
-                                            <div class="col-xs-6 col-sm-3">1008</div>
-                                            <div class="col-xs-6 col-sm-3">Shahzad</div>
-                                            &nbsp;
-                                            <div class="col-xs-6 col-sm-3">
-                                                <button type="button" class="btn btn-xs btn-danger" onclick="window.location='';">Print Report</button>
-                                                &nbsp;
-                                                <button type="button" class="btn btn-xs btn-danger" onclick="window.location='';">Show as PDF</button>
+                        <div class="col-xs-6 col-sm-3">Lower Bound</div>
+                        <div class="col-xs-6 col-sm-3">Upper Bound</div>
+                        <div class="col-md-1">Unit</div>
 
 
+                    </div>
+                    <div style="border: 2px; border-style: solid;  color: #d95459; ">
 
+                    </div>
 
-                                            </div>
-
-
-                                        </div>
-                                        <div class="row show-grid">
-                                            <div class="col-xs-6 col-sm-3">1009</div>
-                                            <div class="col-xs-6 col-sm-3">Akhtar</div>
-                                            &nbsp;
-                                            <div class="col-xs-6 col-sm-3">
-                                                <button type="button" class="btn btn-xs btn-danger" onclick="window.location='';">Print Report</button>
-                                                &nbsp;
-                                                <button type="button" class="btn btn-xs btn-danger" onclick="window.location='';">Show as PDF</button>
-                                            </div>
-
-
-                                        </div>
-
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-
+                    <div class="row show-grid">
+                        <div class="col-xs-6 col-sm-3">
+                            Urine
+                            <br />
                         </div>
-                        <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-
-                            <h3>Search Reports By Date</h3>
-                            <div class="tab-content">
-
-                                <div class="tab-pane active" id="horizontal-form">
-
-                                    <form class="form-horizontal">
-                                        <br />
-                                        <div class="form-group">
-                                            <label for="pname" class="col-sm-2 control-label">From Date</label>
-                                            <div class="col-sm-8">
-                                                <input type="date" class="form-control1" id="focusedinput">
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="pname" class="col-sm-2 control-label">To Date</label>
-                                            <div class="col-sm-8">
-                                                <input type="date" class="form-control1" id="focusedinput">
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-sm-2 login-do" style="margin-left:40%">
-                                            <label class="hvr-shutter-in-horizontal login-sub">
-                                                <input type="submit" value="See Results" onclick="window.location='signup.html';" />
-                                            </label>
-                                        </div>
-                                        <br /><br /><br /><br /><br /><br /><br /><br /><br />
-
-                                        <br />
+                        <div class="col-md-1"><input type="text" class="form-control" id="focusedinput" placeholder="Result"></div>
+                        <div class="col-xs-6 col-sm-3">20</div>
+                        <div class="col-xs-6 col-sm-3">50</div>
+                        <div class="col-md-1">mg%</div>
 
 
-                                        <div class="clearfix"> </div>
-                                    </form>
-
-                                </div>
-
-                            </div>
-
-
-                        </div>
+                    </div>
+                    <div class="row show-grid">
+                        <div class="col-xs-6 col-sm-3">Blood Sugar</div>
+                        <div class="col-md-1"><input type="text" class="form-control" id="focusedinput" placeholder="Result"></div>
+                        <div class="col-xs-6 col-sm-3">120</div>
+                        <div class="col-xs-6 col-sm-3">250</div>
+                        <div class="col-md-1">mg%</div>
 
 
                     </div>
 
+
                 </div>
+
+
+                <div class="col-sm-2 login-do" style="margin-left:40%">
+                    <label class="hvr-shutter-in-horizontal login-sub">
+                        <input type="submit" value="Submit" onclick="window.location='signup.html';" />
+                    </label>
+                </div>
+
+
+                <div class="clearfix"> </div>
+                </form>
             </div>
         </div>
     </div>
-
-
-
 </div>
+<br /><br /><br />
+
+
+
+
             </div>
+        </div>
 
 
 <!--//grid-->
