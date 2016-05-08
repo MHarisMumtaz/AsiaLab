@@ -123,11 +123,7 @@ namespace AsiaLabv1.Controllers
 
             return Json("Successfully Added",JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
-        public ActionResult AddTestDepartmentsAndCategories()
-        {
-            return View();
-        }
+       
 
         public ActionResult Accounting()
         {
