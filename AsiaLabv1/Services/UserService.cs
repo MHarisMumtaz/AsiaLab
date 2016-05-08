@@ -73,8 +73,8 @@ namespace AsiaLabv1.Services
 
         public void AddUser()
         {
-            //var f = Genders.GetAll();
-            //Genders.Insert(new Gender
+            var f = Genders.GetAll();
+            ////Genders.Insert(new Gender
             //{
             //    GenderDescription = "Male"
             //});
@@ -85,9 +85,9 @@ namespace AsiaLabv1.Services
 
             var useremp = new UserEmployee()
             {
-                Name="Hassan Reciptionist",
-                Username = "testtechnician",
-                Password = "techniciantest2016",
+                Name="Humam admin",
+                Username = "testadmin",
+                Password = "admin2016",
                 BranchId = 1
             };
            
@@ -95,13 +95,13 @@ namespace AsiaLabv1.Services
             UserAddresses.Insert(new Address
             {
                 UserEmployeeId = useremp.Id,
-                UserTypeId = 4,
+                UserTypeId = 1,
                 ContactNo = "0345-6789654",
                 Email = "test@gmail.com",
                 GenderId = 1,
                 Qualification = "MBA",
                 AddressDetail = "H block test address karachi",
-                CNIC = "42101-test"
+                CNIC = "42101-testadmin"
             });
 
         }
