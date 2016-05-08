@@ -80,7 +80,7 @@
                                                 <label for="selector1" class="col-sm-2 control-label">Add New Department</label>
                                                 <div class="col-sm-8">
                                                     @Html.CheckBoxFor(model => model.IsNewDepartment)
-                                                    <input id="check1" type="checkbox" />
+                                                  
                                                 </div>
                                             </div>
 
@@ -88,7 +88,7 @@
                                                 <label for="selector1" class="col-sm-2 control-label">Select Department</label>
                                                 <div class="col-sm-8">
                                                     @Html.DropDownListFor(model => model.deptId, Model.departments)
-                                                    <select name="selector1" id="selector1" class="form-control1"></select>
+                                                  
                                                 </div>
                                             </div>
 
@@ -96,7 +96,7 @@
                                                 <label for="focusedinput" class="col-sm-2 control-label">Department Name</label>
                                                 <div class="col-sm-8">
                                                     @Html.TextBoxFor(model => model.deptName)
-                                                    <input type="text" class="form-control1" id="focusedinput" placeholder="Enter Department Name">
+                                                  
                                                 </div>
 
                                             </div>
@@ -105,7 +105,7 @@
                                                 <label for="focusedinput" class="col-sm-2 control-label">Sub-Department Name</label>
                                                 <div class="col-sm-8">
                                                     @Html.TextBoxFor(model => model.testCategoryName)
-                                                    <input type="text" class="form-control1" id="focusedinput" placeholder="Enter Sub-Department Name">
+                                                  
                                                 </div>
 
                                             </div>
@@ -113,14 +113,14 @@
                                                 <label for="focusedinput" class="col-sm-2 control-label">@Html.LabelFor(model => model.CatgoryCode)</label>
                                                 <div class="col-sm-8">
                                                     @Html.TextBoxFor(model => model.CatgoryCode)
-                                                    <input type="text" class="form-control1" id="focusedinput" placeholder="Enter Sub-Department Name">
+                                                  
                                                 </div>
 
                                             </div>
 
                                             <div class="col-sm-2 login-do" style="margin-left:40%">
                                                 <label class="hvr-shutter-in-horizontal login-sub">
-                                                    <input type="button" id="addDeptbtn" value="Add" />
+                                                    <button id="addDepbtn" value="Add">Add</button>
                                                 </label>
                                             </div>
 
@@ -319,11 +319,8 @@
 </div>
 
 <script type="text/javascript">
-
-    $(document).ready
-    (function () {
-        
-        $('#addDeptbtn').click(function () {
+  
+    $('#addDepbtn').click(function () {
 
             deptid = $('#deptId').val();
             deptname = $('#deptName').val();
@@ -339,17 +336,14 @@
 
             $.ajax({
                 type: "POST",
-                datatype: "json",
-                url: "@Html.Raw(Url.Action("","Admin"))",
+                dataType: "json",
                 data: obj,
+                url: "@Html.Raw(Url.Action("AddTestDepartmentsAndCategories", "Admin"))",
                 success: function (result) {
                     alert(result);
                 }
             });
         });
-
-
-    });
 
 </script>
 
