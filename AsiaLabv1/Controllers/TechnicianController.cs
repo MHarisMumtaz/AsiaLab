@@ -20,7 +20,6 @@ namespace AsiaLabv1.Controllers
 
             return View();
         }
-
         
 
     }
