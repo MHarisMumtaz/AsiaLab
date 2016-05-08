@@ -335,21 +335,12 @@
             };
 
             $.ajax({
-<<<<<<< HEAD
 
                 type: 'POST',
                 url: '/Admin/AddTestDepartmentsAndCategories',
                 data: obj,
-                
-=======
-                type: "POST",
                 dataType: "json",
-                data: obj,
-                url: "@Html.Raw(Url.Action("AddTestDepartmentsAndCategories", "Admin"))",
-                success: function (result) {
-                    alert(result);
-                }
->>>>>>> e6339f0e17abd3a5044acad8dbf137a2f0fa8d9e
+
             });
         });
 
