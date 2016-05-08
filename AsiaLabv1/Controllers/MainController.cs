@@ -34,16 +34,22 @@ namespace AsiaLabv1.Controllers
             //UsersService.AddUserType("Technician");
 
             //BranchesService.AddBranch("branch1name", "branch 1 address", "Br Code");
+<<<<<<< HEAD
 
          //   UsersService.AddUser();
             var t = UsersService.GetAllUserTypes();
             var a = BranchesService.GetAllBranches();
 
+=======
+>>>>>>> 81c465b32a44bd644099b23913e9224154cbdf44
            // UsersService.AddUser();
             //var t = UsersService.GetAllUserTypes();
            // var a = BranchesService.GetAllBranches();
 
+<<<<<<< HEAD
           
+=======
+>>>>>>> 81c465b32a44bd644099b23913e9224154cbdf44
             string username = LoginForm["Email"].ToString();
             string password = LoginForm["Password"].ToString();
 

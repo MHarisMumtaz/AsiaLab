@@ -145,6 +145,7 @@
                                             <div class="form-group">
                                                 <label for="selector1" class="col-sm-2 control-label">Select Department</label>
                                                 <div class="col-sm-8">
+                                                    @Html.DropDownListFor(model => model.deptId, Model.departments, new { id="testdeptdropdown" })
                                                     <select name="selector1" id="selector1" class="form-control1">
                                                         <option>...</option>
                                                         <option>...</option>
@@ -320,18 +321,37 @@
 
 <script type="text/javascript">
   
+    $('#testdeptdropdown').change(function () {
+        var vo = $("#deptId").val();
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/AddTestDepartmentsAndCategories/',
+            data: vo,
+            dataType: "json",
+            success: function(data) {
+                for (var i = 0; i < data.length; i++) {
+                    
+                }
+            }
+        });
+    });
+
     $('#addDepbtn').click(function () {
 
             deptid = $('#deptId').val();
             deptname = $('#deptName').val();
             testcategoryName = $('#testCategoryName').val();
             IsnewDepartment = $('#IsNewDepartment').val();
+            Catgorycode = $('#CatgoryCode').val();
 
             var obj = {
                 deptId: deptid,
                 deptName: deptname,
                 testCategoryName: testcategoryName,
-                IsNewDepartment: IsnewDepartment
+                IsNewDepartment: IsnewDepartment,
+                departments: null,
+                testCategoryId: -1,
+                CatgoryCode: Catgorycode
             };
 
             $.ajax({
