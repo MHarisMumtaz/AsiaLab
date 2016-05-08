@@ -44,7 +44,11 @@
     </li>
 }
 
-
+<style>
+    .abc{
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
 <div class="grid-form">
 
     <!----->
@@ -55,14 +59,14 @@
 
             <div class="tab-pane active" id="horizontal-form">
 
-                <form class="form-horizontal">
-                    @using (Html.BeginForm("RegisterUser", "Admin", FormMethod.Post, new { id = "EmpRegistrationForm" }))
+                
+                    @using (Html.BeginForm("RegisterUser", "Admin", FormMethod.Post, new { id = "EmpRegistrationForm", @class = "form-horizontal" }))
                     {
                         <br />
                         <div class="form-group">
                             <label for="pname" class="col-sm-2 control-label">Branch</label>
                             <div class="col-sm-8">
-                                @Html.DropDownListFor(model => model.BranchId, Model.Branches)
+                                @Html.DropDownListFor(model => model.BranchId, Model.Branches, new { @class="abc" })
                             </div>
                             <!--<div class="col-sm-2">
                                 <p class="help-block">Your help text!</p>
@@ -150,7 +154,7 @@
                         <br />
                         <div class="col-sm-2 login-do" style="margin-left:15%">
                             <label class="hvr-shutter-in-horizontal login-sub">
-                                <input type="submit" value="Submit" />
+                                <button type="button" id="formsubmitbtn">submit</button>
                             </label>
                         </div>
 
@@ -158,7 +162,19 @@
                         <div class="clearfix"> </div>
 
                     }
-                </form>
+                <script>
+                    $(document).ready(function () {
+                        $("#formsubmitbtn").click(function () {
+                            var formsub = function () {
+                                var qual = $("#Qualification").val();
+                                if (qual != "") {
+                                    $("#EmpRegistrationForm").submit();
+                                }
+                            }
+                        });
+                    });
+                    
+                </script>
             </div>
         </div>
     </div>
