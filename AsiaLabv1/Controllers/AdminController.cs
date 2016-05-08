@@ -14,6 +14,8 @@ namespace AsiaLabv1.Controllers
         UserService UserServices = new UserService();
         BranchService BranchServices = new BranchService();
         GenderService GenderServices = new GenderService();
+        TestDeptService TestDeptServices = new TestDeptService();
+        TestCategoryService TestCategoryServices = new TestCategoryService();
 
         public ActionResult Register()
         {
@@ -85,9 +87,41 @@ namespace AsiaLabv1.Controllers
         public ActionResult TestsManagement()
         {
             TestManagementModel tManagementModel = new TestManagementModel();
+            var departments = TestDeptServices.GetAllDept();
 
+            foreach (var item in departments)
+            {
+                tManagementModel.departments.Add(new SelectListItem
+                {
+                    Text = item.DepartmentName,
+                    Value = item.Id.ToString()
+                });
+            }
 
-            return View();
+            return View("TestsManagement", tManagementModel);
+        }
+        [HttpPost]
+        public ActionResult AddTestDepartmentsAndCategories(TestManagementModel model)
+        {
+            if (model.IsNewDepartment)
+            {
+                TestDeptServices.Add(new TestDepartment
+                {
+                    DepartmentName = model.deptName
+                });
+            }
+            else
+            {
+                TestCategoryServices.Add(new TestCategory
+                {
+                    TestDepartmentId=model.deptId,
+                    TestCategoryCode=model.deptCode,
+                    TestName=model.testCategoryName
+
+                });
+            }
+
+            return Json("Successfully Added",JsonRequestBehavior.AllowGet);
         }
         public ActionResult Accounting()
         {

@@ -11,6 +11,7 @@ namespace AsiaLabv1.Models
     {
         public int deptId { get; set; }
         public string deptName { get; set; }
+      
         public List<SelectListItem> departments { get; set; }
         public string testCategoryName { get; set; }
         public int testCategoryId { get; set; }
@@ -18,6 +19,8 @@ namespace AsiaLabv1.Models
         
         [Display(Name="Test Category Code")]
         public string CatgoryCode { get; set; }
+
+
 
         public TestManagementModel()
         {
