@@ -326,12 +326,15 @@
             deptname = $('#deptName').val();
             testcategoryName = $('#testCategoryName').val();
             IsnewDepartment = $('#IsNewDepartment').val();
-
+            Catgorycode= $('#CatgoryCode').val();
             var obj = {
                 deptId: deptid,
                 deptName: deptname,
                 testCategoryName: testcategoryName,
-                IsNewDepartment: IsnewDepartment
+                IsNewDepartment: IsnewDepartment,
+                departments: null,
+                testCategoryId: -1,
+                CatgoryCode: Catgorycode
             };
 
             $.ajax({
