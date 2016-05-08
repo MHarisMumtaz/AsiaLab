@@ -34,7 +34,7 @@ namespace AsiaLabv1.Controllers
             //UsersService.AddUserType("Technician");
 
             //BranchesService.AddBranch("branch1name", "branch 1 address", "Br Code");
-            UsersService.AddUser();
+         //   UsersService.AddUser();
             var t = UsersService.GetAllUserTypes();
             var a = BranchesService.GetAllBranches();
           

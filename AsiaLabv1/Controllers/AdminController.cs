@@ -115,7 +115,7 @@ namespace AsiaLabv1.Controllers
                 TestCategoryServices.Add(new TestCategory
                 {
                     TestDepartmentId=model.deptId,
-                    TestCategoryCode=model.deptCode,
+                    TestCategoryCode=model.CatgoryCode,
                     TestName=model.testCategoryName
 
                 });
