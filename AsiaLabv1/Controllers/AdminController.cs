@@ -84,6 +84,9 @@ namespace AsiaLabv1.Controllers
         }
         public ActionResult TestsManagement()
         {
+            TestManagementModel tManagementModel = new TestManagementModel();
+
+
             return View();
         }
         public ActionResult Accounting()
