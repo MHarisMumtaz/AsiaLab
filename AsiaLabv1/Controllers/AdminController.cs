@@ -100,7 +100,7 @@ namespace AsiaLabv1.Controllers
 
             return View("TestsManagement", tManagementModel);
         }
-        [HttpPost]
+       
         public ActionResult AddTestDepartmentsAndCategories(TestManagementModel model)
         {
             if (model.IsNewDepartment)
@@ -123,7 +123,11 @@ namespace AsiaLabv1.Controllers
 
             return Json("Successfully Added",JsonRequestBehavior.AllowGet);
         }
+<<<<<<< HEAD
      
+=======
+       
+>>>>>>> 4ed3343bb1f80da7b745c98118ce75762b1ad1a0
 
         public ActionResult Accounting()
         {
