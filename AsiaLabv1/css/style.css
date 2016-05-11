@@ -1247,10 +1247,10 @@ input#disabledTextInput,select#disabledSelect {
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 .form-control1 {
-    border: 1px solid #e0e0e0;
+    border: 1px solid #000;
     padding: 5px 8px;
     color: #616161;
-    width: 100%;
+    width: 50%;
     font-size: 0.85em;
     font-weight: 300;
     height: 40px;
@@ -1259,6 +1259,8 @@ input#disabledTextInput,select#disabledSelect {
 	font-family: 'Muli-Regular';
 	background: none;
    box-shadow:none !important;
+
+
 }
 .input-lg {
     border-radius: 0px;
@@ -2840,6 +2842,7 @@ ul.dropdown-menu.dropdown-menu-right {
 .login-do input[type="submit"] {
     font-size: 0.9em;
 }
+
 .profile-bottom {
     width: 100%;
 }
