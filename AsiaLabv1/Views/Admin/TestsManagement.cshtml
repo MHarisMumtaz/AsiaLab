@@ -68,7 +68,7 @@
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
                             <div class="grid-form1">
-                                <h3>Add Department</h3>
+                                @*<h4>Add Department</h4>*@
                                 <div class="tab-content">
 
                                     <div class="tab-pane active" id="horizontal-form">
@@ -77,17 +77,20 @@
 
                                             <br />
                                             <div class="form-group">
-                                                <label for="selector1" class="col-sm-2 control-label">Add New Department</label>
+                                                <label for="selector1" class="col-sm-2 control-label">Select</label>
                                                 <div class="col-sm-8">
-                                                    @Html.CheckBoxFor(model => model.IsNewDepartment)
-                                                  
+                                                    
+                                                    @Html.CheckBoxFor(model => model.IsNewDepartment, new { @class = "checkbox1" })
+                                                    <label>Add new Department</label>
+                                                    
                                                 </div>
+                                                
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="selector1" class="col-sm-2 control-label">Select Department</label>
                                                 <div class="col-sm-8">
-                                                    @Html.DropDownListFor(model => model.deptId, Model.departments)
+                                                    @Html.DropDownListFor(model => model.deptId, Model.departments, new { @class = "form-control1" })
                                                   
                                                 </div>
                                             </div>
@@ -95,7 +98,7 @@
                                             <div class="form-group">
                                                 <label for="focusedinput" class="col-sm-2 control-label">Department Name</label>
                                                 <div class="col-sm-8">
-                                                    @Html.TextBoxFor(model => model.deptName)
+                                                    @Html.TextBoxFor(model => model.deptName, new { @class = "form-control1" })
                                                   
                                                 </div>
 
@@ -104,7 +107,7 @@
                                             <div class="form-group">
                                                 <label for="focusedinput" class="col-sm-2 control-label">Sub-Department Name</label>
                                                 <div class="col-sm-8">
-                                                    @Html.TextBoxFor(model => model.testCategoryName)
+                                                    @Html.TextBoxFor(model => model.testCategoryName, new { @class = "form-control1" })
                                                   
                                                 </div>
 
@@ -112,17 +115,21 @@
                                             <div class="form-group">
                                                 <label for="focusedinput" class="col-sm-2 control-label">@Html.LabelFor(model => model.CatgoryCode)</label>
                                                 <div class="col-sm-8">
-                                                    @Html.TextBoxFor(model => model.CatgoryCode)
+                                                    @Html.TextBoxFor(model => model.CatgoryCode, new { @class = "form-control1" })
                                                   
                                                 </div>
 
                                             </div>
+                                            <div class="form-group">
+                                                
+                                                <div class="col-sm-8" style="margin-left:26%">
+                                                    <button id="addDepbtn" class="btn btn-danger">Add</button>
 
-                                            <div class="col-sm-2 login-do" style="margin-left:40%">
-                                                <label class="hvr-shutter-in-horizontal login-sub">
-                                                    <button id="addDepbtn" value="Add">Add</button>
-                                                </label>
+                                                </div>
+
                                             </div>
+
+                                          
 
 
 
@@ -135,7 +142,7 @@
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
                             <div class="grid-form1">
-                                <h3>Add New Tests</h3>
+                                @*<h3>Add New Tests</h3>*@
                                 <div class="tab-content">
 
                                     <div class="tab-pane active" id="horizontal-form">
@@ -145,14 +152,8 @@
                                             <div class="form-group">
                                                 <label for="selector1" class="col-sm-2 control-label">Select Department</label>
                                                 <div class="col-sm-8">
-                                                    <select name="selector1" id="selector1" class="form-control1">
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-
-                                                    </select>
+                                                    @Html.DropDownListFor(model => model.deptId, Model.departments, new {  @class = "form-control1", id="testdeptdropdown"   })
+                                                   
                                                 </div>
                                             </div>
 
@@ -160,12 +161,7 @@
                                                 <label for="selector1" class="col-sm-2 control-label">Select Sub-Department</label>
                                                 <div class="col-sm-8">
                                                     <select name="selector1" id="selector1" class="form-control1">
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-
+                                                       
                                                     </select>
                                                 </div>
                                             </div>
@@ -176,12 +172,37 @@
                                                 </div>
 
                                             </div>
+                                            <div class="form-group">
+                                                <label for="focusedinput" class="col-sm-2 control-label">Upper Bound</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control1" id="focusedinput" placeholder="Enter Upper Bound Value">
+                                                </div>
 
-                                            <div class="col-sm-2 login-do" style="margin-left:40%">
-                                                <label class="hvr-shutter-in-horizontal login-sub">
-                                                    <input type="submit" value="Add Test" />
-                                                </label>
                                             </div>
+
+                                            <div class="form-group">
+                                                <label for="focusedinput" class="col-sm-2 control-label">Lower Bound</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control1" id="focusedinput" placeholder="Enter Lower Bound Value">
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="selector1" class="col-sm-2 control-label">Select Unit</label>
+                                                <div class="col-sm-8">
+                                                    <select name="selector1" id="selector1" class="form-control1"></select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="col-sm-8" style="margin-left:26%">
+                                                    <button id="addTestbtn" class="btn btn-danger">Add</button>
+
+                                                </div>
+
+                                            </div>
+
+
                                             <div class="clearfix"> </div>
                                         </form>
 
@@ -193,7 +214,7 @@
                         </div>
                         <div role="tabpanel" class="tab-pane fade in" id="delete" aria-labelledby="delete">
                             <div class="grid-form1">
-                                <h3>Delete Tests</h3>
+                                @*<h3>Delete Tests</h3>*@
                                 <div class="tab-content">
 
                                     <div class="tab-pane active" id="horizontal-form">
@@ -237,12 +258,15 @@
                                                 </div>
 
                                             </div>
+                                            <div class="form-group">
 
-                                            <div class="col-sm-2 login-do" style="margin-left:40%">
-                                                <label class="hvr-shutter-in-horizontal login-sub">
-                                                    <input type="submit" value="Delete Test" onclick="window.location='';" />
-                                                </label>
+                                                <div class="col-sm-8" style="margin-left:26%">
+                                                    <button id="addTestbtn" class="btn btn-danger">Delete</button>
+
+                                                </div>
+
                                             </div>
+
                                             <div class="clearfix"> </div>
                                         </form>
 
@@ -254,7 +278,7 @@
                         </div>
                         <div role="tabpanel" class="tab-pane fade in" id="see" aria-labelledby="delete">
                             <div class="grid-form1">
-                                <h3>See Tests</h3>
+                                @*<h3>See Tests</h3>*@
                                 <div class="tab-content">
 
                                     <div class="tab-pane active" id="horizontal-form">
@@ -320,18 +344,37 @@
 
 <script type="text/javascript">
   
+    $('#testdeptdropdown').change(function () {
+        var vo = $("#deptId").val();
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/AddTestDepartmentsAndCategories/',
+            data: vo,
+            dataType: "json",
+            success: function(data) {
+                for (var i = 0; i < data.length; i++) {
+                    
+                }
+            }
+        });
+    });
+
     $('#addDepbtn').click(function () {
 
             deptid = $('#deptId').val();
             deptname = $('#deptName').val();
             testcategoryName = $('#testCategoryName').val();
             IsnewDepartment = $('#IsNewDepartment').val();
+            Catgorycode = $('#CatgoryCode').val();
 
             var obj = {
                 deptId: deptid,
                 deptName: deptname,
                 testCategoryName: testcategoryName,
-                IsNewDepartment: IsnewDepartment
+                IsNewDepartment: IsnewDepartment,
+                departments: null,
+                testCategoryId: -1,
+                CatgoryCode: Catgorycode
             };
 
             $.ajax({
