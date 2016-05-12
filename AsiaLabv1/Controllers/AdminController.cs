@@ -16,6 +16,7 @@ namespace AsiaLabv1.Controllers
         GenderService GenderServices = new GenderService();
         TestDeptService TestDeptServices = new TestDeptService();
         TestCategoryService TestCategoryServices = new TestCategoryService();
+        TestSubCategoryService TestSubCategoryServices = new TestSubCategoryService();
 
         public ActionResult Register()
         {
@@ -88,6 +89,7 @@ namespace AsiaLabv1.Controllers
         {
             TestManagementModel tManagementModel = new TestManagementModel();
             var departments = TestDeptServices.GetAllDept();
+            var subdepartments = TestDeptServices.GetAllDeptSD();
 
             foreach (var item in departments)
             {
@@ -100,7 +102,7 @@ namespace AsiaLabv1.Controllers
 
             return View("TestsManagement", tManagementModel);
         }
-       
+       [HttpPost]
         public ActionResult AddTestDepartmentsAndCategories(TestManagementModel model)
         {
             if (model.IsNewDepartment)
@@ -109,13 +111,14 @@ namespace AsiaLabv1.Controllers
                 {
                     DepartmentName = model.deptName
                 });
+               
             }
             else
             {
                 TestCategoryServices.Add(new TestCategory
                 {
                     TestDepartmentId=model.deptId,
-                    TestCategoryCode=model.CatgoryCode,
+                    TestCategoryCode="null",
                     TestName=model.testCategoryName
 
                 });
@@ -123,6 +126,42 @@ namespace AsiaLabv1.Controllers
 
             return Json("Successfully Added",JsonRequestBehavior.AllowGet);
         }
+
+        
+        public ActionResult AddCategories(string id)
+        {
+            TestManagementModel tmanagementmodel = new TestManagementModel();
+            var testCategories=TestCategoryServices.GetCatgByDeptId(Convert.ToInt16(id));
+
+            return Json(new {success=true},JsonRequestBehavior.AllowGet);
+         
+        }
+          [HttpPost]
+        public ActionResult AddTests(TestSubCategoryModel model)
+        {
+               
+                TestSubCategoryServices.Add(new TestSubcategory
+                {
+                    TestSubcategoryName=model.TestSubcategoryName,
+                    UpperBound=model.UpperBound,
+                    LowerBound=model.LowerBound,
+                    Unit=model.Unit,
+                    Rate=model.Rate
+
+                });
+
+
+            return Json("Successfully Added", JsonRequestBehavior.AllowGet);
+            
+
+        }
+
+          public ActionResult DeleteTest()
+          {
+
+              return Json();
+          }
+
        
 
         public ActionResult Accounting()

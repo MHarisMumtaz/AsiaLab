@@ -18,8 +18,16 @@ namespace AsiaLabv1.Services
 
         public List<TestCategory> GetCatgByDeptId(int DeptId)
         {
+            var chkquery =(from testDept in _TestDeptRepository.Table
+                           where testDept.DepartmentName == "Testing Dept"
+                           select testDept.Id).ToList();
+
+            var check=(from testCat in _TestCatgeroryRepository.Table
+                           select testCat.TestName).ToList();
+
             var Query = (from testCat in _TestCatgeroryRepository.Table
-                         join testDept in _TestDeptRepository.Table on testCat.TestDepartmentId equals testDept.Id
+                         join testDept in _TestDeptRepository.Table 
+                         on testCat.TestDepartmentId equals testDept.Id
                          where testDept.Id == DeptId
                          select testCat).ToList();
             return Query;
