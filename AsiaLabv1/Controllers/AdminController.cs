@@ -16,6 +16,7 @@ namespace AsiaLabv1.Controllers
         GenderService GenderServices = new GenderService();
         TestDeptService TestDeptServices = new TestDeptService();
         TestCategoryService TestCategoryServices = new TestCategoryService();
+        TestSubCategoryService TestSubCategoryServices = new TestSubCategoryService();
 
         public ActionResult Register()
         {
@@ -88,6 +89,7 @@ namespace AsiaLabv1.Controllers
         {
             TestManagementModel tManagementModel = new TestManagementModel();
             var departments = TestDeptServices.GetAllDept();
+            var subdepartments = TestDeptServices.GetAllDeptSD();
 
             foreach (var item in departments)
             {
@@ -100,7 +102,7 @@ namespace AsiaLabv1.Controllers
 
             return View("TestsManagement", tManagementModel);
         }
-       
+       [HttpPost]
         public ActionResult AddTestDepartmentsAndCategories(TestManagementModel model)
         {
             if (model.IsNewDepartment)
@@ -109,13 +111,14 @@ namespace AsiaLabv1.Controllers
                 {
                     DepartmentName = model.deptName
                 });
+               
             }
             else
             {
                 TestCategoryServices.Add(new TestCategory
                 {
                     TestDepartmentId=model.deptId,
-                    TestCategoryCode=model.CatgoryCode,
+                    TestCategoryCode="null",
                     TestName=model.testCategoryName
 
                 });
@@ -123,11 +126,68 @@ namespace AsiaLabv1.Controllers
 
             return Json("Successfully Added",JsonRequestBehavior.AllowGet);
         }
-<<<<<<< HEAD
-     
-=======
+
+        
+        public ActionResult AddCategories(string id)
+        {
+            TestManagementModel tmanagementmodel = new TestManagementModel();
+            var testCategories=TestCategoryServices.GetCatgByDeptId(Convert.ToInt16(id));
+
+            return Json(new { data="data check"}, JsonRequestBehavior.AllowGet);
+         
+        }
+
+        public ActionResult AddTests(TestSubCategoryModel model)
+        {
+
+            TestSubCategoryServices.Add(new TestSubcategory
+            {
+                TestSubcategoryName = model.TestSubcategoryName,
+                UpperBound = model.UpperBound,
+                LowerBound = model.LowerBound,
+                Unit = model.Unit,
+                Rate = model.Rate,
+                TestCategoryId=model.TestCategoryId
+
+            });
+
+
+            return Json("Successfully Added", JsonRequestBehavior.AllowGet);
+            
+
+        }
+
+    
+          public ActionResult FillDropdown(string categId,string subCategId)
+          {
+           
+              if (categId!=null)
+              {
+                  var subCategories = TestCategoryServices.GetSubCategById(Convert.ToInt16(1));
+                  var testCategories = TestCategoryServices.GetCatgByDeptId(Convert.ToInt16(categId));
+                  return Json(new { success=true}, JsonRequestBehavior.AllowGet);
+              }
+
+              else if (subCategId!=null)
+              {
+                  var subCategories = TestCategoryServices.GetSubCategById(Convert.ToInt16(subCategId));
+                  return Json(new { data = subCategories }, JsonRequestBehavior.AllowGet);
+              }
+             
+              return Json(null, JsonRequestBehavior.AllowGet);
+          }
+
+        public ActionResult Delete(string testcategoryNames)
+        {
+            TestSubCategoryServices.Delete(new TestSubcategory
+            {
+                TestSubcategoryName = testcategoryNames
+            });
+
+            return Json("Record Deleted", JsonRequestBehavior.AllowGet);
+        }
+
        
->>>>>>> 4ed3343bb1f80da7b745c98118ce75762b1ad1a0
 
         public ActionResult Accounting()
         {
