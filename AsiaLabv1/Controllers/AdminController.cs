@@ -133,7 +133,7 @@ namespace AsiaLabv1.Controllers
             TestManagementModel tmanagementmodel = new TestManagementModel();
             var testCategories=TestCategoryServices.GetCatgByDeptId(Convert.ToInt16(id));
 
-            return Json(new {id=testCategories},JsonRequestBehavior.AllowGet);
+            return Json(new { success=true}, JsonRequestBehavior.AllowGet);
          
         }
           [HttpPost]
@@ -163,7 +163,7 @@ namespace AsiaLabv1.Controllers
               if (categId!=null)
               {
                   var testCategories = TestCategoryServices.GetCatgByDeptId(Convert.ToInt16(categId));
-                  return Json(new { data=testCategories}, JsonRequestBehavior.AllowGet);
+                  return Json(new { success=true}, JsonRequestBehavior.AllowGet);
               }
 
               else if (subCategId!=null)
