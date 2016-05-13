@@ -133,7 +133,7 @@ namespace AsiaLabv1.Controllers
             TestManagementModel tmanagementmodel = new TestManagementModel();
             var testCategories=TestCategoryServices.GetCatgByDeptId(Convert.ToInt16(id));
 
-            return Json(new {success=true},JsonRequestBehavior.AllowGet);
+            return Json(new {id=testCategories},JsonRequestBehavior.AllowGet);
          
         }
           [HttpPost]
@@ -156,11 +156,34 @@ namespace AsiaLabv1.Controllers
 
         }
 
-          public ActionResult DeleteTest()
+        [HttpGet]
+          public ActionResult FillDropdown(string categId,string subCategId)
           {
+           
+              if (categId!=null)
+              {
+                  var testCategories = TestCategoryServices.GetCatgByDeptId(Convert.ToInt16(categId));
+                  return Json(new { data=testCategories}, JsonRequestBehavior.AllowGet);
+              }
 
-              return Json();
+              else if (subCategId!=null)
+              {
+                  var subCategories = TestCategoryServices.GetSubCategById(Convert.ToInt16(subCategId));
+                  return Json(new { data = subCategories }, JsonRequestBehavior.AllowGet);
+              }
+             
+              return Json(null, JsonRequestBehavior.AllowGet);
           }
+
+        public ActionResult Delete(string testcategoryNames)
+        {
+            TestSubCategoryServices.Delete(new TestSubcategory
+            {
+                TestSubcategoryName = testcategoryNames
+            });
+
+            return Json("Record Deleted", JsonRequestBehavior.AllowGet);
+        }
 
        
 

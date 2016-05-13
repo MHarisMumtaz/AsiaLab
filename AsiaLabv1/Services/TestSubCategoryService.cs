@@ -15,5 +15,10 @@ namespace AsiaLabv1.Services
             _TestSubCatgeroryRepository.Insert(TestCatg);
         }
 
+        public void Delete(TestSubcategory TestCatg)
+        {
+            _TestSubCatgeroryRepository.Delete(TestCatg);
+        }
+
     }
 }

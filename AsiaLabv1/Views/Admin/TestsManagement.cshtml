@@ -241,7 +241,7 @@
                                             <div class="form-group">
                                                 <label for="selector1" class="col-sm-2 control-label">Select Department</label>
                                                 <div class="col-sm-8">
-                                                    @Html.DropDownListFor(model => model.deptId, Model.departments, new { @class = "form-control1", id = "testdeptdropdown" })
+                                                    @Html.DropDownListFor(model => model.deptId, Model.departments, new { @class = "form-control1", id = "testdeptdropdown2" })
                                                 </div>
                                             </div>
 
@@ -360,7 +360,7 @@
             dataType: "json",
             success: function (data) {
 
-                //alert("success");
+                alert("success");
                 //var appenddata1 = "";
                 //var jsonData1 = JSON.parse(data);
                 //alert(jasonData1[0].testCategoryId);
@@ -435,6 +435,82 @@
             type: 'POST',
             url: '/Admin/AddTests/',
             data: obj,
+            dataType: "json",
+
+        });
+    });
+
+
+
+    //For Deleting Tests
+
+    $('#testdeptdropdown2').change(function () {
+
+        var vo = $("#testdeptdropdown2").val();
+        alert(vo);
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/FillDropdown/',
+            data: { categId: vo, subCategId: null },
+            dataType: "json",
+            success: function (data) {
+
+                alert("success");
+                //var appenddata1 = "";
+                //var jsonData1 = JSON.parse(data);
+                //alert(jasonData1[0].testCategoryId);
+                //for (var i = 0; i < jsonData1.length; i++) {
+                //    appenddata1 += "<option value = '" + jsonData1[i].testCategoryId + " '>" + jsonData1[i].testCategoryName + " </option>";
+                //}
+                //$("#testcategdeptdropdown").append(appenddata1);
+            },
+            error: function (data) {
+                alert(data.testcategoryName);
+            }
+        });
+    });
+
+
+
+    $('#testHeadDropDown').change(function () {
+
+        var vo = $("#testHeadDropDown").val();
+        alert(vo);
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/FillDropdown/',
+            data: {categId: null, subCategId: vo },
+            dataType: "json",
+            success: function (data) {
+
+                alert("success");
+                //var appenddata1 = "";
+                //var jsonData1 = JSON.parse(data);
+                //alert(jasonData1[0].testCategoryId);
+                //for (var i = 0; i < jsonData1.length; i++) {
+                //    appenddata1 += "<option value = '" + jsonData1[i].testCategoryId + " '>" + jsonData1[i].testCategoryName + " </option>";
+                //}
+                //$("#testcategdeptdropdown").append(appenddata1);
+            },
+            error: function (data) {
+                alert(data.TestSubcategoryName);
+            }
+        });
+    });
+
+    $('#deleteTestbtn').click(function () {
+        alert("check");
+
+        //testSubDept = $('#testHeadDropDown').val();
+        //deptname = $('#testdeptdropdown2').val();
+        testcategoryName = $('#testDropDown').val();
+
+        $.ajax({
+
+            type: 'POST',
+            url: '/Admin/Delete/',
+            //data: { testSubDepts: testSubDept ,deptnames:deptname,testcategoryNames:testcategoryName},
+            data: { testcategoryNames: "testcategoryName" },
             dataType: "json",
 
         });

@@ -32,10 +32,19 @@ namespace AsiaLabv1.Repositories
 
         public T Insert(T entity)
         {
+            try
+            {
+                Table.Add(entity);
+                Context.SaveChanges();
+                return entity;
 
-            Table.Add(entity);
-            Context.SaveChanges();
-            return entity;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            
         }
 
         public void Update(T entity)
