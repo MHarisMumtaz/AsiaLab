@@ -133,22 +133,23 @@ namespace AsiaLabv1.Controllers
             TestManagementModel tmanagementmodel = new TestManagementModel();
             var testCategories=TestCategoryServices.GetCatgByDeptId(Convert.ToInt16(id));
 
-            return Json(new { success=true}, JsonRequestBehavior.AllowGet);
+            return Json(new { data="data check"}, JsonRequestBehavior.AllowGet);
          
         }
-          [HttpPost]
+
         public ActionResult AddTests(TestSubCategoryModel model)
         {
-               
-                TestSubCategoryServices.Add(new TestSubcategory
-                {
-                    TestSubcategoryName=model.TestSubcategoryName,
-                    UpperBound=model.UpperBound,
-                    LowerBound=model.LowerBound,
-                    Unit=model.Unit,
-                    Rate=model.Rate
 
-                });
+            TestSubCategoryServices.Add(new TestSubcategory
+            {
+                TestSubcategoryName = model.TestSubcategoryName,
+                UpperBound = model.UpperBound,
+                LowerBound = model.LowerBound,
+                Unit = model.Unit,
+                Rate = model.Rate,
+                TestCategoryId=model.TestCategoryId
+
+            });
 
 
             return Json("Successfully Added", JsonRequestBehavior.AllowGet);
@@ -156,12 +157,13 @@ namespace AsiaLabv1.Controllers
 
         }
 
-        [HttpGet]
+    
           public ActionResult FillDropdown(string categId,string subCategId)
           {
            
               if (categId!=null)
               {
+                  var subCategories = TestCategoryServices.GetSubCategById(Convert.ToInt16(1));
                   var testCategories = TestCategoryServices.GetCatgByDeptId(Convert.ToInt16(categId));
                   return Json(new { success=true}, JsonRequestBehavior.AllowGet);
               }

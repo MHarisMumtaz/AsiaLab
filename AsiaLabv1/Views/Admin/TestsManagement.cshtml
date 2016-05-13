@@ -351,16 +351,39 @@
   
     $('#testdeptdropdown').change(function () {
         
+        $.ajax({
+            url: '/User/Get/20',
+            dataType: "json",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                alert(data);
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+
+
         var vo = $("#testdeptdropdown").val();
         alert(vo);
         $.ajax({
             type: 'GET',
             url: '/Admin/AddCategories/',
-            data: {id: vo},
+            data: { id: vo },
+            contentType: 'application/json',
+            async: true,
+            processData: false,
+            cache: false,
             dataType: "json",
             success: function (data) {
 
-                alert("success");
+                alert("successfully reached");
+                //var jsonData1 = JSON.parse(data);
+                alert("Data"+data);
                 //var appenddata1 = "";
                 //var jsonData1 = JSON.parse(data);
                 //alert(jasonData1[0].testCategoryId);
@@ -370,7 +393,7 @@
                 //$("#testcategdeptdropdown").append(appenddata1);
             },
             error: function (data) {
-                alert("error");
+                alert("error"+data);
             }
         });
     });
@@ -417,12 +440,12 @@
         TestSubcategoryName = $('#testName').val();
         UpperBound = $('#upperBound').val();
         LowerBound = $('#lowerBound').val();
-        Unit == $('#unit').val();
+        Unit = $('#unit').val();
         Rate = $('#rate').val();
 
         var obj = {
             deptId: deptid,
-            testsubcateg: 'SubCateg',
+            TestCategoryId: 1,
             TestSubcategoryName: TestSubcategoryName,
             upperBound: UpperBound,
             lowerBound: LowerBound,
@@ -455,7 +478,7 @@
             dataType: "json",
             success: function (data) {
 
-                alert("success");
+                alert("successfully reached");
                 //var appenddata1 = "";
                 //var jsonData1 = JSON.parse(data);
                 //alert(jasonData1[0].testCategoryId);
@@ -483,7 +506,7 @@
             dataType: "json",
             success: function (data) {
 
-                alert("success");
+                alert("successfully reached");
                 //var appenddata1 = "";
                 //var jsonData1 = JSON.parse(data);
                 //alert(jasonData1[0].testCategoryId);
