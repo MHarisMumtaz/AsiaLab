@@ -10,6 +10,7 @@ namespace AsiaLabv1.Services
     {
         Repository<TestCategory> _TestCatgeroryRepository = new Repository<TestCategory>();
         Repository<TestDepartment> _TestDeptRepository = new Repository<TestDepartment>();
+        Repository<TestSubcategory> _TestSubCategory = new Repository<TestSubcategory>();
 
         public void Add(TestCategory TestCatg)
         {
@@ -30,6 +31,17 @@ namespace AsiaLabv1.Services
                          on testCat.TestDepartmentId equals testDept.Id
                          where testDept.Id == DeptId
                          select testCat).ToList();
+            return Query;
+        }
+
+        public List<TestSubcategory> GetSubCategById(int CategId)
+        {
+
+            var Query = (from testSub in _TestSubCategory.Table
+                         join testCateg in _TestCatgeroryRepository.Table
+                         on testSub.TestCategoryId equals testCateg.Id
+                         where testCateg.Id == CategId
+                         select testSub).ToList();
             return Query;
         }
 
