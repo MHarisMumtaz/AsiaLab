@@ -164,7 +164,9 @@
                                                 <label for="selector1" class="col-sm-2 control-label">Select Sub-Department</label>
                                                 <div class="col-sm-8">
                                                    
-                                                    <select name="selector1" id="testcategdeptdropdown" class="form-control1"></select>
+                                                    <select name="selector1" id="testcategdeptdropdown" class="form-control1">
+
+                                                    </select>
                                                     
                                                     
                                                 </div>
@@ -295,24 +297,15 @@
                                             <div class="form-group">
                                                 <label for="selector1" class="col-sm-2 control-label">Select Department</label>
                                                 <div class="col-sm-8">
-                                                    <select name="selector1" id="selector1" class="form-control1">
-                                                        <option>Lab</option>
-                                                        <option>C.T Scan</option>
-                                                        <option>Ultrasound</option>
-                                                        <option>X-Ray</option>
-                                                    </select>
+                                                    @Html.DropDownListFor(model => model.deptId, Model.departments, new { @class = "form-control1", id = "testdeptdropdown3" })
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="selector1" class="col-sm-2 control-label">Select SubCategory</label>
                                                 <div class="col-sm-8">
-                                                    <select name="selector1" id="selector1" class="form-control1">
-                                                        <option>Biochemistry Tests</option>
-                                                        <option>Urine</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
+                                                    <select name="selector1" id="subcategSee" class="form-control1">
+                                                      
 
                                                     </select>
                                                 </div>
@@ -320,13 +313,8 @@
                                             <div class="form-group">
                                                 <label for="selector1" class="col-sm-2 control-label">Tests</label>
                                                 <div class="col-sm-8">
-                                                    <select name="selector1" id="selector1" class="form-control1">
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-
+                                                    <select name="selector1" id="Tests" class="form-control1">
+                                                       
                                                     </select>
                                                 </div>
                                             </div>
@@ -350,56 +338,31 @@
 <script type="text/javascript">
   
     $('#testdeptdropdown').change(function () {
-        
-        $.ajax({
-            url: '/User/Get/20',
-            dataType: "json",
-            type: "GET",
-            contentType: 'application/json; charset=utf-8',
-            async: true,
-            processData: false,
-            cache: false,
-            success: function (data) {
-                alert(data);
-            },
-            error: function (xhr) {
-                alert('error');
-            }
-        });
-
-
+ 
         var vo = $("#testdeptdropdown").val();
-        alert(vo);
+        //alert(vo);
         $.ajax({
             type: 'GET',
             url: '/Admin/AddCategories/',
             data: { id: vo },
-            contentType: 'application/json',
-            async: true,
-            processData: false,
-            cache: false,
             dataType: "json",
             success: function (data) {
 
-                alert("successfully reached");
-                //var jsonData1 = JSON.parse(data);
-                alert("Data"+data);
-                //var appenddata1 = "";
-                //var jsonData1 = JSON.parse(data);
-                //alert(jasonData1[0].testCategoryId);
-                //for (var i = 0; i < jsonData1.length; i++) {
-                //    appenddata1 += "<option value = '" + jsonData1[i].testCategoryId + " '>" + jsonData1[i].testCategoryName + " </option>";
-                //}
-                //$("#testcategdeptdropdown").append(appenddata1);
+                $('#testcategdeptdropdown').html('');
+              
+                for (var i = 0; i <10; i++) {
+                    $('#testcategdeptdropdown').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+                }
+                
             },
             error: function (data) {
-                alert("error"+data);
+                alert("error");
             }
         });
     });
 
     $('#addDepbtn').click(function () {
-        alert("check");
+        //alert("check");
             deptid = $('#deptId').val();
             deptname = $('#deptName').val();
             testcategoryName = $('#testCategoryName').val();
@@ -445,7 +408,7 @@
 
         var obj = {
             deptId: deptid,
-            TestCategoryId: 1,
+            TestCategoryId: TestCategoryId,
             TestSubcategoryName: TestSubcategoryName,
             upperBound: UpperBound,
             lowerBound: LowerBound,
@@ -470,7 +433,7 @@
     $('#testdeptdropdown2').change(function () {
 
         var vo = $("#testdeptdropdown2").val();
-        alert(vo);
+        //alert(vo);
         $.ajax({
             type: 'GET',
             url: '/Admin/FillDropdown/',
@@ -478,17 +441,14 @@
             dataType: "json",
             success: function (data) {
 
-                alert("successfully reached");
-                //var appenddata1 = "";
-                //var jsonData1 = JSON.parse(data);
-                //alert(jasonData1[0].testCategoryId);
-                //for (var i = 0; i < jsonData1.length; i++) {
-                //    appenddata1 += "<option value = '" + jsonData1[i].testCategoryId + " '>" + jsonData1[i].testCategoryName + " </option>";
-                //}
-                //$("#testcategdeptdropdown").append(appenddata1);
+                $('#testHeadDropDown').html('');
+
+                for (var i = 0; i < 10; i++) {
+                    $('#testHeadDropDown').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+                }
             },
             error: function (data) {
-                alert(data.testcategoryName);
+                alert(data);
             }
         });
     });
@@ -498,7 +458,7 @@
     $('#testHeadDropDown').change(function () {
 
         var vo = $("#testHeadDropDown").val();
-        alert(vo);
+        //alert(vo);
         $.ajax({
             type: 'GET',
             url: '/Admin/FillDropdown/',
@@ -506,38 +466,83 @@
             dataType: "json",
             success: function (data) {
 
-                alert("successfully reached");
-                //var appenddata1 = "";
-                //var jsonData1 = JSON.parse(data);
-                //alert(jasonData1[0].testCategoryId);
-                //for (var i = 0; i < jsonData1.length; i++) {
-                //    appenddata1 += "<option value = '" + jsonData1[i].testCategoryId + " '>" + jsonData1[i].testCategoryName + " </option>";
-                //}
-                //$("#testcategdeptdropdown").append(appenddata1);
+                $('#testDropDown').html('');
+
+                for (var i = 0; i < 10; i++) {
+                    $('#testDropDown').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+                }
             },
             error: function (data) {
-                alert(data.TestSubcategoryName);
+                alert(data);
             }
         });
     });
 
     $('#deleteTestbtn').click(function () {
-        alert("check");
-
-        //testSubDept = $('#testHeadDropDown').val();
-        //deptname = $('#testdeptdropdown2').val();
+       
         testcategoryName = $('#testDropDown').val();
 
         $.ajax({
 
             type: 'POST',
             url: '/Admin/Delete/',
-            //data: { testSubDepts: testSubDept ,deptnames:deptname,testcategoryNames:testcategoryName},
-            data: { testcategoryNames: "testcategoryName" },
+            data: { testcategoryid: testcategoryName },
             dataType: "json",
 
         });
     });
+
+    //See Tests
+
+    $('#testdeptdropdown3').change(function () {
+
+        var vo = $("#testdeptdropdown3").val();
+        //alert(vo);
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/FillDropdown/',
+            data: { categId: vo, subCategId: null },
+            dataType: "json",
+            success: function (data) {
+
+                $('#subcategSee').html('');
+
+                for (var i = 0; i < 10; i++) {
+                    $('#subcategSee').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+                }
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+    });
+
+
+
+    $('#subcategSee').change(function () {
+
+        var vo = $("#subcategSee").val();
+        //alert(vo);
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/FillDropdown/',
+            data: { categId: null, subCategId: vo },
+            dataType: "json",
+            success: function (data) {
+
+                $('#Tests').html('');
+
+                for (var i = 0; i < 10; i++) {
+                    $('#Tests').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+                }
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+    });
+
+   
 
 </script>
 
