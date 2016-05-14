@@ -43,7 +43,6 @@ namespace AsiaLabv1.Controllers
             //var t = UsersService.GetAllUserTypes();
            // var a = BranchesService.GetAllBranches();
 
-          
             string username = LoginForm["Email"].ToString();
             string password = LoginForm["Password"].ToString();
 

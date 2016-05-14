@@ -131,9 +131,21 @@ namespace AsiaLabv1.Controllers
         public ActionResult AddCategories(string id)
         {
             TestManagementModel tmanagementmodel = new TestManagementModel();
-            var testCategories=TestCategoryServices.GetCatgByDeptId(Convert.ToInt16(id));
+            var testCategories = TestCategoryServices.GetCatgByDeptId(Convert.ToInt16(id));
+          
+            List<RequiredItem> Categ=new List<RequiredItem>();
+             foreach (var item in testCategories)
+             {
+                 Categ.Add(new RequiredItem{
 
-            return Json(new { data="data check"}, JsonRequestBehavior.AllowGet);
+                     Id=item.Id,
+                     testName=item.TestName
+
+                 });
+             }
+		 
+	        
+            return Json(Categ, JsonRequestBehavior.AllowGet);
          
         }
 
@@ -161,29 +173,52 @@ namespace AsiaLabv1.Controllers
           public ActionResult FillDropdown(string categId,string subCategId)
           {
            
-              if (categId!=null)
+              if (categId!="")
               {
-                  var subCategories = TestCategoryServices.GetSubCategById(Convert.ToInt16(1));
+                  
                   var testCategories = TestCategoryServices.GetCatgByDeptId(Convert.ToInt16(categId));
-                  return Json(new { success=true}, JsonRequestBehavior.AllowGet);
+                  List<RequiredItem> Categ = new List<RequiredItem>();
+                  foreach (var item in testCategories)
+                  {
+                      Categ.Add(new RequiredItem
+                      {
+
+                          Id = item.Id,
+                          testName = item.TestName
+
+                      });
+                  }
+
+
+                  return Json(Categ, JsonRequestBehavior.AllowGet);
               }
 
-              else if (subCategId!=null)
+              else if (subCategId!="")
               {
                   var subCategories = TestCategoryServices.GetSubCategById(Convert.ToInt16(subCategId));
-                  return Json(new { data = subCategories }, JsonRequestBehavior.AllowGet);
+
+                  List<RequiredTest> test = new List<RequiredTest>();
+                  foreach (var item in subCategories)
+                  {
+                      test.Add(new RequiredTest
+                      {
+
+                          Id = item.Id,
+                          testName = item.TestSubcategoryName
+
+                      });
+                  }
+
+                  return Json(test, JsonRequestBehavior.AllowGet);
               }
              
               return Json(null, JsonRequestBehavior.AllowGet);
           }
 
-        public ActionResult Delete(string testcategoryNames)
-        {
-            TestSubCategoryServices.Delete(new TestSubcategory
-            {
-                TestSubcategoryName = testcategoryNames
-            });
 
+        public ActionResult Delete(string testcategoryid)
+        {
+            TestSubCategoryServices.Delete(Convert.ToInt16(testcategoryid));
             return Json("Record Deleted", JsonRequestBehavior.AllowGet);
         }
 
