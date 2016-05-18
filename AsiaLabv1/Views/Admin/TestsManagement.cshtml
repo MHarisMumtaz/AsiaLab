@@ -60,7 +60,7 @@
             <div class="but_list">
                 <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Add Department</a></li>
+                        <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Add Departments</a></li>
                         <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">Add Tests</a></li>
                         <li role="presentation"><a href="#delete" role="tab" id="profile-tab" data-toggle="tab" aria-controls="delete">Delete Tests</a></li>
                         <li role="presentation"><a href="#see" role="tab" id="profile-tab" data-toggle="tab" aria-controls="see">See Tests</a></li>
@@ -79,51 +79,50 @@
                                             <div class="form-group">
                                                 <label for="selector1" id="checkbx" class="col-sm-2 control-label">Select</label>
                                                 <div class="col-sm-8">
-                                                    
+
                                                     @Html.CheckBoxFor(model => model.IsNewDepartment, new { @class = "checkbox1" })
                                                     <label>Add new Department</label>
-                                                    
-                                                </div>
-                                                
-                                            </div>
 
+                                                </div>
+
+                                            </div>
                                             <div class="form-group">
-                                                <label for="selector1" class="col-sm-2 control-label">Select Department</label>
+                                                <label for="selector1" id="lbl" class="col-sm-2 control-label">Select Department</label>
                                                 <div class="col-sm-8">
                                                     @Html.DropDownListFor(model => model.deptId, Model.departments, new { @class = "form-control1" })
-                                                  
+
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label for="focusedinput" class="col-sm-2 control-label">Department Name</label>
+                                            <div class="form-group" id="labeldeptname">
+                                                <label for="focusedinput" id="deptlbl" class="col-sm-2 control-label">Department Name</label>
                                                 <div class="col-sm-8">
                                                     @Html.TextBoxFor(model => model.deptName, new { @class = "form-control1" })
-                                                  
+
                                                 </div>
 
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="focusedinput" class="col-sm-2 control-label">Sub-Department Name</label>
+                                                <label for="focusedinput" id="subdep" class="col-sm-2 control-label">Sub-Department Name</label>
                                                 <div class="col-sm-8">
                                                     @Html.TextBoxFor(model => model.testCategoryName, new { @class = "form-control1" })
-                                                  
+
                                                 </div>
 
                                             </div>
 
                                             @*<div class="form-group">
-                                                <label for="focusedinput" class="col-sm-2 control-label">@Html.LabelFor(model => model.CatgoryCode)</label>
-                                                <div class="col-sm-8">
-                                                    @Html.TextBoxFor(model => model.CatgoryCode, new { @class = "form-control1" })
-                                                  
-                                                </div>
+                                                    <label for="focusedinput" class="col-sm-2 control-label">@Html.LabelFor(model => model.CatgoryCode)</label>
+                                                    <div class="col-sm-8">
+                                                        @Html.TextBoxFor(model => model.CatgoryCode, new { @class = "form-control1" })
 
-                                            </div>*@
+                                                    </div>
+
+                                                </div>*@
 
                                             <div class="form-group">
-                                                
+
                                                 <div class="col-sm-8" style="margin-left:26%">
                                                     <button id="addDepbtn" class="btn btn-danger">Add</button>
 
@@ -131,7 +130,7 @@
 
                                             </div>
 
-                                          
+
 
 
 
@@ -144,7 +143,7 @@
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
                             <div class="grid-form1">
-    @*----------------------------------------------------------------------------------------------------------------------------------*@
+                                @*----------------------------------------------------------------------------------------------------------------------------------*@
                                 @*<h3>Add New Tests</h3>*@
                                 <div class="tab-content">
 
@@ -155,20 +154,18 @@
                                             <div class="form-group">
                                                 <label for="selector1" class="col-sm-2 control-label">Select Department</label>
                                                 <div class="col-sm-8">
-                                                    @Html.DropDownListFor(model => model.deptId, Model.departments, new {  @class = "form-control1", id="testdeptdropdown"   })
-                                                   
+                                                    @Html.DropDownListFor(model => model.deptId, Model.departments, new { @class = "form-control1", id = "testdeptdropdown" })
+
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="selector1" class="col-sm-2 control-label">Select Sub-Department</label>
                                                 <div class="col-sm-8">
-                                                   
-                                                    <select name="selector1" id="testcategdeptdropdown" class="form-control1">
 
-                                                    </select>
-                                                    
-                                                    
+                                                    <select name="selector1" id="testcategdeptdropdown" class="form-control1"></select>
+
+
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -217,7 +214,7 @@
 
                                             </div>
 
-                                            
+
 
                                             <div class="clearfix"> </div>
                                         </form>
@@ -250,18 +247,13 @@
                                             <div class="form-group">
                                                 <label for="selector1" class="col-sm-2 control-label">Select Test Head</label>
                                                 <div class="col-sm-8">
-                                                    <select name="selector1" id="testHeadDropDown" class="form-control1">
-                                                      
-
-                                                    </select>
+                                                    <select name="selector1" id="testHeadDropDown" class="form-control1"></select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="focusedinput" class="col-sm-2 control-label">Select Test Name</label>
                                                 <div class="col-sm-8">
-                                                    <select name="selector1" id="testDropDown" class="form-control1">
-
-                                                    </select>
+                                                    <select name="selector1" id="testDropDown" class="form-control1"></select>
                                                 </div>
 
                                             </div>
@@ -304,18 +296,13 @@
                                             <div class="form-group">
                                                 <label for="selector1" class="col-sm-2 control-label">Select SubCategory</label>
                                                 <div class="col-sm-8">
-                                                    <select name="selector1" id="subcategSee" class="form-control1">
-                                                      
-
-                                                    </select>
+                                                    <select name="selector1" id="subcategSee" class="form-control1"></select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="selector1" class="col-sm-2 control-label">Tests</label>
                                                 <div class="col-sm-8">
-                                                    <select name="selector1" id="Tests" class="form-control1">
-                                                       
-                                                    </select>
+                                                    <select name="selector1" id="Tests" class="form-control1"></select>
                                                 </div>
                                             </div>
                                             <div class="clearfix"> </div>
@@ -336,9 +323,10 @@
 </div>
 
 <script type="text/javascript">
-  
+    $("#labeldeptname").hide();
+    
     $('#testdeptdropdown').change(function () {
- 
+
         var vo = $("#testdeptdropdown").val();
         //alert(vo);
         $.ajax({
@@ -349,11 +337,11 @@
             success: function (data) {
 
                 $('#testcategdeptdropdown').html('');
-              
-                for (var i = 0; i <10; i++) {
+
+                for (var i = 0; i < 10; i++) {
                     $('#testcategdeptdropdown').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
                 }
-                
+
             },
             error: function (data) {
                 alert("error");
@@ -361,35 +349,60 @@
         });
     });
 
-    $('#addDepbtn').click(function () {
-        //alert("check");
-            deptid = $('#deptId').val();
-            deptname = $('#deptName').val();
-            testcategoryName = $('#testCategoryName').val();
-            IsnewDepartment = $('#IsNewDepartment').val();
-            Catgorycode = $('#CatgoryCode').val();
+    //For Adding Department
 
-            var obj = {
-                deptId: deptid,
-                deptName: deptname,
-                testCategoryName: testcategoryName,
-                IsNewDepartment: IsnewDepartment,
-                departments: null,
-                testCategoryId: -1,
-                CatgoryCode: Catgorycode
-            };
-            alert(obj);
-            $.ajax({
+    $('#IsNewDepartment').click(function () {
+        if ($(this).prop("checked") == true) {
 
-                type: 'POST',
-                url: '/Admin/AddTestDepartmentsAndCategories/',
-                data: obj,
-                dataType: "json",
+            $("#labeldeptname").fadeIn("fast");
+            $("#deptId").fadeOut("fast");
+            $("#lbl").fadeOut("fast");
+            $("#subdep").fadeOut("fast");
+            $("#testCategoryName").fadeOut("fast");
 
-            });
+            $("#deptlbl").fadeIn("fast");
+        }
+        else if ($(this).prop("checked") == false) {
+
+            $("#labeldeptname").fadeOut("fast");
+            $("#deptId").fadeIn("fast");
+            $("#lbl").fadeIn("fast");
+            $("#subdep").fadeIn("fast");
+            $("#testCategoryName").fadeIn("fast");
+            $("#deptlbl").fadeOut("fast");
+        }
     });
 
-   
+
+    $('#addDepbtn').click(function () {
+        //alert("check");
+        deptid = $('#deptId').val();
+        deptname = $('#deptName').val();
+        testcategoryName = $('#testCategoryName').val();
+        IsnewDepartment = $('#IsNewDepartment').val();
+        Catgorycode = $('#CatgoryCode').val();
+
+        var obj = {
+            deptId: deptid,
+            deptName: deptname,
+            testCategoryName: testcategoryName,
+            IsNewDepartment: IsnewDepartment,
+            departments: null,
+            testCategoryId: -1,
+            CatgoryCode: Catgorycode
+        };
+        alert(obj);
+        $.ajax({
+
+            type: 'POST',
+            url: '/Admin/AddTestDepartmentsAndCategories/',
+            data: obj,
+            dataType: "json",
+
+        });
+    });
+
+
     $('#addTestbtn').click(function () {
 
         deptid = $('#deptId').val();
@@ -406,8 +419,8 @@
             TestSubcategoryName: TestSubcategoryName,
             upperBound: UpperBound,
             lowerBound: LowerBound,
-            Unit:Unit,
-            Rate:Rate
+            Unit: Unit,
+            Rate: Rate
         };
 
         $.ajax({
@@ -456,7 +469,7 @@
         $.ajax({
             type: 'GET',
             url: '/Admin/FillDropdown/',
-            data: {categId: null, subCategId: vo },
+            data: { categId: null, subCategId: vo },
             dataType: "json",
             success: function (data) {
 
@@ -473,7 +486,7 @@
     });
 
     $('#deleteTestbtn').click(function () {
-       
+
         testcategoryName = $('#testDropDown').val();
 
         $.ajax({
@@ -536,7 +549,7 @@
         });
     });
 
-   
+
 
 </script>
 
