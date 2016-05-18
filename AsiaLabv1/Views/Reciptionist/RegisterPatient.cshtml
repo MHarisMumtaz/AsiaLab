@@ -57,7 +57,7 @@
                     </div>
                     <br />
                     <div class="form-group">
-                        @Html.LabelFor(model=>model.Name, new { @class = "col-sm-2 control-label" })
+                        @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-8">
                             @Html.TextBoxFor(model => model.Name, new { @class = "form-control1" })
                         </div>
@@ -67,17 +67,17 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model=>model.GenderId, new { @class = "col-sm-2 control-label" })
-                        
+                        @Html.LabelFor(model => model.GenderId, new { @class = "col-sm-2 control-label" })
+
                         <div class="col-sm-8">
                             @Html.DropDownListFor(model => model.GenderId, Model.Genders, new { @class = "form-control1" })
-                          
+
 
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(model=>model.DateofBirth, new { @class = "col-sm-2 control-label" })
-                       
+                        @Html.LabelFor(model => model.DateofBirth, new { @class = "col-sm-2 control-label" })
+
                         <div class="col-sm-8">
                             <input type="date" id="DateOfBirth" class="form-control1" />
                         </div>
@@ -86,8 +86,8 @@
                         </div>-->
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(model=>model.PhoneNumber, new { @class = "col-sm-2 control-label" })
-                        
+                        @Html.LabelFor(model => model.PhoneNumber, new { @class = "col-sm-2 control-label" })
+
                         <div class="col-sm-8">
                             @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control1" })
                         </div>
@@ -96,7 +96,7 @@
                         </div>-->
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(model=>model.Email, new { @class = "col-sm-2 control-label" })
+                        @Html.LabelFor(model => model.Email, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-8">
                             @Html.TextBoxFor(model => model.Email, new { @class = "form-control1" })
                         </div>
@@ -105,7 +105,7 @@
                         </div>-->
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(model=>model.ReferredId, new { @class = "col-sm-2 control-label" })
+                        @Html.LabelFor(model => model.ReferredId, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-8">
                             @Html.DropDownListFor(model => model.ReferredId, Model.ReferredDoctors, new { @class = "form-control1" })
                         </div>
@@ -119,7 +119,7 @@
 
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(model=>model.DeptId, new { @class = "col-sm-2 control-label" })
+                        @Html.LabelFor(model => model.DeptId, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-8">
                             @Html.DropDownListFor(model => model.DeptId, Model.Departments, new { @class = "form-control1" })
                         </div>
@@ -179,21 +179,21 @@
                         </label>
                     </div>
                     <script>
-                        $('#DeptId').change(function(){
+                        $('#DeptId').change(function () {
                             var deptId = $('#DeptId').val();
                             getSubCategory(deptId);
                         });
 
-                        function getSubCategory(deptId){
+                        function getSubCategory(deptId) {
 
                             $.ajax({
 
-                            type: 'POST',
-                            url: "@Url.Action("GetSubCategory","Reciptionist")",
-                            data: {Id : deptId},
-                            dataType: "json",
-                            success : function(data){
-                                alert(data);
+                                type: 'POST',
+                                url: "@Url.Action("GetSubCategory","Reciptionist")",
+                                data: { Id: deptId },
+                                dataType: "json",
+                                success: function (data) {
+                                    alert(data);
                                 }
                             });
                         }
@@ -207,8 +207,7 @@
 </div>
 <br /><br /><br />
 
-            </div>
-        </div>
+
 <!--//grid-->
 <!---->
 <!--//content-->
