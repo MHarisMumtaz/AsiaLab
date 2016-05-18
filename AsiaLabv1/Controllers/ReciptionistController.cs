@@ -14,6 +14,7 @@ namespace AsiaLabv1.Controllers
         PatientTestService PatientTestService = new PatientTestService();
         GenderService GenderServices = new GenderService();
         TestDeptService TestDeptServices = new TestDeptService();
+        TestCategoryService TestCategoryServices = new TestCategoryService();
 
         public ActionResult RegisterPatient()
         {
@@ -43,10 +44,21 @@ namespace AsiaLabv1.Controllers
         [HttpPost]
         public ActionResult GetSubCategory(int Id)
         {
-            return Json("asd", JsonRequestBehavior.AllowGet);
+            var TestList = TestCategoryServices.GetTestsByDeptId(Id);
+            var TestsList = new List<Tests>();
+            foreach (var item in TestList)
+            {
+                TestsList.Add(new Tests
+                {
+                    Id = item.Id,
+                    Name = item.TestSubcategoryName
+                });
+            }
+            return Json(TestsList, JsonRequestBehavior.AllowGet);
         }
         public ActionResult AddPatient(PatientModel model)
         {
+
             //var model=new PatientModel(){
             //    BranchId=1,
             //    Name="firstTestPatient",
@@ -56,6 +68,7 @@ namespace AsiaLabv1.Controllers
             //    PhoneNumber="987987697",
             //    ReferredId=-1
             //};
+
             PatientServices.Add(model);
 
             foreach (var TestId in model.PatientTestIds)
