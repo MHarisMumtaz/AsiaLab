@@ -16,13 +16,12 @@ namespace AsiaLabv1.Services
         {
             _TestCatgeroryRepository.Insert(TestCatg);
         }
-        public List<TestSubcategory> GetTestsByDeptId(int DeptId)
+        public List<TestCategory> GetTestsByDeptId(int DeptId)
         {
-            var Query = (from subtest in _TestSubCategory.Table
-                         join testcat in _TestCatgeroryRepository.Table on subtest.TestCategoryId equals testcat.Id
+            var Query = (from testcat in _TestCatgeroryRepository.Table
                          join dept in _TestDeptRepository.Table on testcat.TestDepartmentId equals dept.Id
                          where dept.Id == DeptId
-                         select subtest).ToList<TestSubcategory>();
+                         select testcat).ToList<TestCategory>();
 
             return Query;
         }
