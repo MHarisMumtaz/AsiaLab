@@ -51,7 +51,7 @@ namespace AsiaLabv1.Controllers
                 TestsList.Add(new Tests
                 {
                     Id = item.Id,
-                    Name = item.TestSubcategoryName
+                    Name = item.TestName
                 });
             }
             return Json(TestsList, JsonRequestBehavior.AllowGet);
