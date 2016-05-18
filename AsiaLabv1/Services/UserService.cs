@@ -44,6 +44,7 @@ namespace AsiaLabv1.Services
             }
             return null;
         }
+        #region if you want to add user manually then folow these steps
         //use this register method for every user registeration
         //example
         // UserEmployee emp=new UserEmployee()
@@ -63,6 +64,7 @@ namespace AsiaLabv1.Services
         //    AddressDetail = "H block test address karachi",
         //    CNIC = "42101-test"
         //});
+        #endregion
 
         public void RegisterUser(UserEmployee emp,Address empAddr)
         {
@@ -73,21 +75,11 @@ namespace AsiaLabv1.Services
 
         public void AddUser()
         {
-            var f = Genders.GetAll();
-            ////Genders.Insert(new Gender
-            //{
-            //    GenderDescription = "Male"
-            //});
-            //Genders.Insert(new Gender
-            //{
-            //    GenderDescription = "Female"
-            //});
-
             var useremp = new UserEmployee()
             {
-                Name="Humam admin",
-                Username = "testadmin",
-                Password = "admin2016",
+                Name="Test Receiptionist",
+                Username = "TestReceiptionist",
+                Password = "TestReceiptionist2016",
                 BranchId = 1
             };
            
@@ -95,13 +87,13 @@ namespace AsiaLabv1.Services
             UserAddresses.Insert(new Address
             {
                 UserEmployeeId = useremp.Id,
-                UserTypeId = 1,
-                ContactNo = "0345-6789654",
-                Email = "test@gmail.com",
+                UserTypeId = 3,
+                ContactNo = "0300-689654",
+                Email = "TestReceiptionist@gmail.com",
                 GenderId = 1,
                 Qualification = "MBA",
                 AddressDetail = "H block test address karachi",
-                CNIC = "42101-testadmin"
+                CNIC = "42101-testreceiptionist"
             });
 
         }
