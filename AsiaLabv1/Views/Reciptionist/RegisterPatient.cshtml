@@ -2,7 +2,7 @@
     ViewBag.Title = "AcceptTest";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-
+@model AsiaLabv1.Models.PatientModel
 @section Banner
 {
     <div class="banner">
@@ -25,7 +25,7 @@
 
 
 
-    <li><a href="@Url.Action("AcceptTest", "Reciptionist")" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i>Accept Test</a></li>
+    <li><a href="@Url.Action("RegisterPatient", "Reciptionist" )" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i>Accept Test</a></li>
     <li><a href="@Url.Action("PrintReport", "Reciptionist")" class=" hvr-bounce-to-right"><i class="fa fa-file-text-o nav_icon"></i>Print Report</a></li>
 
 
@@ -57,9 +57,9 @@
                     </div>
                     <br />
                     <div class="form-group">
-                        <label for="pname" class="col-sm-2 control-label">Patient Name</label>
+                        @Html.LabelFor(model=>model.Name, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-8">
-                            <input type="text" class="form-control1" id="focusedinput" placeholder="Enter Patient Name Here">
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control1" })
                         </div>
                         <!--<div class="col-sm-2">
                             <p class="help-block">Your help text!</p>
@@ -67,44 +67,47 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="checkbox" class="col-sm-2 control-label">Gender</label>
+                        @Html.LabelFor(model=>model.GenderId, new { @class = "col-sm-2 control-label" })
+                        
                         <div class="col-sm-8">
-                            <div class="checkbox-inline"><label><input type="checkbox"> Male</label></div>
-                            <div class="checkbox-inline"><label><input type="checkbox"> Female</label></div>
+                            @Html.DropDownListFor(model => model.GenderId, Model.Genders, new { @class = "form-control1" })
+                          
 
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="pname" class="col-sm-2 control-label">Date of Birth</label>
+                        @Html.LabelFor(model=>model.DateofBirth, new { @class = "col-sm-2 control-label" })
+                       
                         <div class="col-sm-8">
-                            <input type="date" class="form-control1" id="focusedinput" placeholder="Enter Patient Name Here">
+                            <input type="date" id="DateOfBirth" class="form-control1" />
                         </div>
                         <!--<div class="col-sm-2">
                             <p class="help-block">Your help text!</p>
                         </div>-->
                     </div>
                     <div class="form-group">
-                        <label for="pname" class="col-sm-2 control-label">Phone No.</label>
+                        @Html.LabelFor(model=>model.PhoneNumber, new { @class = "col-sm-2 control-label" })
+                        
                         <div class="col-sm-8">
-                            <input type="number" class="form-control1" id="focusedinput" placeholder="Enter Patient Contact Number Here">
+                            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control1" })
                         </div>
                         <!--<div class="col-sm-2">
                             <p class="help-block">Your help text!</p>
                         </div>-->
                     </div>
                     <div class="form-group">
-                        <label for="pname" class="col-sm-2 control-label">Email</label>
+                        @Html.LabelFor(model=>model.Email, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-8">
-                            <input type="email" class="form-control1" id="focusedinput" placeholder="Enter Email Address">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control1" })
                         </div>
                         <!--<div class="col-sm-2">
                             <p class="help-block">Your help text!</p>
                         </div>-->
                     </div>
                     <div class="form-group">
-                        <label for="pname" class="col-sm-2 control-label">Referred By</label>
+                        @Html.LabelFor(model=>model.ReferredId, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-8">
-                            <input type="text" class="form-control1" id="focusedinput" placeholder="Enter Doctor's Name Here">
+                            @Html.DropDownListFor(model => model.ReferredId, Model.ReferredDoctors, new { @class = "form-control1" })
                         </div>
 
                     </div>
@@ -116,14 +119,9 @@
 
                     </div>
                     <div class="form-group">
-                        <label for="selector1" class="col-sm-2 control-label">Select Department</label>
+                        @Html.LabelFor(model=>model.DeptId, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-8">
-                            <select name="selector1" id="selector1" class="form-control1">
-                                <option>Lab</option>
-                                <option>C.T Scan</option>
-                                <option>Ultrasound</option>
-                                <option>X-Ray</option>
-                            </select>
+                            @Html.DropDownListFor(model => model.DeptId, Model.Departments, new { @class = "form-control1" })
                         </div>
                     </div>
 
@@ -180,7 +178,28 @@
                             <input type="submit" value="Submit" onclick="window.location='signup.html';" />
                         </label>
                     </div>
+                    <script>
+                        $('#DeptId').change(function(){
+                            var deptId = $('#DeptId').val();
+                            getSubCategory(deptId);
+                        });
 
+                        function getSubCategory(deptId){
+
+                            $.ajax({
+
+                            type: 'POST',
+                            url: "@Url.Action("GetSubCategory","Reciptionist")",
+                            data: {Id : deptId},
+                            dataType: "json",
+                            success : function(data){
+                                alert(data);
+                            }
+                            });
+                        }
+
+
+                    </script>
 
                     <div class="clearfix"> </div>
                 </form>
@@ -189,9 +208,6 @@
     </div>
 </div>
 <br /><br /><br />
-
-
-
 
             </div>
         </div>
