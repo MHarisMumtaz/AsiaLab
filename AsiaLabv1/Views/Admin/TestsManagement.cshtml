@@ -77,7 +77,7 @@
 
                                             <br />
                                             <div class="form-group">
-                                                <label for="selector1" class="col-sm-2 control-label">Select</label>
+                                                <label for="selector1" id="checkbx" class="col-sm-2 control-label">Select</label>
                                                 <div class="col-sm-8">
                                                     
                                                     @Html.CheckBoxFor(model => model.IsNewDepartment, new { @class = "checkbox1" })
@@ -389,13 +389,7 @@
             });
     });
 
-
-
-
-
-
-
-
+   
     $('#addTestbtn').click(function () {
 
         deptid = $('#deptId').val();

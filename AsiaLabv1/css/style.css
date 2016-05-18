@@ -1247,10 +1247,10 @@ input#disabledTextInput,select#disabledSelect {
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 .form-control1 {
-    border: 1px solid #e0e0e0;
+    border: 1px solid #C0C0C0;
     padding: 5px 8px;
     color: #616161;
-    width: 100%;
+    width: 50%;
     font-size: 0.85em;
     font-weight: 300;
     height: 40px;
