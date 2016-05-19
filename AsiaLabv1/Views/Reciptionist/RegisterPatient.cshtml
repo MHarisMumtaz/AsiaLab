@@ -128,10 +128,7 @@
                     <div class="form-group">
                         <label for="selector1" class="col-sm-2 control-label">Select SubCategory</label>
                         <div class="col-sm-8">
-                            <select name="selector1" id="subcategories" class="form-control1">
-                               
-
-                            </select>
+                            <select name="selector1" id="subcategories" class="form-control1"></select>
                         </div>
                     </div>
 
@@ -183,28 +180,26 @@
                         function getSubCategory(deptId) {
 
                             $.ajax({
-<<<<<<< HEAD
 
                                 type: 'POST',
                                 url: "@Url.Action("GetSubCategory","Reciptionist")",
                                 data: { Id: deptId },
                                 dataType: "json",
                                 success: function (data) {
-                                    alert(data);
-=======
-                                    type: 'POST',
-                                    url: "@Url.Action("GetSubCategory","Reciptionist")",
-                                    data: {Id : deptId},
-                                    dataType: "json",
-                                    success : function(data){
-                                        $('#subcategories').empty();
-                                        for(var i=0;i<data.length;i++){
-                                            $('#subcategories').append('<option value="'+data[i].Id+'" >'+data[i].Name+'</option>');
-                                        }
->>>>>>> a08e689eb47de1334662ba18db2df371fdea1863
+                                    //alert(data);
+
+                                    $('#subcategories').empty();
+                                    for (var i = 0; i < data.length; i++) {
+                                        $('#subcategories').append('<option value="' + data[i].Id + '" >' + data[i].Name + '</option>');
+                                    }
+
                                 }
-                            });
+                            }
+                            );
                         }
+
+
+
                     </script>
 
                     <div class="clearfix"> </div>
