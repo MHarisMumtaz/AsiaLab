@@ -25,6 +25,11 @@ namespace AsiaLabv1.Controllers
             return View();
         }
 
+        public ActionResult EditProfile()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Login(FormCollection LoginForm)
         {
@@ -66,6 +71,11 @@ namespace AsiaLabv1.Controllers
                 Session["loginuser"] = model.Id;
                 Session["loginusername"] = model.Name;
 
+                if (model.Name == "Humam admin")
+                {
+                    Session["AdminLabelShow"] = model.Name;
+                }
+                
                 Session["branch"] = model.BranchName;
                 return View(model.UserRole + "Dashboard", model);
             }
@@ -83,6 +93,7 @@ namespace AsiaLabv1.Controllers
         {
             Session["loginuser"] = null;
             Session["loginusername"] = null;
+            Session["AdminLabelShow"] = null;
             return RedirectToAction("LoginPage");
         }
 
