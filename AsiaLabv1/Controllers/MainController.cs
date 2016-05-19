@@ -28,6 +28,18 @@ namespace AsiaLabv1.Controllers
         [HttpPost]
         public ActionResult Login(FormCollection LoginForm)
         {
+
+            /*
+             * for admin login and password
+                username: testadmin
+                password: admin2016
+             * for reciptionist login and password
+                username:  TestReceiptionist
+                password:  TestReceiptionist2016
+             */
+
+
+            #region commented bekar code baad m delete krdengy ye
             //UsersService.AddUserType("Admin");
             //UsersService.AddUserType("Doctor");
             //UsersService.AddUserType("Receptionist");
@@ -35,13 +47,14 @@ namespace AsiaLabv1.Controllers
 
             //BranchesService.AddBranch("branch1name", "branch 1 address", "Br Code");
 
-         //   UsersService.AddUser();
-            var t = UsersService.GetAllUserTypes();
-            var a = BranchesService.GetAllBranches();
+            //UsersService.AddUser();
+         //   var t = UsersService.GetAllUserTypes();
+          //  var a = BranchesService.GetAllBranches();
 
            // UsersService.AddUser();
             //var t = UsersService.GetAllUserTypes();
-           // var a = BranchesService.GetAllBranches();
+            // var a = BranchesService.GetAllBranches();
+            #endregion
 
             string username = LoginForm["Email"].ToString();
             string password = LoginForm["Password"].ToString();
@@ -53,6 +66,7 @@ namespace AsiaLabv1.Controllers
                 Session["loginuser"] = model.Id;
                 Session["loginusername"] = model.Name;
 
+                Session["branch"] = model.BranchName;
                 return View(model.UserRole + "Dashboard", model);
             }
 

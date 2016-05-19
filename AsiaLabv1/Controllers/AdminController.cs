@@ -22,7 +22,7 @@ namespace AsiaLabv1.Controllers
         {
             UserModel model = new UserModel();
             var branches = BranchServices.GetAllBranches();
-            
+
             foreach (var item in branches)
             {
                 model.Branches.Add(new SelectListItem
@@ -64,7 +64,7 @@ namespace AsiaLabv1.Controllers
                 Password = usermodel.Password,
                 BranchId = usermodel.BranchId
             };
-            
+
             var EmployeeAddress = new Address()
             {
                 UserTypeId = usermodel.UserTypeId,
@@ -102,7 +102,7 @@ namespace AsiaLabv1.Controllers
 
             return View("TestsManagement", tManagementModel);
         }
-       [HttpPost]
+        [HttpPost]
         public ActionResult AddTestDepartmentsAndCategories(TestManagementModel model)
         {
             if (model.IsNewDepartment)
@@ -111,42 +111,43 @@ namespace AsiaLabv1.Controllers
                 {
                     DepartmentName = model.deptName
                 });
-               
+
             }
             else
             {
                 TestCategoryServices.Add(new TestCategory
                 {
-                    TestDepartmentId=model.deptId,
-                    TestCategoryCode="null",
-                    TestName=model.testCategoryName
+                    TestDepartmentId = model.deptId,
+                    TestCategoryCode = "null",
+                    TestName = model.testCategoryName
 
                 });
             }
 
-            return Json("Successfully Added",JsonRequestBehavior.AllowGet);
+            return Json("Successfully Added", JsonRequestBehavior.AllowGet);
         }
 
-        
+
         public ActionResult AddCategories(string id)
         {
             TestManagementModel tmanagementmodel = new TestManagementModel();
             var testCategories = TestCategoryServices.GetCatgByDeptId(Convert.ToInt16(id));
-          
-            List<RequiredItem> Categ=new List<RequiredItem>();
-             foreach (var item in testCategories)
-             {
-                 Categ.Add(new RequiredItem{
 
-                     Id=item.Id,
-                     testName=item.TestName
+            List<RequiredItem> Categ = new List<RequiredItem>();
+            foreach (var item in testCategories)
+            {
+                Categ.Add(new RequiredItem
+                {
 
-                 });
-             }
-		 
-	        
+                    Id = item.Id,
+                    testName = item.TestName
+
+                });
+            }
+
+
             return Json(Categ, JsonRequestBehavior.AllowGet);
-         
+
         }
 
         public ActionResult AddTests(TestSubCategoryModel model)
@@ -159,61 +160,61 @@ namespace AsiaLabv1.Controllers
                 LowerBound = model.LowerBound,
                 Unit = model.Unit,
                 Rate = model.Rate,
-                TestCategoryId=model.TestCategoryId
+                TestCategoryId = model.TestCategoryId
 
             });
 
 
             return Json("Successfully Added", JsonRequestBehavior.AllowGet);
-            
+
 
         }
 
-    
-          public ActionResult FillDropdown(string categId,string subCategId)
-          {
-           
-              if (categId!="")
-              {
-                  
-                  var testCategories = TestCategoryServices.GetCatgByDeptId(Convert.ToInt16(categId));
-                  List<RequiredItem> Categ = new List<RequiredItem>();
-                  foreach (var item in testCategories)
-                  {
-                      Categ.Add(new RequiredItem
-                      {
 
-                          Id = item.Id,
-                          testName = item.TestName
+        public ActionResult FillDropdown(string categId, string subCategId)
+        {
 
-                      });
-                  }
+            if (categId != "")
+            {
+
+                var testCategories = TestCategoryServices.GetCatgByDeptId(Convert.ToInt16(categId));
+                List<RequiredItem> Categ = new List<RequiredItem>();
+                foreach (var item in testCategories)
+                {
+                    Categ.Add(new RequiredItem
+                    {
+
+                        Id = item.Id,
+                        testName = item.TestName
+
+                    });
+                }
 
 
-                  return Json(Categ, JsonRequestBehavior.AllowGet);
-              }
+                return Json(Categ, JsonRequestBehavior.AllowGet);
+            }
 
-              else if (subCategId!="")
-              {
-                  var subCategories = TestCategoryServices.GetSubCategById(Convert.ToInt16(subCategId));
+            else if (subCategId != "")
+            {
+                var subCategories = TestCategoryServices.GetSubCategById(Convert.ToInt16(subCategId));
 
-                  List<RequiredTest> test = new List<RequiredTest>();
-                  foreach (var item in subCategories)
-                  {
-                      test.Add(new RequiredTest
-                      {
+                List<RequiredTest> test = new List<RequiredTest>();
+                foreach (var item in subCategories)
+                {
+                    test.Add(new RequiredTest
+                    {
 
-                          Id = item.Id,
-                          testName = item.TestSubcategoryName
+                        Id = item.Id,
+                        testName = item.TestSubcategoryName
 
-                      });
-                  }
+                    });
+                }
 
-                  return Json(test, JsonRequestBehavior.AllowGet);
-              }
-             
-              return Json(null, JsonRequestBehavior.AllowGet);
-          }
+                return Json(test, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(null, JsonRequestBehavior.AllowGet);
+        }
 
 
         public ActionResult Delete(string testcategoryid)
@@ -222,7 +223,7 @@ namespace AsiaLabv1.Controllers
             return Json("Record Deleted", JsonRequestBehavior.AllowGet);
         }
 
-       
+
 
         public ActionResult Accounting()
         {

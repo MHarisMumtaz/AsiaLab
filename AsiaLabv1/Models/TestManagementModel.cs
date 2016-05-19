@@ -15,7 +15,9 @@ namespace AsiaLabv1.Models
       
         public List<SelectListItem> departments { get; set; }
 
+
         public bool IsNewDepartment{get;set;}
+
 
         public string testCategoryName { get; set; } //Test SubDepartment
         public int testCategoryId { get; set; }
