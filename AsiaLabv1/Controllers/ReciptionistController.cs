@@ -15,6 +15,7 @@ namespace AsiaLabv1.Controllers
         GenderService GenderServices = new GenderService();
         TestDeptService TestDeptServices = new TestDeptService();
         TestCategoryService TestCategoryServices = new TestCategoryService();
+        TestSubCategoryService TestSubCategoryServices = new TestSubCategoryService();
 
         public ActionResult RegisterPatient()
         {
@@ -42,9 +43,37 @@ namespace AsiaLabv1.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetTests(int Id)
+        {
+            var Tests = TestSubCategoryServices.GetSubCategTestsByTestCategoryId(Id);
+            var TestList = new List<TestSubCategoryModel>();
+            for (int i = 0; i < 10; i++)
+            {
+                TestList.Add(new TestSubCategoryModel
+                {
+                    Id = i,
+                    Rate = i*5,
+                    TestSubcategoryName = "Testname"+i.ToString()
+                });
+            }
+           
+            //foreach (var item in Tests)
+            //{
+            //    TestList.Add(new TestSubCategoryModel
+            //    {
+            //        Id = item.Id,
+            //        Rate = item.Rate,
+            //        TestSubcategoryName = item.TestSubcategoryName
+            //    });
+            //}
+            return Json(TestList, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
         public ActionResult GetSubCategory(int Id)
         {
-            var TestList = TestCategoryServices.GetTestsByDeptId(Id);
+            var TestList = TestCategoryServices.GetTestCategoryByDeptId(Id);
             var TestsList = new List<Tests>();
             foreach (var item in TestList)
             {
