@@ -3,10 +3,20 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 @model  AsiaLabv1.Models.TestManagementModel
+
+@section Header
+ {
+<link rel="stylesheet" href="~/css/kendo/kendo.common.min.css" />
+<link rel="stylesheet" href="~/css/kendo/kendo.default.min.css" />
+
+<script src="~/js/kendo/jquery.min.js"></script>
+<script src="~/js/kendo/kendo.all.min.js"></script>
+
+ }
 @section Banner
 {
     <div class="banner">
-
+        
         <h2>
             <a href="index.html">Home</a>
             <i class="fa fa-angle-right"></i>
@@ -82,7 +92,7 @@
 
                                                     @Html.CheckBoxFor(model => model.IsNewDepartment, new { @class = "checkbox1" })
                                                     <label>Add new Department</label>
-
+                                                   
                                                 </div>
 
                                             </div>
@@ -298,6 +308,10 @@
 
                                 </div>
 
+
+                                @*Grid Code*@
+                                <div id="grid"></div>
+
                             </div>
                         </div>
 
@@ -314,7 +328,7 @@
     $('#testdeptdropdown').change(function () {
 
         var vo = $("#testdeptdropdown").val();
-        //alert(vo);
+        alert(vo);
         $.ajax({
             type: 'GET',
             url: '/Admin/AddCategories/',
@@ -335,40 +349,40 @@
         });
     });
 
-<<<<<<< HEAD
-    $('#addDepbtn').click(function () {
-        //alert("check");
-            deptid = $('#deptId').val();
-            deptname = $('#deptName').val();
-            testcategoryName = $('#testCategoryName').val();
-            IsNewDepartment = $('#IsNewDepartment').val();
-            alert(IsNewDepartment);
-            Catgorycode = $('#CatgoryCode').val();
 
-            var obj = {
-                deptId: deptid,
-                deptName: deptname,
-                testCategoryName: testcategoryName,
-                IsNewDepartment: IsNewDepartment,
-                departments: null,
-                testCategoryId: -1,
-                CatgoryCode: Catgorycode
-            };
+    //$('#addDepbtn').click(function () {
+    //    //alert("check");
+    //        deptid = $('#deptId').val();
+    //        deptname = $('#deptName').val();
+    //        testcategoryName = $('#testCategoryName').val();
+    //        IsNewDepartment = $('#IsNewDepartment').is(':checked');
+    //        Catgorycode = $('#CatgoryCode').val();
+
+    //        var obj = {
+    //            deptId: deptid,
+    //            deptName: deptname,
+    //            testCategoryName: testcategoryName,
+    //            IsNewDepartment: IsNewDepartment,
+    //            departments: null,
+    //            testCategoryId: -1,
+    //            CatgoryCode: Catgorycode
+    //        };
             
-            $.ajax({
+    //        $.ajax({
 
-                type: 'POST',
-                url: '/Admin/AddTestDepartmentsAndCategories/',
-                data: obj,
-                dataType: "json",
+    //            type: 'POST',
+    //            url: '/Admin/AddTestDepartmentsAndCategories/',
+    //            data: obj,
+    //            dataType: "json",
 
-            });
-    });
+    //        });
+    //});
 
     //For Checkbox
 
 
     $('#IsNewDepartment').click(function () {
+
         if ($(this).prop("checked") == true) {
 
             $("#labeldeptname").fadeIn("fast");
@@ -396,7 +410,7 @@
         deptid = $('#deptId').val();
         deptname = $('#deptName').val();
         testcategoryName = $('#testCategoryName').val();
-        IsNewDepartment = $('#IsNewDepartment').val();
+        IsNewDepartment = $('#IsNewDepartment').is(':checked');
         Catgorycode = $('#CatgoryCode').val();
 
         var obj = {
@@ -521,7 +535,7 @@
     $('#testdeptdropdown3').change(function () {
 
         var vo = $("#testdeptdropdown3").val();
-        //alert(vo);
+        alert(vo);
         $.ajax({
             type: 'GET',
             url: '/Admin/FillDropdown/',
@@ -543,29 +557,169 @@
 
 
 
+    //$('#subcategSee').change(function () {
+
+
+    //    var vo = $("#subcategSee").val();
+    //    //alert(vo);
+    //    $.ajax({
+    //        type: 'GET',
+    //        url: '/Admin/FillDropdown/',
+    //        data: { categId: null, subCategId: vo },
+    //        dataType: "json",
+    //        success: function (data) {
+
+    //            $('#Tests').html('');
+
+    //            for (var i = 0; i < 10; i++) {
+    //                $('#Tests').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+    //            }
+    //        },
+    //        error: function (data) {
+    //            alert(data);
+    //        }
+    //    });
+    //});
+
+    //Kendo Grid For Test Viewing
+
+
+
+
     $('#subcategSee').change(function () {
 
         var vo = $("#subcategSee").val();
-        //alert(vo);
-        $.ajax({
-            type: 'GET',
-            url: '/Admin/FillDropdown/',
-            data: { categId: null, subCategId: vo },
-            dataType: "json",
-            success: function (data) {
+        alert(vo);
+     
 
-                $('#Tests').html('');
+                 $.ajax({
+                    type: 'POST',
+                    url: '/Admin/FillDropdownKendo/',
+                    data: {isFill:'none', subCategId: vo },
+                    dataType: "json",
+                    
+                });
 
-                for (var i = 0; i < 10; i++) {
-                    $('#Tests').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+
+
+
+
+        $("#grid").kendoGrid({
+            dataSource: {
+          
+                transport: {
+                    read: {
+                        url: "@Html.Raw(Url.Action("FillDropdownKendo", "Admin"))",
+                    },
+                    update: { url: "@Html.Raw(Url.Action("UpdateKendoGrid", "Admin"))", type: 'POST' },
+
+                   
+           
+            },
+                
+            schema: {
+                model: {
+                    id: "Id",
+                    fields: {
+                        testName: { type: "string" },
+                        upperBound: { type: "double" },
+                        lowerBound: { type: "double" },
+                        unit: { type: "string" },
+                        rate: { type: "double" },
+
+                    }
                 }
             },
-            error: function (data) {
-                alert(data);
-            }
-        });
-    });
+            pageSize: 20
+        },
+            height: 550,
+            batch: true,
+        scrollable: true,
+        sortable: true,
+        autoSync: true,
+        filterable: true,
+        editable:true,
+        pageable: {
+            input: true,
+            numeric: false
+        },
+        columns: [
 
+            { field: "testName", title: "Test Name", width: "130px" },
+            { field: "upperBound", title: "Upper Bound", width: "130px" },
+            { field: "lowerBound", title: "Lower Bound", width: "130px" },
+            { field: "unit", title: "Unit", width: "130px" },
+            { field: "rate", title: "Rate", width: "130px" }
+
+
+        ]
+        });
+
+
+
+
+        
+        @*dataSource = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url:"@Html.Raw(Url.Action("FillDropdownKendo", "Admin"))",
+                dataType: "jsonp"
+            },
+            update: {
+                url: "@Html.Raw(Url.Action("UpdateKendoGrid", "Admin"))",
+            dataType: "jsonp"
+        },
+            destroy: {
+            url: crudServiceBaseUrl + "/Products/Destroy",
+            dataType: "jsonp"
+            },
+       
+        parameterMap: function (options, operation) {
+            if (operation !== "read" && options.models) {
+                return { models: kendo.stringify(options.models) };
+            }
+        }
+    },
+        batch: true,
+    pageSize: 20,
+    schema: {
+        model: {
+                id: "Id",
+                testName: { type: "string" },
+                upperBound: { type: "double" },
+                lowerBound: { type: "double" },
+                unit: { type: "string" },
+                rate: { type: "double" },
+                    }
+    }
+    
+
+          
+    });
+       
+
+
+
+     
+
+       
+    $("#grid").kendoGrid({
+        dataSource: dataSource,
+        pageable: true,
+        height: 550,
+        toolbar: ["create"],
+        columns: [
+        { field: "testName", title: "Test Name", width: "130px" },
+        { field: "upperBound", title: "Upper Bound", width: "130px" },
+        { field: "lowerBound", title: "Lower Bound", width: "130px" },
+        { field: "unit", title: "Unit", width: "130px" },
+        { field: "rate", title: "Rate", width: "130px" }],
+
+        editable: "inline"
+    });*@
+
+
+    });
 
 
 </script>
