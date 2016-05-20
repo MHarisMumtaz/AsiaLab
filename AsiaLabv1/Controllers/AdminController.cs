@@ -18,6 +18,8 @@ namespace AsiaLabv1.Controllers
         TestCategoryService TestCategoryServices = new TestCategoryService();
         TestSubCategoryService TestSubCategoryServices = new TestSubCategoryService();
 
+        public static int CategId = 0;
+
         public ActionResult Register()
         {
             UserModel model = new UserModel();
@@ -102,7 +104,7 @@ namespace AsiaLabv1.Controllers
 
             return View("TestsManagement", tManagementModel);
         }
-        [HttpPost]
+    
         public ActionResult AddTestDepartmentsAndCategories(TestManagementModel model)
         {
             if (model.IsNewDepartment)
@@ -214,6 +216,39 @@ namespace AsiaLabv1.Controllers
             }
 
             return Json(null, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult FillDropdownKendo(string isFill,string subCategId)
+        {
+            CategId = isFill == "none" ? Convert.ToInt16(subCategId) : CategId;
+            if (isFill == "" || isFill==null)
+                {
+
+                    var subCategories = TestCategoryServices.GetSubCategById(CategId);
+
+                    List<RequiredTest> test = new List<RequiredTest>();
+                    foreach (var item in subCategories)
+                    {
+                        test.Add(new RequiredTest
+                        {
+
+                            Id = item.Id,
+                            testName = item.TestSubcategoryName,
+                            upperBound = item.UpperBound,
+                            lowerBound = item.LowerBound,
+                            unit = item.Unit,
+                            rate = item.Rate
+
+                        });
+                    }
+                    return Json(test, JsonRequestBehavior.AllowGet);
+                }
+
+                return Json(null, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult UpdateKendoGrid()
+        {
+            return Json(null);
         }
 
 
