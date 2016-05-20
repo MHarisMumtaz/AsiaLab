@@ -107,18 +107,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class=" border-bottom">
                 <div class="full-left">
                     @*<section class="full-top">
-                        <button id="toggle"><i class="fa fa-arrows-alt"></i></button>
-                    </section>*@
+                            <button id="toggle"><i class="fa fa-arrows-alt"></i></button>
+                        </section>*@
                     @if (Session["loginuser"] != null && Session["branch"] != null)
                     {
-                                               
-                        
+                        if (Session["AdminLabelShow"] != null)
+                        {
+                            <h3 style="margin-left:50%; vertical-align:central">Admin Dashboard</h3>
+                        }
+                        else
+                        {
                             <h3 style="margin-left:50%; vertical-align:central">@Session["branch"].ToString()</h3>
-                                  
-                        
+                        }
+
+
+
 
                     }
-                    
+
 
 
 
@@ -211,12 +217,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                         @if (Session["loginuser"] != null)
                         {
-
-                            <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">@Session["loginusername"].ToString()<i class="caret"></i></span><img src="~/images/userlogo.jpg"></a>
+                            <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">@Session["loginusername"].ToString()<i class="caret"></i></span><img style="margin-top:4px;" src="~/images/userlogo.jpg"></a>
                         }
 
                         <ul class="dropdown-menu " role="menu">
-                            <li><a href="profile.html"><i class="fa fa-user"></i>Edit Profile</a></li>
+                            <li><a href="@Url.Action("EditProfile","Main")"><i class="fa fa-user"></i>Edit Profile</a></li>
                             @if (Session["loginuser"] != null)
                             {
                                 <li><a href="@Url.Action("LogOut","Main")"><i class="fa fa-clipboard"></i>Logout</a></li>

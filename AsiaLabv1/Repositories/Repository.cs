@@ -47,10 +47,13 @@ namespace AsiaLabv1.Repositories
             
         }
 
-        public void Update(T entity)
+        public void Update(T entity,int id)
         {
-            Table.Remove(entity);
+            var ent = GetById(id);
+            Table.Remove(ent);
+            Context.SaveChanges();
             Table.Add(entity);
+            Context.SaveChanges();
         }
 
         public void Delete(T entity)

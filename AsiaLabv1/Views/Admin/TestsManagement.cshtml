@@ -6,6 +6,14 @@
 
 @section Header
  {
+
+
+
+<link rel="stylesheet" href="http://cdn.kendostatic.com/2013.3.1324/styles/kendo.rtl.min.css">
+<link rel="stylesheet" href="http://cdn.kendostatic.com/2013.3.1324/styles/kendo.dataviz.min.css">
+<link rel="stylesheet" href="http://cdn.kendostatic.com/2013.3.1324/styles/kendo.dataviz.default.min.css">
+<link rel="stylesheet" href="http://cdn.kendostatic.com/2013.3.1324/styles/kendo.mobile.all.min.css">
+
 <link rel="stylesheet" href="~/css/kendo/kendo.common.min.css" />
 <link rel="stylesheet" href="~/css/kendo/kendo.default.min.css" />
 
@@ -16,7 +24,7 @@
 @section Banner
 {
     <div class="banner">
-        
+
         <h2>
             <a href="index.html">Home</a>
             <i class="fa fa-angle-right"></i>
@@ -92,7 +100,7 @@
 
                                                     @Html.CheckBoxFor(model => model.IsNewDepartment, new { @class = "checkbox1" })
                                                     <label>Add new Department</label>
-                                                   
+
                                                 </div>
 
                                             </div>
@@ -159,7 +167,9 @@
                                                 <label for="selector1" class="col-sm-2 control-label">Select Sub-Department</label>
                                                 <div class="col-sm-8">
 
-                                                    <select name="selector1" id="testcategdeptdropdown" class="form-control1"></select>
+                                                    <select name="selector1" id="testcategdeptdropdown" class="form-control1">
+                                                        Select Test Category
+                                                    </select>
 
 
                                                 </div>
@@ -292,15 +302,20 @@
                                             <div class="form-group">
                                                 <label for="selector1" class="col-sm-2 control-label">Select SubCategory</label>
                                                 <div class="col-sm-8">
-                                                    <select name="selector1" id="subcategSee" class="form-control1"></select>
+                                                    <select name="selector1" id="subcategSee" class="form-control1">
+                                                        <option selected="selected">
+                                                            
+                                                        </option>
+                                                    </select>
+
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            @*<div class="form-group">
                                                 <label for="selector1" class="col-sm-2 control-label">Tests</label>
                                                 <div class="col-sm-8">
                                                     <select name="selector1" id="Tests" class="form-control1"></select>
                                                 </div>
-                                            </div>
+                                            </div>*@
                                             <div class="clearfix"> </div>
                                         </form>
 
@@ -338,7 +353,9 @@
 
                 $('#testcategdeptdropdown').html('');
 
+                
                 for (var i = 0; i < 10; i++) {
+
                     $('#testcategdeptdropdown').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
                 }
 
@@ -518,8 +535,8 @@
                 success: function (data) {
 
                     $('#subcategSee').html('');
-
-                    for (var i = 0; i < 10; i++) {
+                    $("#subcategSee").prepend("<option value='' selected='selected'></option>");
+                    for (var i = 1; i < 11; i++) {
                         $('#subcategSee').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
                     }
                 },
@@ -576,122 +593,82 @@
             });
 
 
+
+           
+        
+            var crudServiceBaseUrl = "/Admin",
+                      dataSource = new kendo.data.DataSource({
+                          transport: {
+                              read: {
+                                  url: crudServiceBaseUrl + "/FillDropdownKendo",
+                                  dataType: "json",
+
+                              },
+                              update: {
+                                  url: crudServiceBaseUrl + "/UpdateKendoGrid",
+                                  dataType: "json",
+                                  
+                              },
+                              destroy: {
+                                  url: crudServiceBaseUrl + "/Delete",
+                                  dataType: "json",
+                              },
+                              
+                              parameterMap: function (options, operation) {
+                                 
+                                  if (operation !== "read" && options.models) {
+                                      return { models: kendo.stringify(options.models)};
+                                  }
+                              },
+                             
+                          },
+                          batch: true,
+                          pageSize: 20,
+                          schema: {
+                              model: {
+                                  id: "Id",
+                                  fields: {
+                                      testName: { type: "string" },
+                                      upperBound: { type: "double" },
+                                      lowerBound: { type: "double" },
+                                      unit: { type: "string" },
+                                      rate: { type: "double" },
+
+                                  }
+                              }
+                          },
+                          completed: function () { alert('COmpleted'); },
+                          requestEnd: function (e) {
+                              //$('#grid').data('kendoGrid').dataSource.read();
+                              $('#grid').data('kendoGrid').refresh();
+                          }
+                          
+                      });
+
             $("#grid").kendoGrid({
-                dataSource: {
-
-                    transport: {
-                        read: {
-                            url: "@Html.Raw(Url.Action("FillDropdownKendo", "Admin"))",
-                        },
-                        update: { url: "@Html.Raw(Url.Action("UpdateKendoGrid", "Admin"))", type: 'POST' },
-
-
-
-                    },
-
-                    schema: {
-                        model: {
-                            id: "Id",
-                            fields: {
-                                testName: { type: "string" },
-                                upperBound: { type: "double" },
-                                lowerBound: { type: "double" },
-                                unit: { type: "string" },
-                                rate: { type: "double" },
-
-                            }
-                        }
-                    },
-                    pageSize: 20
-                },
+                dataSource: dataSource,
+                pageable: true,
                 height: 550,
-                batch: true,
-                scrollable: true,
-                sortable: true,
-                autoSync: true,
-                filterable: true,
-                editable: true,
-                pageable: {
-                    input: true,
-                    numeric: false
-                },
+
+                change: onChange,
+                //toolbar: ["create"],
                 columns: [
 
-                    { field: "testName", title: "Test Name", width: "130px" },
-                    { field: "upperBound", title: "Upper Bound", width: "130px" },
-                    { field: "lowerBound", title: "Lower Bound", width: "130px" },
-                    { field: "unit", title: "Unit", width: "130px" },
-                    { field: "rate", title: "Rate", width: "130px" }
-
-
-                ]
+                      { field: "testName", title: "Test Name", width: "130px" },
+                      { field: "upperBound", title: "Upper Bound", width: "130px" },
+                      { field: "lowerBound", title: "Lower Bound", width: "130px" },
+                      { field: "unit", title: "Unit", width: "130px" },
+                      { field: "rate", title: "Rate", width: "130px" },
+                      { command: ["edit", "destroy"], title: "&nbsp;", width: "250px" },
+                ],
+                editable: "inline"
             });
-
-
-
-
-
-        @*dataSource = new kendo.data.DataSource({
-            transport: {
-                read: {
-                    url:"@Html.Raw(Url.Action("FillDropdownKendo", "Admin"))",
-                dataType: "jsonp"
-            },
-            update: {
-                url: "@Html.Raw(Url.Action("UpdateKendoGrid", "Admin"))",
-            dataType: "jsonp"
-        },
-            destroy: {
-            url: crudServiceBaseUrl + "/Products/Destroy",
-            dataType: "jsonp"
-            },
-       
-        parameterMap: function (options, operation) {
-            if (operation !== "read" && options.models) {
-                return { models: kendo.stringify(options.models) };
-            }
-        }
-    },
-        batch: true,
-    pageSize: 20,
-    schema: {
-        model: {
-                id: "Id",
-                testName: { type: "string" },
-                upperBound: { type: "double" },
-                lowerBound: { type: "double" },
-                unit: { type: "string" },
-                rate: { type: "double" },
-                    }
-    }
-    
-
           
-    });
-       
+        });
 
-
-
-     
-
-       
-    $("#grid").kendoGrid({
-        dataSource: dataSource,
-        pageable: true,
-        height: 550,
-        toolbar: ["create"],
-        columns: [
-        { field: "testName", title: "Test Name", width: "130px" },
-        { field: "upperBound", title: "Upper Bound", width: "130px" },
-        { field: "lowerBound", title: "Lower Bound", width: "130px" },
-        { field: "unit", title: "Unit", width: "130px" },
-        { field: "rate", title: "Rate", width: "130px" }],
-
-        editable: "inline"
-    });*@
-
-
-    });
+        function onChange() {
+            alert('aala');
+        }
 </script>
 
 <!--//grid-->

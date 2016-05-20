@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace AsiaLabv1.Controllers
 {
@@ -246,15 +247,26 @@ namespace AsiaLabv1.Controllers
 
                 return Json(null, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult UpdateKendoGrid()
+        public ActionResult UpdateKendoGrid(string models)
         {
-            return Json(null);
+            IList<RequiredTest> objName = new JavaScriptSerializer().Deserialize<IList<RequiredTest>>(models);
+            TestSubcategory tsc = new TestSubcategory();
+            tsc.Id = objName[0].Id;
+            tsc.TestSubcategoryName = objName[0].testName;
+            tsc.UpperBound = objName[0].upperBound;
+            tsc.LowerBound = objName[0].lowerBound;
+            tsc.Unit = objName[0].unit;
+            tsc.Rate = objName[0].rate;
+            tsc.TestCategoryId = TestSubCategoryServices.getById(tsc.Id).TestCategoryId;
+            TestSubCategoryServices.Update(tsc,tsc.Id);
+            return Json(tsc);
         }
 
 
-        public ActionResult Delete(string testcategoryid)
+        public ActionResult Delete(string models)
         {
-            TestSubCategoryServices.Delete(Convert.ToInt16(testcategoryid));
+            IList<RequiredTest> objName = new JavaScriptSerializer().Deserialize<IList<RequiredTest>>(models);
+            TestSubCategoryServices.Delete(Convert.ToInt16(objName[0].Id));
             return Json("Record Deleted", JsonRequestBehavior.AllowGet);
         }
 
