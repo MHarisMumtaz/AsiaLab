@@ -9,18 +9,18 @@
 
 
 
-    <link rel="stylesheet" href="http://cdn.kendostatic.com/2013.3.1324/styles/kendo.rtl.min.css">
-    <link rel="stylesheet" href="http://cdn.kendostatic.com/2013.3.1324/styles/kendo.dataviz.min.css">
-    <link rel="stylesheet" href="http://cdn.kendostatic.com/2013.3.1324/styles/kendo.dataviz.default.min.css">
-    <link rel="stylesheet" href="http://cdn.kendostatic.com/2013.3.1324/styles/kendo.mobile.all.min.css">
+<link rel="stylesheet" href="http://cdn.kendostatic.com/2013.3.1324/styles/kendo.rtl.min.css">
+<link rel="stylesheet" href="http://cdn.kendostatic.com/2013.3.1324/styles/kendo.dataviz.min.css">
+<link rel="stylesheet" href="http://cdn.kendostatic.com/2013.3.1324/styles/kendo.dataviz.default.min.css">
+<link rel="stylesheet" href="http://cdn.kendostatic.com/2013.3.1324/styles/kendo.mobile.all.min.css">
 
-    <link rel="stylesheet" href="~/css/kendo/kendo.common.min.css" />
-    <link rel="stylesheet" href="~/css/kendo/kendo.default.min.css" />
+<link rel="stylesheet" href="~/css/kendo/kendo.common.min.css" />
+<link rel="stylesheet" href="~/css/kendo/kendo.default.min.css" />
 
-    <script src="~/js/kendo/jquery.min.js"></script>
-    <script src="~/js/kendo/kendo.all.min.js"></script>
+<script src="~/js/kendo/jquery.min.js"></script>
+<script src="~/js/kendo/kendo.all.min.js"></script>
 
-}
+ }
 @section Banner
 {
     <div class="banner">
@@ -45,9 +45,11 @@
         <a href="@Url.Action("TestsManagement", "Admin")" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Tests Management</span></a>
 
     </li>
-
     <li>
-        <a href="@Url.Action("DoctorReferrals", "Admin")" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Doctor Referrals</span></a>
+        <a href="@Url.Action("Masters", "Admin")" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Masters</span></a>
+    </li>
+    <li>
+        <a href="@Url.Action("Register","Admin")" class=" hvr-bounce-to-right"> <i class="fa fa-indent nav_icon"></i>Employee Management</a>
     </li>
 
     <li>
@@ -58,9 +60,7 @@
     <li>
         <a href="@Url.Action("BranchReport", "Admin")" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Branch Report</a>
     </li>
-    <li>
-        <a href="@Url.Action("Register","Admin")" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Register Employee</a>
-    </li>
+
 
 }
 @*------------ End Side Navigation Menu----------*@
@@ -304,17 +304,19 @@
                                                 <label for="selector1" class="col-sm-2 control-label">Select SubCategory</label>
                                                 <div class="col-sm-8">
                                                     <select name="selector1" id="subcategSee" class="form-control1">
-                                                        <option selected="selected"></option>
+                                                        <option selected="selected">
+                                                            
+                                                        </option>
                                                     </select>
 
                                                 </div>
                                             </div>
                                             @*<div class="form-group">
-                                                    <label for="selector1" class="col-sm-2 control-label">Tests</label>
-                                                    <div class="col-sm-8">
-                                                        <select name="selector1" id="Tests" class="form-control1"></select>
-                                                    </div>
-                                                </div>*@
+                                                <label for="selector1" class="col-sm-2 control-label">Tests</label>
+                                                <div class="col-sm-8">
+                                                    <select name="selector1" id="Tests" class="form-control1"></select>
+                                                </div>
+                                            </div>*@
                                             <div class="clearfix"> </div>
                                         </form>
 
@@ -352,7 +354,7 @@
 
                 $('#testcategdeptdropdown').html('');
 
-
+                
                 for (var i = 0; i < 10; i++) {
 
                     $('#testcategdeptdropdown').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
@@ -368,306 +370,306 @@
 
 
 
-    //For Checkbox
+        //For Checkbox
 
 
-    $('#IsNewDepartment').click(function () {
+        $('#IsNewDepartment').click(function () {
 
-        if ($(this).prop("checked") == true) {
+            if ($(this).prop("checked") == true) {
 
-            $("#labeldeptname").fadeIn("fast");
-            $("#deptId").fadeOut("fast");
-            $("#lbl").fadeOut("fast");
-            $("#subdep").fadeOut("fast");
-            $("#testCategoryName").fadeOut("fast");
+                $("#labeldeptname").fadeIn("fast");
+                $("#deptId").fadeOut("fast");
+                $("#lbl").fadeOut("fast");
+                $("#subdep").fadeOut("fast");
+                $("#testCategoryName").fadeOut("fast");
 
-            $("#deptlbl").fadeIn("fast");
-        }
-        else if ($(this).prop("checked") == false) {
+                $("#deptlbl").fadeIn("fast");
+            }
+            else if ($(this).prop("checked") == false) {
 
-            $("#labeldeptname").fadeOut("fast");
-            $("#deptId").fadeIn("fast");
-            $("#lbl").fadeIn("fast");
-            $("#subdep").fadeIn("fast");
-            $("#testCategoryName").fadeIn("fast");
-            $("#deptlbl").fadeOut("fast");
-        }
-    });
-
-
-    $('#addDepbtn').click(function () {
-        //alert("check");
-        deptid = $('#deptId').val();
-        deptname = $('#deptName').val();
-        testcategoryName = $('#testCategoryName').val();
-        IsNewDepartment = $('#IsNewDepartment').is(':checked');
-        Catgorycode = $('#CatgoryCode').val();
-
-        var obj = {
-            deptId: deptid,
-            deptName: deptname,
-            testCategoryName: testcategoryName,
-            IsNewDepartment: IsNewDepartment,
-            departments: null,
-            testCategoryId: -1,
-            CatgoryCode: Catgorycode
-        };
-        //alert(obj);
-        $.ajax({
-
-            type: 'POST',
-            url: '/Admin/AddTestDepartmentsAndCategories/',
-            data: obj,
-            dataType: "json",
-
-        });
-    });
-
-
-    $('#addTestbtn').click(function () {
-
-        deptid = $('#deptId').val();
-        TestCategoryId = $('#testcategdeptdropdown').val();
-        TestSubcategoryName = $('#testName').val();
-        UpperBound = $('#upperBound').val();
-        LowerBound = $('#lowerBound').val();
-        Unit = $('#unit').val();
-        Rate = $('#rate').val();
-
-        var obj = {
-            deptId: deptid,
-            TestCategoryId: TestCategoryId,
-            TestSubcategoryName: TestSubcategoryName,
-            upperBound: UpperBound,
-            lowerBound: LowerBound,
-            Unit: Unit,
-            Rate: Rate
-        };
-
-        $.ajax({
-
-            type: 'POST',
-            url: '/Admin/AddTests/',
-            data: obj,
-            dataType: "json",
-
-        });
-    });
-
-
-
-    //For Deleting Tests
-
-    $('#testdeptdropdown2').change(function () {
-
-        var vo = $("#testdeptdropdown2").val();
-        //alert(vo);
-        $.ajax({
-            type: 'GET',
-            url: '/Admin/FillDropdown/',
-            data: { categId: vo, subCategId: null },
-            dataType: "json",
-            success: function (data) {
-
-                $('#testHeadDropDown').html('');
-
-                for (var i = 0; i < 10; i++) {
-                    $('#testHeadDropDown').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
-                }
-            },
-            error: function (data) {
-                alert(data);
+                $("#labeldeptname").fadeOut("fast");
+                $("#deptId").fadeIn("fast");
+                $("#lbl").fadeIn("fast");
+                $("#subdep").fadeIn("fast");
+                $("#testCategoryName").fadeIn("fast");
+                $("#deptlbl").fadeOut("fast");
             }
         });
-    });
+
+
+        $('#addDepbtn').click(function () {
+            //alert("check");
+            deptid = $('#deptId').val();
+            deptname = $('#deptName').val();
+            testcategoryName = $('#testCategoryName').val();
+            IsNewDepartment = $('#IsNewDepartment').is(':checked');
+            Catgorycode = $('#CatgoryCode').val();
+
+            var obj = {
+                deptId: deptid,
+                deptName: deptname,
+                testCategoryName: testcategoryName,
+                IsNewDepartment: IsNewDepartment,
+                departments: null,
+                testCategoryId: -1,
+                CatgoryCode: Catgorycode
+            };
+            //alert(obj);
+            $.ajax({
+
+                type: 'POST',
+                url: '/Admin/AddTestDepartmentsAndCategories/',
+                data: obj,
+                dataType: "json",
+
+            });
+        });
+
+
+        $('#addTestbtn').click(function () {
+
+            deptid = $('#deptId').val();
+            TestCategoryId = $('#testcategdeptdropdown').val();
+            TestSubcategoryName = $('#testName').val();
+            UpperBound = $('#upperBound').val();
+            LowerBound = $('#lowerBound').val();
+            Unit = $('#unit').val();
+            Rate = $('#rate').val();
+
+            var obj = {
+                deptId: deptid,
+                TestCategoryId: TestCategoryId,
+                TestSubcategoryName: TestSubcategoryName,
+                upperBound: UpperBound,
+                lowerBound: LowerBound,
+                Unit: Unit,
+                Rate: Rate
+            };
+
+            $.ajax({
+
+                type: 'POST',
+                url: '/Admin/AddTests/',
+                data: obj,
+                dataType: "json",
+
+            });
+        });
 
 
 
-    $('#testHeadDropDown').change(function () {
+        //For Deleting Tests
 
-        var vo = $("#testHeadDropDown").val();
-        //alert(vo);
-        $.ajax({
-            type: 'GET',
-            url: '/Admin/FillDropdown/',
-            data: { categId: null, subCategId: vo },
-            dataType: "json",
-            success: function (data) {
+        $('#testdeptdropdown2').change(function () {
 
-                $('#testDropDown').html('');
+            var vo = $("#testdeptdropdown2").val();
+            //alert(vo);
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/FillDropdown/',
+                data: { categId: vo, subCategId: null },
+                dataType: "json",
+                success: function (data) {
 
-                for (var i = 0; i < 10; i++) {
-                    $('#testDropDown').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+                    $('#testHeadDropDown').html('');
+
+                    for (var i = 0; i < 10; i++) {
+                        $('#testHeadDropDown').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+                    }
+                },
+                error: function (data) {
+                    alert(data);
                 }
-            },
-            error: function (data) {
-                alert(data);
-            }
+            });
         });
-    });
 
-    $('#deleteTestbtn').click(function () {
 
-        testcategoryName = $('#testDropDown').val();
 
-        $.ajax({
+        $('#testHeadDropDown').change(function () {
 
-            type: 'POST',
-            url: '/Admin/Delete/',
-            data: { testcategoryid: testcategoryName },
-            dataType: "json",
+            var vo = $("#testHeadDropDown").val();
+            //alert(vo);
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/FillDropdown/',
+                data: { categId: null, subCategId: vo },
+                dataType: "json",
+                success: function (data) {
 
-        });
-    });
+                    $('#testDropDown').html('');
 
-    //See Tests
-
-    $('#testdeptdropdown3').change(function () {
-
-        var vo = $("#testdeptdropdown3").val();
-        alert(vo);
-        $.ajax({
-            type: 'GET',
-            url: '/Admin/FillDropdown/',
-            data: { categId: vo, subCategId: null },
-            dataType: "json",
-            success: function (data) {
-
-                $('#subcategSee').html('');
-                $("#subcategSee").prepend("<option value='' selected='selected'></option>");
-                for (var i = 1; i < 11; i++) {
-                    $('#subcategSee').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+                    for (var i = 0; i < 10; i++) {
+                        $('#testDropDown').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+                    }
+                },
+                error: function (data) {
+                    alert(data);
                 }
-            },
-            error: function (data) {
-                alert(data);
-            }
+            });
         });
-    });
 
+        $('#deleteTestbtn').click(function () {
 
+            testcategoryName = $('#testDropDown').val();
 
-    //$('#subcategSee').change(function () {
+            $.ajax({
 
+                type: 'POST',
+                url: '/Admin/Delete/',
+                data: { testcategoryid: testcategoryName },
+                dataType: "json",
 
-    //    var vo = $("#subcategSee").val();
-    //    //alert(vo);
-    //    $.ajax({
-    //        type: 'GET',
-    //        url: '/Admin/FillDropdown/',
-    //        data: { categId: null, subCategId: vo },
-    //        dataType: "json",
-    //        success: function (data) {
+            });
+        });
 
-    //            $('#Tests').html('');
+        //See Tests
 
-    //            for (var i = 0; i < 10; i++) {
-    //                $('#Tests').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
-    //            }
-    //        },
-    //        error: function (data) {
-    //            alert(data);
-    //        }
-    //    });
-    //});
+        $('#testdeptdropdown3').change(function () {
 
-    //Kendo Grid For Test Viewing
+            var vo = $("#testdeptdropdown3").val();
+            alert(vo);
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/FillDropdown/',
+                data: { categId: vo, subCategId: null },
+                dataType: "json",
+                success: function (data) {
 
-
-
-
-    $('#subcategSee').change(function () {
-
-        //('#grid').data('kendoGrid').refresh();
-        var vo = $("#subcategSee").val();
-        alert(vo);
-
-
-        $.ajax({
-            type: 'POST',
-            url: '/Admin/FillDropdownKendo/',
-            data: { isFill: 'none', subCategId: vo },
-            dataType: "json",
-
+                    $('#subcategSee').html('');
+                    $("#subcategSee").prepend("<option value='-1' selected='selected'>Select Test Category</option>");
+                    for (var i = 0; i < data.length; i++) {
+                        $('#subcategSee').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+                    }
+                },
+                error: function (data) {
+                    alert(data);
+                }
+            });
         });
 
 
 
+        //$('#subcategSee').change(function () {
 
 
-        var crudServiceBaseUrl = "/Admin",
-                  dataSource = new kendo.data.DataSource({
-                      transport: {
-                          read: {
-                              url: crudServiceBaseUrl + "/FillDropdownKendo",
-                              dataType: "json",
+        //    var vo = $("#subcategSee").val();
+        //    //alert(vo);
+        //    $.ajax({
+        //        type: 'GET',
+        //        url: '/Admin/FillDropdown/',
+        //        data: { categId: null, subCategId: vo },
+        //        dataType: "json",
+        //        success: function (data) {
 
+        //            $('#Tests').html('');
+
+        //            for (var i = 0; i < 10; i++) {
+        //                $('#Tests').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+        //            }
+        //        },
+        //        error: function (data) {
+        //            alert(data);
+        //        }
+        //    });
+        //});
+
+        //Kendo Grid For Test Viewing
+
+
+
+
+        $('#subcategSee').change(function () {
+
+            //('#grid').data('kendoGrid').refresh();
+            var vo = $("#subcategSee").val();
+            alert(vo);
+
+
+            $.ajax({
+                type: 'POST',
+                url: '/Admin/FillDropdownKendo/',
+                data: { isFill: 'none', subCategId: vo },
+                dataType: "json",
+
+            });
+
+
+
+           
+        
+            var crudServiceBaseUrl = "/Admin",
+                      dataSource = new kendo.data.DataSource({
+                          transport: {
+                              read: {
+                                  url: crudServiceBaseUrl + "/FillDropdownKendo",
+                                  dataType: "json",
+
+                              },
+                              update: {
+                                  url: crudServiceBaseUrl + "/UpdateKendoGrid",
+                                  dataType: "json",
+                                  
+                              },
+                              destroy: {
+                                  url: crudServiceBaseUrl + "/Delete",
+                                  dataType: "json",
+                              },
+                              
+                              parameterMap: function (options, operation) {
+                                 
+                                  if (operation !== "read" && options.models) {
+                                      return { models: kendo.stringify(options.models)};
+                                  }
+                              },
+                             
                           },
-                          update: {
-                              url: crudServiceBaseUrl + "/UpdateKendoGrid",
-                              dataType: "json",
+                          batch: true,
+                          pageSize: 20,
+                          schema: {
+                              model: {
+                                  id: "Id",
+                                  fields: {
+                                      testName: { type: "string" },
+                                      upperBound: { type: "double" },
+                                      lowerBound: { type: "double" },
+                                      unit: { type: "string" },
+                                      rate: { type: "double" },
 
-                          },
-                          destroy: {
-                              url: crudServiceBaseUrl + "/Delete",
-                              dataType: "json",
-                          },
-
-                          parameterMap: function (options, operation) {
-
-                              if (operation !== "read" && options.models) {
-                                  return { models: kendo.stringify(options.models) };
+                                  }
                               }
                           },
-
-                      },
-                      batch: true,
-                      pageSize: 20,
-                      schema: {
-                          model: {
-                              id: "Id",
-                              fields: {
-                                  testName: { type: "string" },
-                                  upperBound: { type: "double" },
-                                  lowerBound: { type: "double" },
-                                  unit: { type: "string" },
-                                  rate: { type: "double" },
-
-                              }
+                          completed: function () { alert('COmpleted'); },
+                          requestEnd: function (e) {
+                              //$('#grid').data('kendoGrid').dataSource.read();
+                              $('#grid').data('kendoGrid').refresh();
                           }
-                      },
-                      completed: function () { alert('COmpleted'); },
-                      requestEnd: function (e) {
-                          //$('#grid').data('kendoGrid').dataSource.read();
-                          $('#grid').data('kendoGrid').refresh();
-                      }
+                          
+                      });
 
-                  });
+            $("#grid").kendoGrid({
+                dataSource: dataSource,
+                pageable: true,
+                height: 550,
 
-        $("#grid").kendoGrid({
-            dataSource: dataSource,
-            pageable: true,
-            height: 550,
+                change: onChange,
+                //toolbar: ["create"],
+                columns: [
 
-            change: onChange,
-            //toolbar: ["create"],
-            columns: [
-
-                  { field: "testName", title: "Test Name", width: "130px" },
-                  { field: "upperBound", title: "Upper Bound", width: "130px" },
-                  { field: "lowerBound", title: "Lower Bound", width: "130px" },
-                  { field: "unit", title: "Unit", width: "130px" },
-                  { field: "rate", title: "Rate", width: "130px" },
-                  { command: ["edit", "destroy"], title: "&nbsp;", width: "250px" },
-            ],
-            editable: "inline"
+                      { field: "testName", title: "Test Name", width: "130px" },
+                      { field: "upperBound", title: "Upper Bound", width: "130px" },
+                      { field: "lowerBound", title: "Lower Bound", width: "130px" },
+                      { field: "unit", title: "Unit", width: "130px" },
+                      { field: "rate", title: "Rate", width: "130px" },
+                      { command: ["edit", "destroy"], title: "&nbsp;", width: "250px" },
+                ],
+                editable: "inline"
+            });
+          
         });
 
-    });
-
-    function onChange() {
-        alert('aala');
-    }
+        function onChange() {
+            alert('aala');
+        }
 </script>
 
 <!--//grid-->
