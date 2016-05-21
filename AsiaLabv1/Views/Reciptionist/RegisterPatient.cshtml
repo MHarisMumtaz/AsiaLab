@@ -181,26 +181,26 @@
                             
                             var Name= $('#Name').val();
                             var GenderId = $('#GenderId').val();
-                            var DateOfBirth =$('#DateOfBirth').val();
+                            var DateOfBirth = $('#DateOfBirth').val();
                             var PhoneNumber =$('#PhoneNumber').val();
                             var Email = $('#Email').val();
-                            var ReferredId  = $('#ReferredId').val();
+                            var ReferredId  =0 //$('#ReferredId').val();
                             
                             var patientObj = {
                                 Id:0,
-                                Name:Name,
-                                GenderId: GenderId,
-                                DateofBirth:DateofBirth,
-                                PhoneNumber:PhoneNumber,
-                                Email:Email,
+                                Name: $('#Name').val(),
+                                GenderId: $('#GenderId').val(),
+                                DateofBirth: $('#DateOfBirth').val(),
+                                PhoneNumber:$('#PhoneNumber').val(),
+                                Email:$('#Email').val(),
                                 BranchId:-1,
-                                ReferredId:ReferredId,
-                                PatientTestIds:SelectedPatientTests
+                                ReferredId:-1,
+                                PatientTestIds: SelectedPatientTests
                             };
                             $.ajax({
                                     type: 'POST',
                                     url: "@Url.Action("AddPatient","Reciptionist")",
-                                    data: {model : patientObj},
+                                    data: patientObj,
                                     dataType: "json",
                                     success : function(data){
                                         alert(data);
