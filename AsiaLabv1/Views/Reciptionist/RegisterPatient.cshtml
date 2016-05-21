@@ -123,15 +123,9 @@
                             <div class="col-md-1">Rate</div>
 
                         </div>
+
                         <div id="SelectedTests">
                        
-                        <div class="row show-grid">
-                            <div class="col-md-1">1</div>
-                            <div class="col-xs-6 col-sm-4">Blood Sugar</div>
-                            <div class="col-md-1">Rs.300/=</div>
-                            <div class="col-md-1"> &nbsp; &nbsp;<input type="checkbox"></div>
-
-                        </div>
                             </div>
 
                     </div>
@@ -170,21 +164,7 @@
                         </div>
                         <div id="Tests">
                        
-                        <div class="row show-grid">
-                            <div class="col-md-1">1</div>
-                            <div class="col-xs-6 col-sm-4">Blood Sugar</div>
-                            <div class="col-md-1">Rs.300/=</div>
-                            <div class="col-md-1"> &nbsp; &nbsp;<input type="checkbox"></div>
-
-                        </div>
-                        <div class="row show-grid">
-                            <div class="col-md-1">2</div>
-                            <div class="col-xs-6 col-sm-4">Urine</div>
-                            <div class="col-md-1">Rs.200/=</div>
-                            <div class="col-md-1"> &nbsp; &nbsp;<input type="checkbox"></div>
-                            <!-- Optional: clear the XS cols if their content doesn't match in height -->
-
-                        </div>
+                       
                             </div>
 
                     </div>
@@ -196,10 +176,12 @@
                         </label>
                     </div>
                     <script>
+                        
                         $('#DeptId').change(function () {
                             var deptId = $('#DeptId').val();
                             getSubCategory(deptId);
                         });
+
                         $('#subcategories').change(function(){
                             var SubCatId = $('#subcategories').val();
                             getTests(SubCatId);
@@ -222,7 +204,7 @@
                                 }
                             }
                         });
-                        }
+                      }
                         
                         var PatientTests = [];
                         var SelectedPatientTests = [];
@@ -239,28 +221,30 @@
                                 if(!IsIdExist){
                                     $('#SelectedTests').append("<div class='row show-grid'> <div class='col-md-1'>"+Id+"</div> <div class='col-xs-6 col-sm-4'>"+PatientTests[Id].TestName+"</div><div class='col-md-1'>Rs."+PatientTests[Id].Rate+"/=</div><div class='col-md-1'> &nbsp;</div></div>");
                                     SelectedPatientTests.push(Id);
+                                }else{
+
+                                    $('#SelectedTests').empty();
+                                    for (var i = 0; i < SelectedPatientTests.length; i++) {
+                                        $('#SelectedTests').append("<div class='row show-grid'> <div class='col-md-1'>"+SelectedPatientTests[i].Id+"</div> <div class='col-xs-6 col-sm-4'>"+SelectedPatientTests[i].TestName+"</div><div class='col-md-1'>Rs."+SelectedPatientTests[i].Rate+"/=</div><div class='col-md-1'> &nbsp;</div></div>");
+                                    }
                                 }
                         }
 
                         function getSubCategory(deptId) {
 
                             $.ajax({
-
                                 type: 'POST',
                                 url: "@Url.Action("GetSubCategory","Reciptionist")",
                                 data: { Id: deptId },
                                 dataType: "json",
                                 success: function (data) {
-                                    //alert(data);
-
+                                    
                                     $('#subcategories').empty();
                                     for (var i = 0; i < data.length; i++) {
                                         $('#subcategories').append('<option value="' + data[i].Id + '" >' + data[i].Name + '</option>');
                                     }
-
                                 }
-                            }
-                            );
+                            });
                         }
 
 
