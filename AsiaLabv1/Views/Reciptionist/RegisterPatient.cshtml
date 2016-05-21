@@ -112,6 +112,24 @@
 
                     </div>
                     <br />
+                      <div class="horz-grid">
+                        <div class="grid-hor">
+                            <h4 id="grid-example-mixed-complete">Selected Tests</h4>
+
+                        </div>
+                        <!----> <div class="row show-grid">
+                            <div class="col-md-1">SR.no</div>
+                            <div class="col-xs-6 col-sm-4">Test Name</div>
+                            <div class="col-md-1">Rate</div>
+
+                        </div>
+
+                        <div id="SelectedTests">
+                       
+                            </div>
+
+                    </div>
+                    <br />
                     <div class="form-group">
                         <div class="col-sm-8">
                             <h4>Select Tests</h4>
@@ -137,31 +155,17 @@
                             <h4 id="grid-example-mixed-complete">Tests List</h4>
 
                         </div>
-                        <!---->
-
-                        <div class="row show-grid">
+                        <!----> <div class="row show-grid">
                             <div class="col-md-1">SR.no</div>
                             <div class="col-xs-6 col-sm-4">Test Name</div>
                             <div class="col-md-1">Rate</div>
                             <div class="col-md-1">Add</div>
 
                         </div>
-                        <div class="row show-grid">
-                            <div class="col-md-1">1</div>
-                            <div class="col-xs-6 col-sm-4">Blood Sugar</div>
-                            <div class="col-md-1">Rs.300/=</div>
-                            <div class="col-md-1"> &nbsp; &nbsp;<input type="checkbox"></div>
-
-                        </div>
-                        <div class="row show-grid">
-                            <div class="col-md-1">2</div>
-                            <div class="col-xs-6 col-sm-4">Urine</div>
-                            <div class="col-md-1">Rs.200/=</div>
-                            <div class="col-md-1"> &nbsp; &nbsp;<input type="checkbox"></div>
-                            <!-- Optional: clear the XS cols if their content doesn't match in height -->
-
-                        </div>
-
+                        <div id="Tests">
+                       
+                       
+                            </div>
 
                     </div>
 
@@ -172,30 +176,75 @@
                         </label>
                     </div>
                     <script>
+                        
                         $('#DeptId').change(function () {
                             var deptId = $('#DeptId').val();
                             getSubCategory(deptId);
                         });
 
+                        $('#subcategories').change(function(){
+                            var SubCatId = $('#subcategories').val();
+                            getTests(SubCatId);
+                        });
+                        
+                        function getTests(SubCatId){
+                            $.ajax({
+                                type: 'POST',
+                                url: "@Url.Action("GetTests","Reciptionist")",
+                                data: {Id : SubCatId},
+                            dataType: "json",
+                            success : function(data){
+                                $('#Tests').empty();
+                                for(var i = 0; i < data.length; i++){
+                                    $('#Tests').append("<div class='row show-grid'> <div class='col-md-1'>"+data[i].Id+"</div> <div class='col-xs-6 col-sm-4'>"+data[i].TestSubcategoryName+"</div><div class='col-md-1'>Rs."+data[i].Rate+"/=</div><div class='col-md-1'> &nbsp; &nbsp;<input type='checkbox' onclick='addTest("+data[i].Id+")'></div></div>");
+                                    PatientTests[data[i].Id] = {
+                                        TestName: data[i].TestSubcategoryName,
+                                        Rate : data[i].Rate
+                                    };
+                                }
+                            }
+                        });
+                      }
+                        
+                        var PatientTests = [];
+                        var SelectedPatientTests = [];
+                        
+                        function addTest(Id){
+                            var IsIdExist = false;
+                            for (var i = 0; i < SelectedPatientTests.length; i++) {
+                                if (SelectedPatientTests[i]==Id) {
+                                    IsIdExist = true;
+                                    SelectedPatientTests.slice(i,1);
+                                    break;
+                                }
+                            }
+                                if(!IsIdExist){
+                                    $('#SelectedTests').append("<div class='row show-grid'> <div class='col-md-1'>"+Id+"</div> <div class='col-xs-6 col-sm-4'>"+PatientTests[Id].TestName+"</div><div class='col-md-1'>Rs."+PatientTests[Id].Rate+"/=</div><div class='col-md-1'> &nbsp;</div></div>");
+                                    SelectedPatientTests.push(Id);
+                                }else{
+
+                                    $('#SelectedTests').empty();
+                                    for (var i = 0; i < SelectedPatientTests.length; i++) {
+                                        $('#SelectedTests').append("<div class='row show-grid'> <div class='col-md-1'>"+SelectedPatientTests[i].Id+"</div> <div class='col-xs-6 col-sm-4'>"+SelectedPatientTests[i].TestName+"</div><div class='col-md-1'>Rs."+SelectedPatientTests[i].Rate+"/=</div><div class='col-md-1'> &nbsp;</div></div>");
+                                    }
+                                }
+                        }
+
                         function getSubCategory(deptId) {
 
                             $.ajax({
-
                                 type: 'POST',
                                 url: "@Url.Action("GetSubCategory","Reciptionist")",
                                 data: { Id: deptId },
                                 dataType: "json",
                                 success: function (data) {
-                                    //alert(data);
-
+                                    
                                     $('#subcategories').empty();
                                     for (var i = 0; i < data.length; i++) {
                                         $('#subcategories').append('<option value="' + data[i].Id + '" >' + data[i].Name + '</option>');
                                     }
-
                                 }
-                            }
-                            );
+                            });
                         }
 
 
