@@ -48,6 +48,9 @@
     <li>
         <a href="@Url.Action("Masters", "Admin")" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Masters</span></a>
     </li>
+    <li>
+        <a href="@Url.Action("Register","Admin")" class=" hvr-bounce-to-right"> <i class="fa fa-indent nav_icon"></i>Employee Management</a>
+    </li>
 
     <li>
         <a href="@Url.Action("Accounting", "Admin")" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i> <span class="nav-label">Accounting</span> </a>
@@ -57,9 +60,7 @@
     <li>
         <a href="@Url.Action("BranchReport", "Admin")" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Branch Report</a>
     </li>
-    <li>
-        <a href="@Url.Action("Register","Admin")" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Register Employee</a>
-    </li>
+
 
 }
 @*------------ End Side Navigation Menu----------*@
@@ -402,24 +403,23 @@
             deptname = $('#deptName').val();
             testcategoryName = $('#testCategoryName').val();
             IsNewDepartment = $('#IsNewDepartment').is(':checked');
-            Catgorycode = $('#CatgoryCode').val();
+            Catgorycode =""
 
             var obj = {
-                deptId: deptid,
+                deptId: parseInt(deptid),
                 deptName: deptname,
                 testCategoryName: testcategoryName,
                 IsNewDepartment: IsNewDepartment,
-                departments: null,
                 testCategoryId: -1,
                 CatgoryCode: Catgorycode
             };
             //alert(obj);
             $.ajax({
-
                 type: 'POST',
-                url: '/Admin/AddTestDepartmentsAndCategories/',
-                data: obj,
-                dataType: "json",
+                url: "@Url.Action("AddTestDepartmentsAndCategories","Admin")",
+                contentType: "application/json; charset-utf-8",
+                data:  {model : obj},
+                dataType: "json"
 
             });
         });

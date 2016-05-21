@@ -10,6 +10,7 @@ namespace AsiaLabv1.Controllers
 {
     public class ReciptionistController : Controller
     {
+        UserService UserServices = new UserService();
         PatientService PatientServices = new PatientService();
         PatientTestService PatientTestService = new PatientTestService();
         GenderService GenderServices = new GenderService();
@@ -47,25 +48,29 @@ namespace AsiaLabv1.Controllers
         {
             var Tests = TestSubCategoryServices.GetSubCategTestsByTestCategoryId(Id);
             var TestList = new List<TestSubCategoryModel>();
-            for (int i = 0; i < 10; i++)
-            {
-                TestList.Add(new TestSubCategoryModel
-                {
-                    Id = i,
-                    Rate = i*5,
-                    TestSubcategoryName = "Testname"+i.ToString()
-                });
-            }
-           
-            //foreach (var item in Tests)
+            
+            #region for test code delete later
+            //for (int i = 0; i < 10; i++)
             //{
             //    TestList.Add(new TestSubCategoryModel
             //    {
-            //        Id = item.Id,
-            //        Rate = item.Rate,
-            //        TestSubcategoryName = item.TestSubcategoryName
+            //        Id = i,
+            //        Rate = i*5,
+            //        TestSubcategoryName = "Testname"+i.ToString()
             //    });
             //}
+            #endregion
+
+            foreach (var item in Tests)
+            {
+                TestList.Add(new TestSubCategoryModel
+                {
+                    Id = item.Id,
+                    Rate = item.Rate,
+                    TestSubcategoryName = item.TestSubcategoryName
+                });
+            }
+
             return Json(TestList, JsonRequestBehavior.AllowGet);
         }
 
@@ -85,9 +90,11 @@ namespace AsiaLabv1.Controllers
             }
             return Json(TestsList, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
         public ActionResult AddPatient(PatientModel model)
         {
-
+            #region testing code should be delete
             //var model=new PatientModel(){
             //    BranchId=1,
             //    Name="firstTestPatient",
@@ -97,18 +104,25 @@ namespace AsiaLabv1.Controllers
             //    PhoneNumber="987987697",
             //    ReferredId=-1
             //};
-
-            PatientServices.Add(model);
-
-            foreach (var TestId in model.PatientTestIds)
+            #endregion
+            if (model.PatientTestIds.Count > 0)
             {
-                PatientTestService.Add(new PatientTest
+                int UserId = Convert.ToInt32(Session["loginuser"].ToString());
+                model.BranchId = UserServices.GetUserBranch(UserId).Id;
+                PatientServices.Add(model);
+
+                foreach (var TestId in model.PatientTestIds)
                 {
-                    PatientId = model.Id,
-                    TestSubcategoryId = TestId
-                });
+                    PatientTestService.Add(new PatientTest
+                    {
+                        PatientId = model.Id,
+                        TestSubcategoryId = TestId
+                    });
+                }
+                return Json("SuccessFully Added Patient", JsonRequestBehavior.AllowGet);
             }
-            return View();
+            return Json("Please assign tests for patients", JsonRequestBehavior.AllowGet);
+            
         }
 
         public ActionResult PrintReport()

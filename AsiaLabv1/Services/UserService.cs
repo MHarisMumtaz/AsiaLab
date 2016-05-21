@@ -110,5 +110,14 @@ namespace AsiaLabv1.Services
         {
             return UserTypes.GetAll();
         }
+
+        public Branch GetUserBranch(int UserId)
+        {
+            var Query = (from u in UserEmp.Table
+                         join br in Branches.Table on u.BranchId equals br.Id
+                         where u.Id == UserId
+                         select br).FirstOrDefault();
+            return Query;
+        }
     }
 }
