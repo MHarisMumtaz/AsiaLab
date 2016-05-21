@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AsiaLabv1.Repositories;
-﻿using AsiaLabv1.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 
 namespace AsiaLabv1.Services
@@ -26,6 +21,15 @@ namespace AsiaLabv1.Services
         public void Delete(int TestCatg)
         {
             _TestSubCatgeroryRepository.DeleteById(TestCatg);
+        }
+        public void Update(TestSubcategory TestCatg,int id)
+        {
+            _TestSubCatgeroryRepository.Update(TestCatg,id);
+        }
+
+        public TestSubcategory getById(int id)
+        {
+           return _TestSubCatgeroryRepository.GetById(id);
         }
 
 
