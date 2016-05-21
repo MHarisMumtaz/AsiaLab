@@ -47,25 +47,29 @@ namespace AsiaLabv1.Controllers
         {
             var Tests = TestSubCategoryServices.GetSubCategTestsByTestCategoryId(Id);
             var TestList = new List<TestSubCategoryModel>();
-            for (int i = 0; i < 10; i++)
-            {
-                TestList.Add(new TestSubCategoryModel
-                {
-                    Id = i,
-                    Rate = i*5,
-                    TestSubcategoryName = "Testname"+i.ToString()
-                });
-            }
-           
-            //foreach (var item in Tests)
+            
+            #region for test code delete later
+            //for (int i = 0; i < 10; i++)
             //{
             //    TestList.Add(new TestSubCategoryModel
             //    {
-            //        Id = item.Id,
-            //        Rate = item.Rate,
-            //        TestSubcategoryName = item.TestSubcategoryName
+            //        Id = i,
+            //        Rate = i*5,
+            //        TestSubcategoryName = "Testname"+i.ToString()
             //    });
             //}
+            #endregion
+
+            foreach (var item in Tests)
+            {
+                TestList.Add(new TestSubCategoryModel
+                {
+                    Id = item.Id,
+                    Rate = item.Rate,
+                    TestSubcategoryName = item.TestSubcategoryName
+                });
+            }
+
             return Json(TestList, JsonRequestBehavior.AllowGet);
         }
 
@@ -85,9 +89,11 @@ namespace AsiaLabv1.Controllers
             }
             return Json(TestsList, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
         public ActionResult AddPatient(PatientModel model)
         {
-
+            #region testing code should be delete
             //var model=new PatientModel(){
             //    BranchId=1,
             //    Name="firstTestPatient",
@@ -97,6 +103,7 @@ namespace AsiaLabv1.Controllers
             //    PhoneNumber="987987697",
             //    ReferredId=-1
             //};
+            #endregion
 
             PatientServices.Add(model);
 

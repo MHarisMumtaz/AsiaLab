@@ -420,6 +420,34 @@
             data: obj,
             dataType: "json",
 
+<<<<<<< HEAD
+=======
+        $('#addDepbtn').click(function () {
+            //alert("check");
+            deptid = $('#deptId').val();
+            deptname = $('#deptName').val();
+            testcategoryName = $('#testCategoryName').val();
+            IsNewDepartment = $('#IsNewDepartment').is(':checked');
+            Catgorycode =""
+
+            var obj = {
+                deptId: parseInt(deptid),
+                deptName: deptname,
+                testCategoryName: testcategoryName,
+                IsNewDepartment: IsNewDepartment,
+                testCategoryId: -1,
+                CatgoryCode: Catgorycode
+            };
+            //alert(obj);
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Action("AddTestDepartmentsAndCategories","Admin")",
+                contentType: "application/json; charset-utf-8",
+                data:  {model : obj},
+                dataType: "json"
+
+            });
+>>>>>>> 408ee685719cfdc2004a47396ab52ebab1c76e7d
         });
     });
 
