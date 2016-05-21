@@ -342,7 +342,7 @@
     $('#testdeptdropdown').change(function () {
 
         var vo = $("#testdeptdropdown").val();
-        alert(vo);
+        //alert(vo);
         $.ajax({
             type: 'GET',
             url: '/Admin/AddCategories/',
@@ -552,6 +552,7 @@
 
     $('#testdeptdropdown3').change(function () {
 
+<<<<<<< HEAD
         var vo = $("#testdeptdropdown3").val();
         alert(vo);
         $.ajax({
@@ -565,6 +566,25 @@
                 $("#subcategSee").prepend("<option value='-1' selected='selected'>Select Test Category</option>");
                 for (var i = 0; i < data.length; i++) {
                     $('#subcategSee').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+=======
+            var vo = $("#testdeptdropdown3").val();
+            //alert(vo);
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/FillDropdown/',
+                data: { categId: vo, subCategId: null },
+                dataType: "json",
+                success: function (data) {
+
+                    $('#subcategSee').html('');
+                    $("#subcategSee").prepend("<option value='-1' selected='selected'>Select Test Category</option>");
+                    for (var i = 0; i < data.length; i++) {
+                        $('#subcategSee').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+                    }
+                },
+                error: function (data) {
+                    alert(data);
+>>>>>>> 8c02c9ceb1c9c1dd8155620f14006b980645f029
                 }
             },
             error: function (data) {
@@ -619,6 +639,12 @@
 
         });
 
+<<<<<<< HEAD
+=======
+            //('#grid').data('kendoGrid').refresh();
+            var vo = $("#subcategSee").val();
+            //alert(vo);
+>>>>>>> 8c02c9ceb1c9c1dd8155620f14006b980645f029
 
 
 
@@ -647,6 +673,7 @@
                                   return { models: kendo.stringify(options.models) };
                               }
                           },
+<<<<<<< HEAD
 
                       },
                       batch: true,
@@ -662,6 +689,13 @@
                                   rate: { type: "double" },
 
                               }
+=======
+                          completed: function () { //alert('COmpleted');
+                          },
+                          requestEnd: function (e) {
+                              //$('#grid').data('kendoGrid').dataSource.read();
+                              $('#grid').data('kendoGrid').refresh();
+>>>>>>> 8c02c9ceb1c9c1dd8155620f14006b980645f029
                           }
                       },
                       completed: function () { alert('COmpleted'); },
@@ -691,11 +725,15 @@
             editable: "inline"
         });
 
+<<<<<<< HEAD
     });
 
     function onChange() {
         alert('aala');
     }
+=======
+     
+>>>>>>> 8c02c9ceb1c9c1dd8155620f14006b980645f029
 </script>
 
 <!--//grid-->
