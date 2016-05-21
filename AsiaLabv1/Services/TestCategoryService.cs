@@ -16,7 +16,7 @@ namespace AsiaLabv1.Services
         {
             _TestCatgeroryRepository.Insert(TestCatg);
         }
-        public List<TestCategory> GetTestsByDeptId(int DeptId)
+        public List<TestCategory> GetTestCategoryByDeptId(int DeptId)
         {
             var Query = (from testcat in _TestCatgeroryRepository.Table
                          join dept in _TestDeptRepository.Table on testcat.TestDepartmentId equals dept.Id
