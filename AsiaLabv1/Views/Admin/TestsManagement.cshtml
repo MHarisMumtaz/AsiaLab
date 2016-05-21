@@ -343,7 +343,7 @@
     $('#testdeptdropdown').change(function () {
 
         var vo = $("#testdeptdropdown").val();
-        alert(vo);
+        //alert(vo);
         $.ajax({
             type: 'GET',
             url: '/Admin/AddCategories/',
@@ -526,7 +526,7 @@
         $('#testdeptdropdown3').change(function () {
 
             var vo = $("#testdeptdropdown3").val();
-            alert(vo);
+            //alert(vo);
             $.ajax({
                 type: 'GET',
                 url: '/Admin/FillDropdown/',
@@ -581,7 +581,7 @@
 
             //('#grid').data('kendoGrid').refresh();
             var vo = $("#subcategSee").val();
-            alert(vo);
+            //alert(vo);
 
 
             $.ajax({
@@ -637,7 +637,8 @@
                                   }
                               }
                           },
-                          completed: function () { alert('COmpleted'); },
+                          completed: function () { //alert('COmpleted');
+                          },
                           requestEnd: function (e) {
                               //$('#grid').data('kendoGrid').dataSource.read();
                               $('#grid').data('kendoGrid').refresh();
@@ -666,9 +667,7 @@
           
         });
 
-        function onChange() {
-            alert('aala');
-        }
+     
 </script>
 
 <!--//grid-->
