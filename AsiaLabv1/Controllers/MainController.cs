@@ -66,6 +66,7 @@ namespace AsiaLabv1.Controllers
                 Session["loginuser"] = model.Id;
                 Session["loginusername"] = model.Name;
 
+                Session["branch"] = model.BranchName;
                 return View(model.UserRole + "Dashboard", model);
             }
 

@@ -1,10 +1,13 @@
-
+﻿﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using AsiaLabv1.Repositories;
 ﻿using AsiaLabv1.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
 
 
 namespace AsiaLabv1.Services
@@ -25,6 +28,7 @@ namespace AsiaLabv1.Services
             _TestSubCatgeroryRepository.DeleteById(TestCatg);
         }
 
+<<<<<<< HEAD
         public List<TestSubcategory> GetSubCategTestsByTestCategoryId(int TestCategId)
         {
 
@@ -35,5 +39,7 @@ namespace AsiaLabv1.Services
             return Query;
         }
        
+=======
+>>>>>>> 501811f171b61f4fdb71fa9464ed3368a7903737
     }
 }

@@ -62,8 +62,8 @@
                     <ul id="myTab" class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Add Departments</a></li>
                         <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">Add Tests</a></li>
-                        <li role="presentation"><a href="#delete" role="tab" id="profile-tab" data-toggle="tab" aria-controls="delete">Delete Tests</a></li>
-                        <li role="presentation"><a href="#see" role="tab" id="profile-tab" data-toggle="tab" aria-controls="see">See Tests</a></li>
+                        @*<li role="presentation"><a href="#delete" role="tab" id="profile-tab" data-toggle="tab" aria-controls="delete">Delete Tests</a></li>*@
+                        <li role="presentation"><a href="#see" role="tab" id="profile-tab" data-toggle="tab" aria-controls="see">Tests List</a></li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
@@ -112,28 +112,14 @@
 
                                             </div>
 
-                                            @*<div class="form-group">
-                                                    <label for="focusedinput" class="col-sm-2 control-label">@Html.LabelFor(model => model.CatgoryCode)</label>
-                                                    <div class="col-sm-8">
-                                                        @Html.TextBoxFor(model => model.CatgoryCode, new { @class = "form-control1" })
-
-                                                    </div>
-
-                                                </div>*@
-
                                             <div class="form-group">
 
                                                 <div class="col-sm-8" style="margin-left:26%">
-                                                    <button id="addDepbtn" class="btn btn-danger">Add</button>
+                                                    <button id="addDepbtn" type="submit" class="btn btn-danger">Add</button>
 
                                                 </div>
 
                                             </div>
-
-
-
-
-
                                             <div class="clearfix"> </div>
                                         </form>
                                     </div>
@@ -324,7 +310,7 @@
 
 <script type="text/javascript">
     $("#labeldeptname").hide();
-    
+
     $('#testdeptdropdown').change(function () {
 
         var vo = $("#testdeptdropdown").val();
@@ -349,7 +335,38 @@
         });
     });
 
-    //For Adding Department
+<<<<<<< HEAD
+    $('#addDepbtn').click(function () {
+        //alert("check");
+            deptid = $('#deptId').val();
+            deptname = $('#deptName').val();
+            testcategoryName = $('#testCategoryName').val();
+            IsNewDepartment = $('#IsNewDepartment').val();
+            alert(IsNewDepartment);
+            Catgorycode = $('#CatgoryCode').val();
+
+            var obj = {
+                deptId: deptid,
+                deptName: deptname,
+                testCategoryName: testcategoryName,
+                IsNewDepartment: IsNewDepartment,
+                departments: null,
+                testCategoryId: -1,
+                CatgoryCode: Catgorycode
+            };
+            
+            $.ajax({
+
+                type: 'POST',
+                url: '/Admin/AddTestDepartmentsAndCategories/',
+                data: obj,
+                dataType: "json",
+
+            });
+    });
+
+    //For Checkbox
+
 
     $('#IsNewDepartment').click(function () {
         if ($(this).prop("checked") == true) {
@@ -379,19 +396,19 @@
         deptid = $('#deptId').val();
         deptname = $('#deptName').val();
         testcategoryName = $('#testCategoryName').val();
-        IsnewDepartment = $('#IsNewDepartment').val();
+        IsNewDepartment = $('#IsNewDepartment').val();
         Catgorycode = $('#CatgoryCode').val();
 
         var obj = {
             deptId: deptid,
             deptName: deptname,
             testCategoryName: testcategoryName,
-            IsNewDepartment: IsnewDepartment,
+            IsNewDepartment: IsNewDepartment,
             departments: null,
             testCategoryId: -1,
             CatgoryCode: Catgorycode
         };
-        alert(obj);
+        //alert(obj);
         $.ajax({
 
             type: 'POST',

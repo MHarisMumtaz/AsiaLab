@@ -1247,7 +1247,11 @@ input#disabledTextInput,select#disabledSelect {
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 .form-control1 {
+<<<<<<< HEAD
+    border: 1px solid #000;
+=======
     border: 1px solid #C0C0C0;
+>>>>>>> 433d9b0c086d788c8973affc3e43b4edad021025
     padding: 5px 8px;
     color: #616161;
     width: 50%;
@@ -1259,6 +1263,8 @@ input#disabledTextInput,select#disabledSelect {
 	font-family: 'Muli-Regular';
 	background: none;
    box-shadow:none !important;
+
+
 }
 .input-lg {
     border-radius: 0px;
@@ -2840,6 +2846,7 @@ ul.dropdown-menu.dropdown-menu-right {
 .login-do input[type="submit"] {
     font-size: 0.9em;
 }
+
 .profile-bottom {
     width: 100%;
 }
