@@ -10,6 +10,7 @@ namespace AsiaLabv1.Controllers
 {
     public class ReciptionistController : Controller
     {
+        UserService UserServices = new UserService();
         PatientService PatientServices = new PatientService();
         PatientTestService PatientTestService = new PatientTestService();
         GenderService GenderServices = new GenderService();
@@ -104,18 +105,24 @@ namespace AsiaLabv1.Controllers
             //    ReferredId=-1
             //};
             #endregion
-
-            PatientServices.Add(model);
-
-            foreach (var TestId in model.PatientTestIds)
+            if (model.PatientTestIds.Count > 0)
             {
-                PatientTestService.Add(new PatientTest
+                int UserId = Convert.ToInt32(Session["loginuser"].ToString());
+                model.BranchId = UserServices.GetUserBranch(UserId).Id;
+                PatientServices.Add(model);
+
+                foreach (var TestId in model.PatientTestIds)
                 {
-                    PatientId = model.Id,
-                    TestSubcategoryId = TestId
-                });
+                    PatientTestService.Add(new PatientTest
+                    {
+                        PatientId = model.Id,
+                        TestSubcategoryId = TestId
+                    });
+                }
+                return Json("SuccessFully Added Patient", JsonRequestBehavior.AllowGet);
             }
-            return View();
+            return Json("Please assign tests for patients", JsonRequestBehavior.AllowGet);
+            
         }
 
         public ActionResult PrintReport()

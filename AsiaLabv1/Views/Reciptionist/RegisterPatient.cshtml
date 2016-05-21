@@ -179,34 +179,39 @@
                         
                         function RegisterPatient(){
                             
-                            var Name= $('#Name').val();
+                            var Name = $('#Name').val();
                             var GenderId = $('#GenderId').val();
                             var DateOfBirth = $('#DateOfBirth').val();
-                            var PhoneNumber =$('#PhoneNumber').val();
+                            var PhoneNumber = $('#PhoneNumber').val();
                             var Email = $('#Email').val();
-                            var ReferredId  =0 //$('#ReferredId').val();
-                            
-                            var patientObj = {
-                                Id:0,
-                                Name: $('#Name').val(),
-                                GenderId: $('#GenderId').val(),
-                                DateofBirth: $('#DateOfBirth').val(),
-                                PhoneNumber:$('#PhoneNumber').val(),
-                                Email:$('#Email').val(),
-                                BranchId:-1,
-                                ReferredId:-1,
-                                PatientTestIds: SelectedPatientTests
-                            };
-                            $.ajax({
+                            var ReferredId  =$('#ReferredId').val();
+                            if (Name!="" &&  GenderId!="" && DateOfBirth!="" && PhoneNumber!="" && Email!="" && (ReferredId!="" && ReferredId!=undefined) && SelectedPatientTests.length>0) {
+                                var patientObj = {
+                                    Id:0,
+                                    Name: $('#Name').val(),
+                                    GenderId: parseInt($('#GenderId').val()),
+                                    DateofBirth: $('#DateOfBirth').val(),
+                                    PhoneNumber:$('#PhoneNumber').val(),
+                                    Email:$('#Email').val(),
+                                    BranchId:-1,
+                                    ReferredId: ReferredId,
+                                    PatientTestIds: SelectedPatientTests
+                                };
+
+                                $.ajax({
                                     type: 'POST',
                                     url: "@Url.Action("AddPatient","Reciptionist")",
-                                    data: patientObj,
-                                    dataType: "json",
-                                    success : function(data){
+                                    data: JSON.stringify(patientObj),
+                                    contentType: "application/json",
+                                    dataType: 'json',
+                                    success: function (data) {
                                         alert(data);
                                     }
-                                });
+                            });
+                        }else{
+                            alert("Please select all required fields");
                         }
+                     }
 
                         $('#DeptId').change(function () {
                             var deptId = $('#DeptId').val();
