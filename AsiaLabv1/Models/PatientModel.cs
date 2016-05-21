@@ -15,7 +15,7 @@ namespace AsiaLabv1.Models
         public string Email { get; set; }
         public int BranchId { get; set; }
 
-        public List<int> PatientTestIds { get; set; }
+        public IEnumerable<int> PatientTestIds { get; set; }
         public int ReferredId { get; set; }
         public List<SelectListItem> ReferredDoctors { get; set; }
         public int GenderId { get; set; }

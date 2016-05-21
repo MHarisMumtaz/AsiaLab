@@ -176,40 +176,39 @@
                         </label>
                     </div>
                     <script>
-<<<<<<< HEAD
-=======
-                        
-                        function RegisterPatient(){
-                            
-                            var Name= $('#Name').val();
+
+                        function RegisterPatient() {
+
+                            var Name = $('#Name').val();
                             var GenderId = $('#GenderId').val();
                             var DateOfBirth = $('#DateOfBirth').val();
-                            var PhoneNumber =$('#PhoneNumber').val();
+                            var PhoneNumber = $('#PhoneNumber').val();
                             var Email = $('#Email').val();
-                            var ReferredId  =0 //$('#ReferredId').val();
-                            
+                            var ReferredId = 0; //$('#ReferredId').val();
+
                             var patientObj = {
-                                Id:0,
+                                Id: 0,
                                 Name: $('#Name').val(),
                                 GenderId: $('#GenderId').val(),
                                 DateofBirth: $('#DateOfBirth').val(),
-                                PhoneNumber:$('#PhoneNumber').val(),
-                                Email:$('#Email').val(),
-                                BranchId:-1,
-                                ReferredId:-1,
+                                PhoneNumber: $('#PhoneNumber').val(),
+                                Email: $('#Email').val(),
+                                BranchId: -1,
+                                ReferredId: -1,
                                 PatientTestIds: SelectedPatientTests
                             };
                             $.ajax({
-                                    type: 'POST',
-                                    url: "@Url.Action("AddPatient","Reciptionist")",
-                                    data: patientObj,
-                                    dataType: "json",
-                                    success : function(data){
-                                        alert(data);
-                                    }
-                                });
+                                type: 'POST',
+                                url: "@Url.Action("AddPatient","Reciptionist")",
+                                data: JSON.stringify(patientObj),
+                                contentType: "application/json",
+                                dataType: "json",
+                                success: function (data) {
+                                    alert(data);
+                                }
+                            });
                         }
->>>>>>> 408ee685719cfdc2004a47396ab52ebab1c76e7d
+
 
                         $('#DeptId').change(function () {
                             var deptId = $('#DeptId').val();
