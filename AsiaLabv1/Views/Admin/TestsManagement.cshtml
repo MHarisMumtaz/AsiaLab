@@ -535,8 +535,8 @@
                 success: function (data) {
 
                     $('#subcategSee').html('');
-                    $("#subcategSee").prepend("<option value='' selected='selected'></option>");
-                    for (var i = 1; i < 11; i++) {
+                    $("#subcategSee").prepend("<option value='-1' selected='selected'>Select Test Category</option>");
+                    for (var i = 0; i < data.length; i++) {
                         $('#subcategSee').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
                     }
                 },
