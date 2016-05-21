@@ -270,7 +270,10 @@ namespace AsiaLabv1.Controllers
             return Json("Record Deleted", JsonRequestBehavior.AllowGet);
         }
 
-
+        public ActionResult DoctorReferrals()
+        {
+            return View();
+        }
 
         public ActionResult Accounting()
         {
