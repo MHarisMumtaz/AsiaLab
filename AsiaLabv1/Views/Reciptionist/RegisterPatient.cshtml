@@ -121,7 +121,7 @@
                             <div class="col-md-1">SR.no</div>
                             <div class="col-xs-6 col-sm-4">Test Name</div>
                             <div class="col-md-1">Rate</div>
-
+                            <div class="col-md-1" style="text-align:center">Remove</div>
                         </div>
 
                         <div id="SelectedTests">
@@ -257,12 +257,13 @@
                         function removeSelectedTest(TestId){
                             $('#SelectedTests').empty();
                             $('#Tests').empty();
-                            PatientTests[TestId] = tempPatientTests[Id];
+                            PatientTests[TestId] = tempPatientTests[TestId];
+                            delete tempPatientTests[TestId];
                             for (var i = 0; i < SelectedPatientTests.length; i++) {
                                 if (SelectedPatientTests[i]==TestId) {
-                                    SelectedPatientTests.slice(i,1);
+                                    SelectedPatientTests.splice(i,1);
                                 }else{
-                                    $('#SelectedTests').append("<div class='row show-grid'> <div class='col-md-1'>" + PatientTests[SelectedPatientTests[i]].Id + "</div> <div class='col-xs-6 col-sm-4'>" + PatientTests[SelectedPatientTests[i]].TestName + "</div><div class='col-md-1'>Rs." + PatientTests[SelectedPatientTests[i]].Rate + "/=</div><div class='col-md-1'> &nbsp;</div></div><img src='../../images/tick1.png' onclick='removeSelectedTest("+SelectedPatientTests[i]+")' />");
+                                    $('#SelectedTests').append("<div class='row show-grid'> <div class='col-md-1'>" + PatientTests[SelectedPatientTests[i]].Id + "</div> <div class='col-xs-6 col-sm-4'>" + PatientTests[SelectedPatientTests[i]].TestName + "</div><div class='col-md-1'>Rs." + PatientTests[SelectedPatientTests[i]].Rate + "/=</div><div class='col-md-1'> &nbsp;<img src='../../images/cross.png' width='20' height='20' onclick='removeSelectedTest("+SelectedPatientTests[i]+")' /></div></div>");
                                 }
                             }
                             for (var key in PatientTests) {
@@ -272,7 +273,7 @@
 
                         function addTest(Id) {
 
-                            $('#SelectedTests').append("<div class='row show-grid'> <div class='col-md-1'>" + Id + "</div> <div class='col-xs-6 col-sm-4'>" + PatientTests[Id].TestName + "</div><div class='col-md-1'>Rs." + PatientTests[Id].Rate + "/=</div><div class='col-md-1'> &nbsp;</div></div><img src='../../images/tick1.png' onclick='removeSelectedTest("+Id+")' />");
+                            $('#SelectedTests').append("<div class='row show-grid'> <div class='col-md-1'>" + Id + "</div> <div class='col-xs-6 col-sm-4'>" + PatientTests[Id].TestName + "</div><div class='col-md-1'>Rs." + PatientTests[Id].Rate + "/=</div><div class='col-md-1'> &nbsp;<img src='../../images/cross.png' width='20' height='20' onclick='removeSelectedTest("+Id+")' /></div></div>");
 
                             tempPatientTests[Id] = {
                                 TestName: PatientTests[Id].TestName,
