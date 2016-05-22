@@ -395,33 +395,8 @@
     });
 
 
-    $('#addDepbtn').click(function () {
-        //alert("check");
-        deptid = $('#deptId').val();
-        deptname = $('#deptName').val();
-        testcategoryName = $('#testCategoryName').val();
-        IsNewDepartment = $('#IsNewDepartment').is(':checked');
-        Catgorycode = $('#CatgoryCode').val();
+  
 
-        var obj = {
-            deptId: deptid,
-            deptName: deptname,
-            testCategoryName: testcategoryName,
-            IsNewDepartment: IsNewDepartment,
-            departments: null,
-            testCategoryId: -1,
-            CatgoryCode: Catgorycode
-        };
-        //alert(obj);
-        $.ajax({
-
-            type: 'POST',
-            url: '/Admin/AddTestDepartmentsAndCategories/',
-            data: obj,
-            dataType: "json",
-
-<<<<<<< HEAD
-=======
         $('#addDepbtn').click(function () {
             //alert("check");
             deptid = $('#deptId').val();
@@ -447,8 +422,6 @@
                 dataType: "json"
 
             });
->>>>>>> 408ee685719cfdc2004a47396ab52ebab1c76e7d
-        });
     });
 
 
@@ -552,7 +525,6 @@
 
     $('#testdeptdropdown3').change(function () {
 
-<<<<<<< HEAD
         var vo = $("#testdeptdropdown3").val();
         alert(vo);
         $.ajax({
@@ -566,25 +538,6 @@
                 $("#subcategSee").prepend("<option value='-1' selected='selected'>Select Test Category</option>");
                 for (var i = 0; i < data.length; i++) {
                     $('#subcategSee').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
-=======
-            var vo = $("#testdeptdropdown3").val();
-            //alert(vo);
-            $.ajax({
-                type: 'GET',
-                url: '/Admin/FillDropdown/',
-                data: { categId: vo, subCategId: null },
-                dataType: "json",
-                success: function (data) {
-
-                    $('#subcategSee').html('');
-                    $("#subcategSee").prepend("<option value='-1' selected='selected'>Select Test Category</option>");
-                    for (var i = 0; i < data.length; i++) {
-                        $('#subcategSee').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
-                    }
-                },
-                error: function (data) {
-                    alert(data);
->>>>>>> 8c02c9ceb1c9c1dd8155620f14006b980645f029
                 }
             },
             error: function (data) {
@@ -623,12 +576,10 @@
 
 
 
-<<<<<<< HEAD
         setInterval(alertFunc, 3000);
-=======
+
 
     $('#subcategSee').change(function () {
->>>>>>> c355f41a43f15f43eeb83174596e4cf8083d6865
 
         //('#grid').data('kendoGrid').refresh();
         var vo = $("#subcategSee").val();
@@ -643,17 +594,9 @@
 
         });
 
-<<<<<<< HEAD
-=======
-            //('#grid').data('kendoGrid').refresh();
-            var vo = $("#subcategSee").val();
-            //alert(vo);
->>>>>>> 8c02c9ceb1c9c1dd8155620f14006b980645f029
 
 
-
-
-        var crudServiceBaseUrl = "/Admin",
+                var crudServiceBaseUrl = "/Admin",
                   dataSource = new kendo.data.DataSource({
                       transport: {
                           read: {
@@ -676,10 +619,8 @@
                               if (operation !== "read" && options.models) {
                                   return { models: kendo.stringify(options.models) };
                               }
-                          },
-<<<<<<< HEAD
-
                       },
+    },
                       batch: true,
                       pageSize: 20,
                       schema: {
@@ -693,22 +634,13 @@
                                   rate: { type: "double" },
 
                               }
-=======
                           completed: function () { //alert('COmpleted');
                           },
                           requestEnd: function (e) {
                               //$('#grid').data('kendoGrid').dataSource.read();
                               $('#grid').data('kendoGrid').refresh();
->>>>>>> 8c02c9ceb1c9c1dd8155620f14006b980645f029
                           }
-                      },
-                      completed: function () { alert('COmpleted'); },
-                      requestEnd: function (e) {
-                          //$('#grid').data('kendoGrid').dataSource.read();
-                          $('#grid').data('kendoGrid').refresh();
-                      }
-
-                  });
+                      });
 
         $("#grid").kendoGrid({
             dataSource: dataSource,
@@ -728,16 +660,12 @@
             ],
             editable: "inline"
         });
-
-<<<<<<< HEAD
     });
 
     function onChange() {
         alert('aala');
     }
-=======
-     
->>>>>>> 8c02c9ceb1c9c1dd8155620f14006b980645f029
+
 </script>
 
 <!--//grid-->

@@ -12,11 +12,11 @@ namespace AsiaLabv1
     using System;
     using System.Collections.Generic;
     
-    public partial class PatientTestResult
+    public partial class TechnicianPatientsTests
     {
         public int Id { get; set; }
-        public int PatientTestId { get; set; }
-        public string ResultOk { get; set; }
-        public string ApprovalStatus { get; set; }
+        public int TechnicianId { get; set; }
+        public System.DateTime Dated { get; set; }
+        public int PatientId { get; set; }
     }
 }

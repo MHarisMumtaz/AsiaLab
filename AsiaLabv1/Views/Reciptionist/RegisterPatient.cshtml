@@ -187,17 +187,13 @@
                             var DateOfBirth = $('#DateOfBirth').val();
                             var PhoneNumber = $('#PhoneNumber').val();
                             var Email = $('#Email').val();
-<<<<<<< HEAD
-                            var ReferredId  =$('#ReferredId').val();
-                            if (Name!="" &&  GenderId!="" && DateOfBirth!="" && PhoneNumber!="" && Email!=""  && SelectedPatientTests.length>0) {
-=======
 
                             var ReferredId = $('#ReferredId').val();
                             if (ReferredId==undefined || ReferredId=="") {
                                 ReferredId = -1;
                             }
                             if (Name!="" &&  GenderId!="" && DateOfBirth!="" && PhoneNumber!="" && Email!="" && SelectedPatientTests.length>0) {
->>>>>>> c355f41a43f15f43eeb83174596e4cf8083d6865
+
                                 var patientObj = {
                                     Id:0,
                                     Name: $('#Name').val(),

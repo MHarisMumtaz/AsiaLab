@@ -18,5 +18,6 @@ namespace AsiaLabv1
         public int PatientTestId { get; set; }
         public string Result { get; set; }
         public string ApprovalStatus { get; set; }
+        public string Remarks { get; set; }
     }
 }

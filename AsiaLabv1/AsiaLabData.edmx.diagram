@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="AsiaLabDbModel.Gender" Width="1.5" PointX="3.75" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="AsiaLabDbModel.Patient" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="AsiaLabDbModel.PatientRefer" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AsiaLabDbModel.PatientTestResult" Width="1.5" PointX="10.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="AsiaLabDbModel.PatientTestResult1" Width="1.5" PointX="10.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="AsiaLabDbModel.PatientTest" Width="1.5" PointX="8.25" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="AsiaLabDbModel.Payment" Width="1.5" PointX="11.25" PointY="9.375" IsExpanded="true" />
@@ -39,6 +38,8 @@
         <AssociationConnector Association="AsiaLabDbModel.FK_Payment_PayType" ManuallyRouted="false" />
         <AssociationConnector Association="AsiaLabDbModel.FK_TestCategories_TestDepartment" ManuallyRouted="false" />
         <AssociationConnector Association="AsiaLabDbModel.FK_TestSubcategories_TestCategories" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AsiaLabDbModel.DoctorPatientsTest" Width="1.5" PointX="10.625" PointY="3.375" />
+        <EntityTypeShape EntityType="AsiaLabDbModel.TechnicianPatientsTests" Width="1.5" PointX="12.125" PointY="2.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

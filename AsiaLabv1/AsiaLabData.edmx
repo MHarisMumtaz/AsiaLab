@@ -77,15 +77,6 @@
           <Property Name="ReferId" Type="int" Nullable="false" />
           <Property Name="PatientId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="PatientTestResult">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PatientTestId" Type="int" Nullable="false" />
-          <Property Name="ResultOk" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ApprovalStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="PatientTestResults">
           <Key>
             <PropertyRef Name="Id" />
@@ -378,7 +369,6 @@
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientRefer" EntityType="Self.PatientRefer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PatientTestResult" EntityType="Self.PatientTestResult" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientTestResults" EntityType="Self.PatientTestResults" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientTests" EntityType="Self.PatientTests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
@@ -544,15 +534,6 @@
           <NavigationProperty Name="Patient" Relationship="Self.FK_PatientRefer_Patient" FromRole="PatientRefer" ToRole="Patient" />
           <NavigationProperty Name="Refer" Relationship="Self.FK_PatientRefer_Refers" FromRole="PatientRefer" ToRole="Refers" />
         </EntityType>
-        <EntityType Name="PatientTestResult">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PatientTestId" Type="Int32" Nullable="false" />
-          <Property Name="ResultOk" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ApprovalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityType Name="PatientTestResult1">
           <Key>
             <PropertyRef Name="Id" />
@@ -561,6 +542,7 @@
           <Property Name="PatientTestId" Type="Int32" Nullable="false" />
           <Property Name="Result" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ApprovalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Remarks" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="PatientTest">
           <Key>
@@ -607,6 +589,7 @@
           <Property Name="ReferredDocNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PatientRefers" Relationship="Self.FK_PatientRefer_Refers" FromRole="Refers" ToRole="PatientRefer" />
+          <Property Name="commission" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="Template">
           <Key>
@@ -859,7 +842,6 @@
           <EntitySet Name="Genders" EntityType="Self.Gender" />
           <EntitySet Name="Patients" EntityType="Self.Patient" />
           <EntitySet Name="PatientRefers" EntityType="Self.PatientRefer" />
-          <EntitySet Name="PatientTestResults" EntityType="Self.PatientTestResult" />
           <EntitySet Name="PatientTestResults1" EntityType="Self.PatientTestResult1" />
           <EntitySet Name="PatientTests" EntityType="Self.PatientTest" />
           <EntitySet Name="Payments" EntityType="Self.Payment" />
@@ -931,7 +913,26 @@
             <End Role="TestCategories" EntitySet="TestCategories" />
             <End Role="TestSubcategories" EntitySet="TestSubcategories" />
           </AssociationSet>
+          <EntitySet Name="DoctorPatientsTests" EntityType="AsiaLabDbModel.DoctorPatientsTest" />
+          <EntitySet Name="TechnicianPatientsTests" EntityType="AsiaLabDbModel.TechnicianPatientsTests" />
         </EntityContainer>
+        <EntityType Name="DoctorPatientsTest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DoctorId" Type="Int32" Nullable="false" />
+          <Property Name="PatientId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TechnicianPatientsTests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TechnicianId" Type="Int32" Nullable="false" />
+          <Property Name="Dated" Type="DateTime" Nullable="false" />
+          <Property Name="PatientId" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1012,16 +1013,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ReferId" ColumnName="ReferId" />
                 <ScalarProperty Name="PatientId" ColumnName="PatientId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PatientTestResults">
-            <EntityTypeMapping TypeName="AsiaLabDbModel.PatientTestResult">
-              <MappingFragment StoreEntitySet="PatientTestResult">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="PatientTestId" ColumnName="PatientTestId" />
-                <ScalarProperty Name="ResultOk" ColumnName="ResultOk" />
-                <ScalarProperty Name="ApprovalStatus" ColumnName="ApprovalStatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
