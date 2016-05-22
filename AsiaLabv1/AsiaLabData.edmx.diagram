@@ -39,7 +39,7 @@
         <AssociationConnector Association="AsiaLabDbModel.FK_TestCategories_TestDepartment" ManuallyRouted="false" />
         <AssociationConnector Association="AsiaLabDbModel.FK_TestSubcategories_TestCategories" ManuallyRouted="false" />
         <EntityTypeShape EntityType="AsiaLabDbModel.DoctorPatientsTest" Width="1.5" PointX="10.625" PointY="3.375" />
-        <EntityTypeShape EntityType="AsiaLabDbModel.TechnicianPatientsTests" Width="1.5" PointX="12.125" PointY="2.25" />
+        <EntityTypeShape EntityType="AsiaLabDbModel.TechnicianPatientsTests" Width="1.5" PointX="12.375" PointY="2.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
