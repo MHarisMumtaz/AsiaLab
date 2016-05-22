@@ -397,6 +397,15 @@
 
   
 
+<<<<<<< HEAD
+=======
+            type: 'POST',
+            url: '/Admin/AddTestDepartmentsAndCategories/',
+            data: obj,
+            dataType: "json",
+
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
         $('#addDepbtn').click(function () {
             //alert("check");
             deptid = $('#deptId').val();
@@ -422,6 +431,11 @@
                 dataType: "json"
 
             });
+<<<<<<< HEAD
+=======
+
+        });
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
     });
 
 
@@ -525,6 +539,10 @@
 
     $('#testdeptdropdown3').change(function () {
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
         var vo = $("#testdeptdropdown3").val();
         alert(vo);
         $.ajax({
@@ -538,6 +556,28 @@
                 $("#subcategSee").prepend("<option value='-1' selected='selected'>Select Test Category</option>");
                 for (var i = 0; i < data.length; i++) {
                     $('#subcategSee').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+<<<<<<< HEAD
+=======
+
+            var vo = $("#testdeptdropdown3").val();
+            //alert(vo);
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/FillDropdown/',
+                data: { categId: vo, subCategId: null },
+                dataType: "json",
+                success: function (data) {
+
+                    $('#subcategSee').html('');
+                    $("#subcategSee").prepend("<option value='-1' selected='selected'>Select Test Category</option>");
+                    for (var i = 0; i < data.length; i++) {
+                        $('#subcategSee').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+                    }
+                },
+                error: function (data) {
+                    alert(data);
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
                 }
             },
             error: function (data) {
@@ -576,10 +616,18 @@
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
         setInterval(alertFunc, 3000);
 
 
     $('#subcategSee').change(function () {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
 
         //('#grid').data('kendoGrid').refresh();
         var vo = $("#subcategSee").val();
@@ -594,6 +642,15 @@
 
         });
 
+<<<<<<< HEAD
+=======
+
+            //('#grid').data('kendoGrid').refresh();
+            var vo = $("#subcategSee").val();
+            //alert(vo);
+
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
 
 
                 var crudServiceBaseUrl = "/Admin",
@@ -619,6 +676,12 @@
                               if (operation !== "read" && options.models) {
                                   return { models: kendo.stringify(options.models) };
                               }
+<<<<<<< HEAD
+=======
+                          },
+
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
                       },
     },
                       batch: true,
@@ -634,11 +697,19 @@
                                   rate: { type: "double" },
 
                               }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
                           completed: function () { //alert('COmpleted');
                           },
                           requestEnd: function (e) {
                               //$('#grid').data('kendoGrid').dataSource.read();
                               $('#grid').data('kendoGrid').refresh();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
                           }
                       });
 
@@ -660,12 +731,20 @@
             ],
             editable: "inline"
         });
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
     });
 
     function onChange() {
         alert('aala');
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
 </script>
 
 <!--//grid-->
