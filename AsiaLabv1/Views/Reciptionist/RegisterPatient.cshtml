@@ -112,7 +112,7 @@
 
                     </div>
                     <br />
-                      <div class="horz-grid">
+                    <div class="horz-grid">
                         <div class="grid-hor">
                             <h4 id="grid-example-mixed-complete">Selected Tests</h4>
 
@@ -125,8 +125,8 @@
                         </div>
 
                         <div id="SelectedTests">
-                       
-                            </div>
+
+                        </div>
 
                     </div>
                     <br />
@@ -156,36 +156,48 @@
 
                         </div>
                         <!----> <div class="row show-grid">
-                            <div class="col-md-1">SR.no</div>
-                            <div class="col-xs-6 col-sm-4">Test Name</div>
-                            <div class="col-md-1">Rate</div>
-                            <div class="col-md-1">Add</div>
+                            <div class="col-md-1" style="text-align:center">SR.no</div>
+                            <div class="col-xs-6 col-sm-4" style="text-align:center">Test Name</div>
+                            <div class="col-md-2" style="text-align:center">Rate</div>
+                            <div class="col-md-1" style="text-align:center">Add</div>
+                            
+                        </div>
+                        <div id="Tests" style="overflow-y:scroll">
+
 
                         </div>
-                        <div id="Tests">
-                       
-                       
-                            </div>
 
                     </div>
 
 
                     <div class="col-sm-2 login-do" style="margin-left:40%">
                         <label class="hvr-shutter-in-horizontal login-sub">
-                            <input type="submit" value="Submit" onclick="RegisterPatient()" />
+                            <input type="button" value="Submit" onclick="RegisterPatient()" />
                         </label>
                     </div>
                     <script>
-                        
+
+
+ 
                         function RegisterPatient(){
                             
+
                             var Name = $('#Name').val();
                             var GenderId = $('#GenderId').val();
                             var DateOfBirth = $('#DateOfBirth').val();
                             var PhoneNumber = $('#PhoneNumber').val();
                             var Email = $('#Email').val();
+<<<<<<< HEAD
                             var ReferredId  =$('#ReferredId').val();
                             if (Name!="" &&  GenderId!="" && DateOfBirth!="" && PhoneNumber!="" && Email!=""  && SelectedPatientTests.length>0) {
+=======
+
+                            var ReferredId = $('#ReferredId').val();
+                            if (ReferredId==undefined || ReferredId=="") {
+                                ReferredId = -1;
+                            }
+                            if (Name!="" &&  GenderId!="" && DateOfBirth!="" && PhoneNumber!="" && Email!="" && SelectedPatientTests.length>0) {
+>>>>>>> c355f41a43f15f43eeb83174596e4cf8083d6865
                                 var patientObj = {
                                     Id:0,
                                     Name: $('#Name').val(),
@@ -213,57 +225,82 @@
                         }
                      }
 
+
                         $('#DeptId').change(function () {
                             var deptId = $('#DeptId').val();
                             getSubCategory(deptId);
                         });
 
-                        $('#subcategories').change(function(){
+                        $('#subcategories').change(function () {
                             var SubCatId = $('#subcategories').val();
                             getTests(SubCatId);
                         });
-                        
-                        function getTests(SubCatId){
+
+                        function getTests(SubCatId) {
                             $.ajax({
                                 type: 'POST',
                                 url: "@Url.Action("GetTests","Reciptionist")",
-                                data: {Id : SubCatId},
-                            dataType: "json",
-                            success : function(data){
-                                $('#Tests').empty();
-                                for(var i = 0; i < data.length; i++){
-                                    $('#Tests').append("<div class='row show-grid'> <div class='col-md-1'>"+data[i].Id+"</div> <div class='col-xs-6 col-sm-4'>"+data[i].TestSubcategoryName+"</div><div class='col-md-1'>Rs."+data[i].Rate+"/=</div><div class='col-md-1'> &nbsp; &nbsp;<input type='checkbox' onclick='addTest("+data[i].Id+")'></div></div>");
-                                    PatientTests[data[i].Id] = {
-                                        TestName: data[i].TestSubcategoryName,
-                                        Rate : data[i].Rate
-                                    };
-                                }
-                            }
-                        });
-                      }
-                        
-                        var PatientTests = [];
-                        var SelectedPatientTests = [];
-                        
-                        function addTest(Id){
-                            var IsIdExist = false;
-                            for (var i = 0; i < SelectedPatientTests.length; i++) {
-                                if (SelectedPatientTests[i]==Id) {
-                                    IsIdExist = true;
-                                    SelectedPatientTests.slice(i,1);
-                                    break;
-                                }
-                            }
-                                if(!IsIdExist){
-                                    $('#SelectedTests').append("<div class='row show-grid'> <div class='col-md-1'>"+Id+"</div> <div class='col-xs-6 col-sm-4'>"+PatientTests[Id].TestName+"</div><div class='col-md-1'>Rs."+PatientTests[Id].Rate+"/=</div><div class='col-md-1'> &nbsp;</div></div>");
-                                    SelectedPatientTests.push(Id);
-                                }else{
-
-                                    $('#SelectedTests').empty();
-                                    for (var i = 0; i < SelectedPatientTests.length; i++) {
-                                        $('#SelectedTests').append("<div class='row show-grid'> <div class='col-md-1'>"+SelectedPatientTests[i].Id+"</div> <div class='col-xs-6 col-sm-4'>"+SelectedPatientTests[i].TestName+"</div><div class='col-md-1'>Rs."+SelectedPatientTests[i].Rate+"/=</div><div class='col-md-1'> &nbsp;</div></div>");
+                                data: { Id: SubCatId },
+                                dataType: "json",
+                                success: function (data) {
+                                    $('#Tests').empty();
+                                    for (var i = 0; i < data.length; i++) {
+                                        $('#Tests').append("<div class='row show-grid'> <div class='col-md-1'>" + data[i].Id + "</div> <div class='col-xs-6 col-sm-4'>" + data[i].TestSubcategoryName + "</div><div class='col-md-1'>Rs." + data[i].Rate + "/=</div><div class='col-md-1'> &nbsp; &nbsp;<input type='checkbox' onclick='addTest(" + data[i].Id + ")'></div></div>");
+                                        PatientTests[data[i].Id] = {
+                                            TestName: data[i].TestSubcategoryName,
+                                            Rate: data[i].Rate
+                                        };
                                     }
                                 }
+                            });
+                        }
+
+                        var PatientTests = [];
+                        var SelectedPatientTests = [];
+                        var tempPatientTests = [];
+
+                        function removeSelectedTest(TestId){
+                            $('#SelectedTests').empty();
+                            $('#Tests').empty();
+                            PatientTests[TestId] = tempPatientTests[Id];
+                            for (var i = 0; i < SelectedPatientTests.length; i++) {
+                                if (SelectedPatientTests[i]==TestId) {
+                                    SelectedPatientTests.slice(i,1);
+                                }else{
+                                    $('#SelectedTests').append("<div class='row show-grid'> <div class='col-md-1'>" + PatientTests[SelectedPatientTests[i]].Id + "</div> <div class='col-xs-6 col-sm-4'>" + PatientTests[SelectedPatientTests[i]].TestName + "</div><div class='col-md-1'>Rs." + PatientTests[SelectedPatientTests[i]].Rate + "/=</div><div class='col-md-1'> &nbsp;</div></div><img src='../../images/tick1.png' onclick='removeSelectedTest("+SelectedPatientTests[i]+")' />");
+                                }
+                            }
+                            for (var key in PatientTests) {
+                                $('#Tests').append("<div class='row show-grid'> <div class='col-md-1'>" + PatientTests[key].Id + "</div> <div class='col-xs-6 col-sm-4'>" + PatientTests[key].TestName + "</div><div class='col-md-1'>Rs." + PatientTests[key].Rate + "/=</div><div class='col-md-1'> &nbsp; &nbsp;<input type='checkbox' onclick='addTest(" + key + ")'></div></div>");
+                            }
+                        }
+
+                        function addTest(Id) {
+
+                            $('#SelectedTests').append("<div class='row show-grid'> <div class='col-md-1'>" + Id + "</div> <div class='col-xs-6 col-sm-4'>" + PatientTests[Id].TestName + "</div><div class='col-md-1'>Rs." + PatientTests[Id].Rate + "/=</div><div class='col-md-1'> &nbsp;</div></div><img src='../../images/tick1.png' onclick='removeSelectedTest("+Id+")' />");
+
+                            tempPatientTests[Id] = {
+                                TestName: PatientTests[Id].TestName,
+                                Rate: PatientTests[Id].Rate
+                            };
+                            $('#Tests').empty();
+                            delete PatientTests[Id];
+                            for (var key in PatientTests) {
+                                $('#Tests').append("<div class='row show-grid'> <div class='col-md-1'>" + PatientTests[key].Id + "</div> <div class='col-xs-6 col-sm-4'>" + PatientTests[key].TestName + "</div><div class='col-md-1'>Rs." + PatientTests[key].Rate + "/=</div><div class='col-md-1'> &nbsp; &nbsp;<input type='checkbox' onclick='addTest(" + key + ")'></div></div>");
+                            }
+                            SelectedPatientTests.push(Id);
+                            ///   var IsIdExist = false;
+                            
+                            //if (!IsIdExist) {
+                              //  $('#SelectedTests').append("<div class='row show-grid'> <div class='col-md-1'>" + Id + "</div> <div class='col-xs-6 col-sm-4'>" + PatientTests[Id].TestName + "</div><div class='col-md-1'>Rs." + PatientTests[Id].Rate + "/=</div><div class='col-md-1'> &nbsp;</div></div>");
+                                //SelectedPatientTests.push(Id);
+                            //} else {
+
+                              //  $('#SelectedTests').empty();
+                                //for (var i = 0; i < SelectedPatientTests.length; i++) {
+                              //      $('#SelectedTests').append("<div class='row show-grid'> <div class='col-md-1'>" + SelectedPatientTests[i].Id + "</div> <div class='col-xs-6 col-sm-4'>" + SelectedPatientTests[i].TestName + "</div><div class='col-md-1'>Rs." + SelectedPatientTests[i].Rate + "/=</div><div class='col-md-1'> &nbsp;</div></div>");
+                                //}
+                            //}
                         }
 
                         function getSubCategory(deptId) {
@@ -274,7 +311,7 @@
                                 data: { Id: deptId },
                                 dataType: "json",
                                 success: function (data) {
-                                    
+
                                     $('#subcategories').empty();
                                     for (var i = 0; i < data.length; i++) {
                                         $('#subcategories').append('<option value="' + data[i].Id + '" >' + data[i].Name + '</option>');
