@@ -12,20 +12,10 @@ namespace AsiaLabv1
     using System;
     using System.Collections.Generic;
     
-    public partial class Refer
+    public partial class DoctorPatientsTest
     {
-        public Refer()
-        {
-            this.PatientRefers = new HashSet<PatientRefer>();
-        }
-    
         public int Id { get; set; }
-        public string ReferredDoctorName { get; set; }
-        public string ReferredDocAddress { get; set; }
-        public string ReferredDocNumber { get; set; }
-        public string Remarks { get; set; }
-        public double commission { get; set; }
-    
-        public virtual ICollection<PatientRefer> PatientRefers { get; set; }
+        public int DoctorId { get; set; }
+        public int PatientId { get; set; }
     }
 }

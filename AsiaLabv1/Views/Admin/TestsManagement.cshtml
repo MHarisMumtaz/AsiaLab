@@ -397,6 +397,18 @@
 
   
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+            type: 'POST',
+            url: '/Admin/AddTestDepartmentsAndCategories/',
+            data: obj,
+            dataType: "json",
+
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
+>>>>>>> f1ac8b103af1639ff59380602f46baa706e22d3c
         $('#addDepbtn').click(function () {
             //alert("check");
             deptid = $('#deptId').val();
@@ -422,9 +434,18 @@
                 dataType: "json"
 
             });
+<<<<<<< HEAD
 
         });
     
+=======
+<<<<<<< HEAD
+=======
+
+        });
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
+    });
+>>>>>>> f1ac8b103af1639ff59380602f46baa706e22d3c
 
 
     $('#addTestbtn').click(function () {
@@ -527,6 +548,29 @@
 
     $('#testdeptdropdown3').change(function () {
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
+        var vo = $("#testdeptdropdown3").val();
+        alert(vo);
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/FillDropdown/',
+            data: { categId: vo, subCategId: null },
+            dataType: "json",
+            success: function (data) {
+
+                $('#subcategSee').html('');
+                $("#subcategSee").prepend("<option value='-1' selected='selected'>Select Test Category</option>");
+                for (var i = 0; i < data.length; i++) {
+                    $('#subcategSee').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
+<<<<<<< HEAD
+=======
+
+>>>>>>> f1ac8b103af1639ff59380602f46baa706e22d3c
             var vo = $("#testdeptdropdown3").val();
             //alert(vo);
             $.ajax({
@@ -542,7 +586,16 @@
                         $('#subcategSee').append($("<option></option>").attr("value", data[i].Id).text(data[i].testName));
                     }
                 },
+<<<<<<< HEAD
              
+=======
+                error: function (data) {
+                    alert(data);
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
+                }
+            },
+>>>>>>> f1ac8b103af1639ff59380602f46baa706e22d3c
             error: function (data) {
                 alert(data);
             }
@@ -579,12 +632,28 @@
 
 
 
+<<<<<<< HEAD
 
 
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f1ac8b103af1639ff59380602f46baa706e22d3c
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
+        setInterval(alertFunc, 3000);
 
 
     $('#subcategSee').change(function () {
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
+>>>>>>> f1ac8b103af1639ff59380602f46baa706e22d3c
 
         //('#grid').data('kendoGrid').refresh();
         var vo = $("#subcategSee").val();
@@ -599,11 +668,18 @@
 
         });
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> f1ac8b103af1639ff59380602f46baa706e22d3c
             //('#grid').data('kendoGrid').refresh();
             var vo = $("#subcategSee").val();
             //alert(vo);
 
 
+<<<<<<< HEAD
 var crudServiceBaseUrl = "/Admin",
         dataSource = new kendo.data.DataSource({
             transport: {
@@ -676,6 +752,103 @@ $("#grid").kendoGrid({
     });
 
 
+=======
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
+
+
+                var crudServiceBaseUrl = "/Admin",
+                  dataSource = new kendo.data.DataSource({
+                      transport: {
+                          read: {
+                              url: crudServiceBaseUrl + "/FillDropdownKendo",
+                              dataType: "json",
+
+                          },
+                          update: {
+                              url: crudServiceBaseUrl + "/UpdateKendoGrid",
+                              dataType: "json",
+
+                          },
+                          destroy: {
+                              url: crudServiceBaseUrl + "/Delete",
+                              dataType: "json",
+                          },
+
+                          parameterMap: function (options, operation) {
+
+                              if (operation !== "read" && options.models) {
+                                  return { models: kendo.stringify(options.models) };
+                              }
+<<<<<<< HEAD
+=======
+                          },
+
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
+                      },
+    },
+                      batch: true,
+                      pageSize: 20,
+                      schema: {
+                          model: {
+                              id: "Id",
+                              fields: {
+                                  testName: { type: "string" },
+                                  upperBound: { type: "double" },
+                                  lowerBound: { type: "double" },
+                                  unit: { type: "string" },
+                                  rate: { type: "double" },
+
+                              }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
+                          completed: function () { //alert('COmpleted');
+                          },
+                          requestEnd: function (e) {
+                              //$('#grid').data('kendoGrid').dataSource.read();
+                              $('#grid').data('kendoGrid').refresh();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
+                          }
+                      });
+
+        $("#grid").kendoGrid({
+            dataSource: dataSource,
+            pageable: true,
+            height: 550,
+
+            change: onChange,
+            //toolbar: ["create"],
+            columns: [
+
+                  { field: "testName", title: "Test Name", width: "130px" },
+                  { field: "upperBound", title: "Upper Bound", width: "130px" },
+                  { field: "lowerBound", title: "Lower Bound", width: "130px" },
+                  { field: "unit", title: "Unit", width: "130px" },
+                  { field: "rate", title: "Rate", width: "130px" },
+                  { command: ["edit", "destroy"], title: "&nbsp;", width: "250px" },
+            ],
+            editable: "inline"
+        });
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
+    });
+
+    function onChange() {
+        alert('aala');
+    }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 876e05295b753553c264f6d313677494bd8b97bc
+>>>>>>> f1ac8b103af1639ff59380602f46baa706e22d3c
 </script>
 
 <!--//grid-->

@@ -32,7 +32,6 @@ namespace AsiaLabv1
         public DbSet<Gender> Genders { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<PatientRefer> PatientRefers { get; set; }
-        public DbSet<PatientTestResult> PatientTestResults { get; set; }
         public DbSet<PatientTestResult1> PatientTestResults1 { get; set; }
         public DbSet<PatientTest> PatientTests { get; set; }
         public DbSet<Payment> Payments { get; set; }
@@ -44,5 +43,7 @@ namespace AsiaLabv1
         public DbSet<TestSubcategory> TestSubcategories { get; set; }
         public DbSet<UserEmployee> UserEmployees { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
+        public DbSet<DoctorPatientsTest> DoctorPatientsTests { get; set; }
+        public DbSet<TechnicianPatientsTests> TechnicianPatientsTests { get; set; }
     }
 }
